@@ -565,7 +565,238 @@ namespace test2
 
         #endregion
 
+        // This region sets a value to null if used on part of a listing.
         #region deleting part of a listing/removing a listing
+
+        public void RemovePhotoOne(char[] listingID)
+        {
+			using (SqlCommand command = new SqlCommand())
+			{
+				try
+				{
+					command.Connection = connection;
+					command.CommandType = CommandType.Text;
+					command.CommandText =
+							   String.Concat("UPDATE TABLENAME SET extraPhotoOne = NULL WHERE ",
+												"listingID='", listingID, "'");
+
+					command.ExecuteNonQuery();
+				}
+				catch (Exception e)
+				{
+					Console.WriteLine(e.ToString());
+				}
+			}
+        }
+
+		public void RemovePhotoTwo(char[] listingID)
+		{
+			using (SqlCommand command = new SqlCommand())
+			{
+				try
+				{
+					command.Connection = connection;
+					command.CommandType = CommandType.Text;
+					command.CommandText =
+							   String.Concat("UPDATE TABLENAME SET extraPhotoTwo = NULL WHERE ",
+												"listingID='", listingID, "'");
+
+					command.ExecuteNonQuery();
+				}
+				catch (Exception e)
+				{
+					Console.WriteLine(e.ToString());
+				}
+			}
+		}
+
+		public void RemovePhotoThree(char[] listingID)
+		{
+			using (SqlCommand command = new SqlCommand())
+			{
+				try
+				{
+					command.Connection = connection;
+					command.CommandType = CommandType.Text;
+					command.CommandText =
+							   String.Concat("UPDATE TABLENAME SET extraPhotoThree = NULL WHERE ",
+												"listingID='", listingID, "'");
+
+					command.ExecuteNonQuery();
+				}
+				catch (Exception e)
+				{
+					Console.WriteLine(e.ToString());
+				}
+			}
+		}
+
+		public void RemovePhotoFour(char[] listingID)
+		{
+			using (SqlCommand command = new SqlCommand())
+			{
+				try
+				{
+					command.Connection = connection;
+					command.CommandType = CommandType.Text;
+					command.CommandText =
+							   String.Concat("UPDATE TABLENAME SET extraPhotoFour = NULL WHERE ",
+												"listingID='", listingID, "'");
+
+					command.ExecuteNonQuery();
+				}
+				catch (Exception e)
+				{
+					Console.WriteLine(e.ToString());
+				}
+			}
+		}
+
+		public void RemovePhotoFive(char[] listingID)
+		{
+			using (SqlCommand command = new SqlCommand())
+			{
+				try
+				{
+					command.Connection = connection;
+					command.CommandType = CommandType.Text;
+					command.CommandText =
+							   String.Concat("UPDATE TABLENAME SET extraPhotoFive = NULL WHERE ",
+												"listingID='", listingID, "'");
+
+					command.ExecuteNonQuery();
+				}
+				catch (Exception e)
+				{
+					Console.WriteLine(e.ToString());
+				}
+			}
+		}
+
+		public void RemoveSquareFootage(char[] listingID)
+		{
+			using (SqlCommand command = new SqlCommand())
+			{
+				try
+				{
+					command.Connection = connection;
+					command.CommandType = CommandType.Text;
+					command.CommandText =
+							   String.Concat("UPDATE TABLENAME SET listingSquareFootage = NULL WHERE ",
+												"listingID='", listingID, "'");
+
+					command.ExecuteNonQuery();
+				}
+				catch (Exception e)
+				{
+					Console.WriteLine(e.ToString());
+				}
+			}
+		}
+
+		public void RemoveDescription(char[] listingID)
+		{
+			using (SqlCommand command = new SqlCommand())
+			{
+				try
+				{
+					command.Connection = connection;
+					command.CommandType = CommandType.Text;
+					command.CommandText =
+							   String.Concat("UPDATE TABLENAME SET listingDescription = NULL WHERE ",
+												"listingID='", listingID, "'");
+
+					command.ExecuteNonQuery();
+				}
+				catch (Exception e)
+				{
+					Console.WriteLine(e.ToString());
+				}
+			}
+		}
+
+		public void RemoveRoomDescription(char[] listingID)
+		{
+			using (SqlCommand command = new SqlCommand())
+			{
+				try
+				{
+					command.Connection = connection;
+					command.CommandType = CommandType.Text;
+					command.CommandText =
+							   String.Concat("UPDATE TABLENAME SET listingRoomDescription = NULL WHERE ",
+												"listingID='", listingID, "'");
+
+					command.ExecuteNonQuery();
+				}
+				catch (Exception e)
+				{
+					Console.WriteLine(e.ToString());
+				}
+			}
+		}
+
+		public void RemoveSubdivision(char[] listingID)
+		{
+			using (SqlCommand command = new SqlCommand())
+			{
+				try
+				{
+					command.Connection = connection;
+					command.CommandType = CommandType.Text;
+					command.CommandText =
+							   String.Concat("UPDATE TABLENAME SET listingSubdivision = NULL WHERE ",
+												"listingID='", listingID, "'");
+
+					command.ExecuteNonQuery();
+				}
+				catch (Exception e)
+				{
+					Console.WriteLine(e.ToString());
+				}
+			}
+		}
+
+		public void RemoveAlarmInfo(char[] listingID)
+		{
+			using (SqlCommand command = new SqlCommand())
+			{
+				try
+				{
+					command.Connection = connection;
+					command.CommandType = CommandType.Text;
+					command.CommandText =
+							   String.Concat("UPDATE TABLENAME SET listingAlarmInfo = NULL WHERE ",
+												"listingID='", listingID, "'");
+
+					command.ExecuteNonQuery();
+				}
+				catch (Exception e)
+				{
+					Console.WriteLine(e.ToString());
+				}
+			}
+		}
+
+		public void RemoveListing(char[] listingID)
+		{
+			using (SqlCommand command = new SqlCommand())
+			{
+				try
+				{
+					command.Connection = connection;
+					command.CommandType = CommandType.Text;
+					command.CommandText =
+							   String.Concat("DELETE FROM TABLENAME WHERE listingID='", listingID, "'");
+
+					command.ExecuteNonQuery();
+				}
+				catch (Exception e)
+				{
+					Console.WriteLine(e.ToString());
+				}
+			}
+		}
 
         #endregion
 
