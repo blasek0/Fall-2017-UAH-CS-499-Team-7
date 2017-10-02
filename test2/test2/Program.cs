@@ -800,6 +800,243 @@ namespace test2
 
         #endregion
 
+
+        #region Retrieving info for listing.
+
+        // Get the number of listings (total).
+        public int GetTotalNumberOfListings()
+        {
+            int result = 0;
+            using (SqlCommand command = new SqlCommand())
+            {
+                try
+                {
+                    command.Connection = connection;
+                    command.CommandType = CommandType.Text;
+                    command.CommandText = "SELECT COUNT(*) FROM TABLENAME";
+                    result = Convert.ToInt32(command.ExecuteScalar());
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.ToString());
+                    result = -1;
+                }
+            }
+            return result;
+        }
+
+        // Get the number of listings (from the agent).
+        public int GetTotalNumberOfListingsFromAgent(char[] agentID)
+        {
+			int result = 0;
+			using (SqlCommand command = new SqlCommand())
+			{
+				try
+				{
+					command.Connection = connection;
+					command.CommandType = CommandType.Text;
+                    command.CommandText = String.Concat("SELECT COUNT(*) FROM TABLENAME WHERE agentID ='",agentID,"'");
+					result = Convert.ToInt32(command.ExecuteScalar());
+				}
+				catch (Exception e)
+				{
+					Console.WriteLine(e.ToString());
+					result = -1;
+				}
+			}
+			return result;
+        }
+
+        // Get the number of listings (from an agency).
+        public int GetTotalNumberOfListingsFromAgency(char[] agencyID)
+        {
+			int result = 0;
+			using (SqlCommand command = new SqlCommand())
+			{
+				try
+				{
+					command.Connection = connection;
+					command.CommandType = CommandType.Text;
+                    command.CommandText = String.Concat("SELECT COUNT(*) FROM TABLENAME WHERE agencyID ='", agencyID, "'");
+					result = Convert.ToInt32(command.ExecuteScalar());
+				}
+				catch (Exception e)
+				{
+					Console.WriteLine(e.ToString());
+					result = -1;
+				}
+			}
+			return result;
+        }
+
+		// Get all listings within a given square footage range.
+		public DataTable GetListingsFilterBySquareFootage(int squareFootLow, int squareFootHigh)
+		{
+            DataTable table = new DataTable();
+			using (SqlCommand command = new SqlCommand())
+			{
+				try
+				{
+					command.Connection = connection;
+					command.CommandType = CommandType.Text;
+					command.CommandText =
+						String.Concat("SELECT ALL smallPhoto, listingPrice, listingStreet, listingCity, listingState, ",
+									  "listingZip, listingSquareFootage, agentID, agencyID FROM TABLENAME WHERE ",
+										 "listingSquareFootage BETWEEN @low AND @high");
+
+                    command.Parameters.Add("@low",SqlDbType.Int);
+                    command.Parameters.Add("@high", SqlDbType.Int);
+                    command.Parameters["@low"].Value = squareFootLow;
+                    command.Parameters["@high"].Value = squareFootHigh;
+
+					table.Columns.Add("smallPhoto");
+					table.Columns.Add("listingPrice");
+					table.Columns.Add("listingStreet");
+					table.Columns.Add("listingCity");
+					table.Columns.Add("listingState");
+					table.Columns.Add("listingZip");
+					table.Columns.Add("listingSquareFootage");
+					table.Columns.Add("agentID");
+					table.Columns.Add("agencyID");
+
+
+					using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+					{
+						adapter.Fill(table);
+					}
+				}
+				catch (Exception e)
+				{
+					Console.WriteLine(e.ToString());
+				}
+			}
+            
+			return table;
+		}
+
+		// Get all listings within a given price range.
+		public DataTable GetListingsFilterByPriceRange(int costLow, int costHigh)
+		{
+			DataTable table = new DataTable();
+
+			using (SqlCommand command = new SqlCommand())
+			{
+				try
+				{
+					command.Connection = connection;
+					command.CommandType = CommandType.Text;
+					command.CommandText =
+						String.Concat("SELECT ALL smallPhoto, listingPrice, listingStreet, listingCity, listingState, ",
+									  "listingZip, listingSquareFootage, agentID, agencyID FROM TABLENAME WHERE ",
+										 "listingPrice BETWEEN @low AND @high");
+
+					command.Parameters.Add("@low", SqlDbType.Int);
+					command.Parameters.Add("@high", SqlDbType.Int);
+                    command.Parameters["@low"].Value = costLow;
+                    command.Parameters["@high"].Value = costHigh;
+
+					table.Columns.Add("smallPhoto");
+					table.Columns.Add("listingPrice");
+					table.Columns.Add("listingStreet");
+					table.Columns.Add("listingCity");
+					table.Columns.Add("listingState");
+					table.Columns.Add("listingZip");
+					table.Columns.Add("listingSquareFootage");
+					table.Columns.Add("agentID");
+					table.Columns.Add("agencyID");
+
+
+					using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+					{
+						adapter.Fill(table);
+					}
+				}
+				catch (Exception e)
+				{
+					Console.WriteLine(e.ToString());
+				}
+			}
+
+			return table;
+		}
+
+        // Get all listings matching the searched zip code.
+		public DataTable GetListingsFilterByZipCode(string zip)
+		{
+			DataTable table = new DataTable();
+			using (SqlCommand command = new SqlCommand())
+			{
+				try
+				{
+					command.Connection = connection;
+					command.CommandType = CommandType.Text;
+					command.CommandText =
+						String.Concat("SELECT ALL smallPhoto, listingPrice, listingStreet, listingCity, listingState, ",
+									  "listingZip, listingSquareFootage, agentID, agencyID FROM TABLENAME WHERE ",
+										 "listingZip = @searchZip");
+
+                    command.Parameters.Add("@searchZip", SqlDbType.NChar);
+                    command.Parameters["@searchZip"].Value = zip.ToCharArray();
+
+					table.Columns.Add("smallPhoto");
+					table.Columns.Add("listingPrice");
+					table.Columns.Add("listingStreet");
+					table.Columns.Add("listingCity");
+					table.Columns.Add("listingState");
+					table.Columns.Add("listingZip");
+					table.Columns.Add("listingSquareFootage");
+					table.Columns.Add("agentID");
+					table.Columns.Add("agencyID");
+
+
+					using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+					{
+						adapter.Fill(table);
+					}
+				}
+				catch (Exception e)
+				{
+					Console.WriteLine(e.ToString());
+				}
+			}
+
+			return table;
+		}
+
+        // Get all listings, no filtering.
+        public DataTable GetAllListings()
+        {
+            using (SqlCommand command = new SqlCommand())
+            {
+                command.Connection = connection;
+                command.CommandType = CommandType.Text;
+				command.CommandText = 
+                    String.Concat("SELECT ALL smallPhoto, listingPrice, listingStreet, listingCity, listingState, ",
+                                      "listingZip, listingSquareFootage, agentID, agencyID FROM TABLENAME");
+				
+				DataTable table = new DataTable();
+				table.Columns.Add("smallPhoto");
+				table.Columns.Add("listingPrice");
+				table.Columns.Add("listingStreet");
+				table.Columns.Add("listingCity");
+				table.Columns.Add("listingState");
+				table.Columns.Add("listingZip");
+				table.Columns.Add("listingSquareFootage");
+				table.Columns.Add("agentID");
+                table.Columns.Add("agencyID");
+
+
+				using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+				{
+					adapter.Fill(table);
+				}
+				getText(table);
+
+            }
+            return null;
+        }
+
+        #endregion
         public void getText(String testNumber)
         {
             command.Parameters.Clear();
