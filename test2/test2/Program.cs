@@ -31,7 +31,7 @@ namespace test2
         {
             connection.Close();
         }
-
+        #region functions that affect the listing database.
         #region Adding a listing
 
         public void AddListing(Image smallImage, Image largeImage, int listingPrice, String street, String city,
@@ -268,7 +268,7 @@ namespace test2
                     command.CommandText =
 							   String.Concat("UPDATE TABLENAME SET listingPrice = @listingPrice WHERE ",
 												"listingID='", listingID, "'");
-                    command.Parameters.Add("@listingPrice", SqlDbType.Image);
+                    command.Parameters.Add("@listingPrice", SqlDbType.Int);
 
                     command.Parameters["@listingPrice"].Value = replacementPrice;
 
@@ -1006,59 +1006,903 @@ namespace test2
         // Get all listings, no filtering.
         public DataTable GetAllListings()
         {
+            DataTable table = new DataTable();
             using (SqlCommand command = new SqlCommand())
             {
-                command.Connection = connection;
-                command.CommandType = CommandType.Text;
-				command.CommandText = 
-                    String.Concat("SELECT ALL smallPhoto, listingPrice, listingStreet, listingCity, listingState, ",
-                                      "listingZip, listingSquareFootage, agentID, agencyID FROM TABLENAME");
-				
-				DataTable table = new DataTable();
-				table.Columns.Add("smallPhoto");
-				table.Columns.Add("listingPrice");
-				table.Columns.Add("listingStreet");
-				table.Columns.Add("listingCity");
-				table.Columns.Add("listingState");
-				table.Columns.Add("listingZip");
-				table.Columns.Add("listingSquareFootage");
-				table.Columns.Add("agentID");
-                table.Columns.Add("agencyID");
+                try 
+                {
+					command.Connection = connection;
+					command.CommandType = CommandType.Text;
+					command.CommandText =
+						String.Concat("SELECT ALL smallPhoto, listingPrice, listingStreet, listingCity, listingState, ",
+										  "listingZip, listingSquareFootage, agentID, agencyID FROM TABLENAME");
+
+					table.Columns.Add("smallPhoto");
+					table.Columns.Add("listingPrice");
+					table.Columns.Add("listingStreet");
+					table.Columns.Add("listingCity");
+					table.Columns.Add("listingState");
+					table.Columns.Add("listingZip");
+					table.Columns.Add("listingSquareFootage");
+					table.Columns.Add("agentID");
+					table.Columns.Add("agencyID");
 
 
-				using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+					using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+					{
+						adapter.Fill(table);
+					}
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.ToString());
+                }
+
+            }
+            return table;
+        }
+
+		#endregion
+
+		#endregion
+
+		#region functions that affect the agent database.
+
+		#region Add an agent to the database.
+        public void AddAgent(string agent_Fname, string agent_Lname, string agent_Uname, string agent_passwd, string agent_number,
+							 string agent_email, char[] agentID, char[] agencyID)
+		{
+			using (SqlCommand command = new SqlCommand())
+			{
+				try
 				{
-					adapter.Fill(table);
+					command.Connection = connection;
+					command.CommandType = CommandType.Text;
+					command.CommandText =
+							   "INSERT INTO TABLENAME (agent_Fname, agent_Lname, agent_Uname, agent_passwd agent_number, agent_email, agentID, "
+							   + "agencyID) VALUES (@agent_Fname, @agent_Lname, @agent_Uname, @agent_passwd @agent_number, @agent_email, @agentID, "
+							   + "@agencyID)";
+					// For each variable just start inserting stuff
+					command.Parameters.Add("@agent_Fname", SqlDbType.NVarChar);
+					command.Parameters.Add("@agent_Lname", SqlDbType.NVarChar);
+					command.Parameters.Add("@agent_Uname", SqlDbType.NVarChar);
+                    command.Parameters.Add("@agent_passwd", SqlDbType.NVarChar);
+					command.Parameters.Add("@agent_number", SqlDbType.NVarChar);
+					command.Parameters.Add("@agent_email", SqlDbType.NVarChar);
+					command.Parameters.Add("@agentID", SqlDbType.NVarChar);
+					command.Parameters.Add("@agencyID", SqlDbType.NVarChar);
+
+					command.Parameters["@agent_Fname"].Value = agent_Fname.ToCharArray();
+					command.Parameters["@agent_Lname"].Value = agent_Lname.ToCharArray();
+					command.Parameters["@agent_Uname"].Value = agent_Uname.ToCharArray();
+                    command.Parameters["@agent_passwd"].Value = agent_passwd.ToCharArray();
+					command.Parameters["@agent_number"].Value = agent_number.ToCharArray();
+					command.Parameters["@agent_email"].Value = agent_email.ToCharArray();
+					command.Parameters["@agentID"].Value = agentID;
+					command.Parameters["@agencyID"].Value = agencyID;
+
+					command.ExecuteNonQuery();
 				}
-				getText(table);
 
-            }
-            return null;
-        }
+				catch (Exception e)
+				{
+					Console.WriteLine(e.ToString());
+				}
 
-        #endregion
-        public void getText(String testNumber)
+			}
+
+
+		}
+		#endregion
+
+		#region Update parts of an agent in the agent database.
+
+        public void UpdateAgentFirstName(string firstName, char[] agentID)
         {
-            command.Parameters.Clear();
-            command.Connection = connection;
-            String query = "SELECT * FROM DESCRIPTIONS WHERE testNumber=@testNumber";
-            command.CommandText = query;
-            command.Parameters.AddWithValue("@testNumber", testNumber);
+			using (SqlCommand command = new SqlCommand())
+			{
+				try
+				{
+					command.Connection = connection;
+					command.CommandType = CommandType.Text;
+					command.CommandText =
+							   String.Concat("UPDATE TABLENAME SET agent_Fname = @agent_Fname WHERE ",
+												"agentID='", agentID, "'");
+                    command.Parameters.Add("@agent_Fname", SqlDbType.NVarChar);
 
-            DataTable table = new DataTable();
-            table.Columns.Add("programName");
-            table.Columns.Add("versionMod");
-            table.Columns.Add("testNumber");
-            table.Columns.Add("testDescription");
+                    command.Parameters["@agent_Fname"].Value = firstName.ToCharArray();
 
-
-            using (SqlDataAdapter adapter = new SqlDataAdapter(command))
-            {
-                adapter.Fill(table);
-            }
-            getText(table);
-
+					command.ExecuteNonQuery();
+				}
+				catch (Exception e)
+				{
+					Console.WriteLine(e.ToString());
+				}
+			}
         }
+
+        public void UpdateAgentLastName(string lastName, char[] agentID)
+        {
+			using (SqlCommand command = new SqlCommand())
+			{
+				try
+				{
+					command.Connection = connection;
+					command.CommandType = CommandType.Text;
+					command.CommandText =
+							   String.Concat("UPDATE TABLENAME SET agent_Lname = @agent_Lname WHERE ",
+                                             "agentID='", agentID, "'");
+                    command.Parameters.Add("@agent_Lname", SqlDbType.NVarChar);
+
+                    command.Parameters["@agent_Lname"].Value = lastName.ToCharArray();
+
+					command.ExecuteNonQuery();
+				}
+				catch (Exception e)
+				{
+					Console.WriteLine(e.ToString());
+				}
+			}
+        }
+
+        public void UpdateAgentUsername(string userName, char[] agentID)
+        {
+			using (SqlCommand command = new SqlCommand())
+			{
+				try
+				{
+					command.Connection = connection;
+					command.CommandType = CommandType.Text;
+					command.CommandText =
+							   String.Concat("UPDATE TABLENAME SET agent_Uname = @agent_Uname WHERE ",
+                                             "agentID='", agentID, "'");
+                    command.Parameters.Add("@agent_Uname", SqlDbType.NVarChar);
+
+                    command.Parameters["@agent_Uname"].Value = userName.ToCharArray();
+
+					command.ExecuteNonQuery();
+				}
+				catch (Exception e)
+				{
+					Console.WriteLine(e.ToString());
+				}
+			}
+        }
+
+        public void UpdateAgentPassword(string password, char[] agentID)
+        {
+			using (SqlCommand command = new SqlCommand())
+			{
+				try
+				{
+					command.Connection = connection;
+					command.CommandType = CommandType.Text;
+					command.CommandText =
+							   String.Concat("UPDATE TABLENAME SET agent_passwd = @agent_passwd WHERE ",
+                                             "agentID='", agentID, "'");
+                    command.Parameters.Add("@agent_passwd", SqlDbType.NVarChar);
+
+                    command.Parameters["@agent_passwd"].Value = password.ToCharArray();
+
+					command.ExecuteNonQuery();
+				}
+				catch (Exception e)
+				{
+					Console.WriteLine(e.ToString());
+				}
+			}
+        }
+
+        public void UpdateAgentNumber(string phoneNumber, char[] agentID)
+        {
+			using (SqlCommand command = new SqlCommand())
+			{
+				try
+				{
+					command.Connection = connection;
+					command.CommandType = CommandType.Text;
+					command.CommandText =
+							   String.Concat("UPDATE TABLENAME SET agent_number = @agent_number WHERE ",
+												"agentID='", agentID, "'");
+                    command.Parameters.Add("@agent_number", SqlDbType.NVarChar);
+
+                    command.Parameters["@agent_number"].Value = phoneNumber.ToCharArray();
+
+					command.ExecuteNonQuery();
+				}
+				catch (Exception e)
+				{
+					Console.WriteLine(e.ToString());
+				}
+			}
+        }
+
+        public void UpdateAgentEmail(string email, char[] agentID)
+        {
+			using (SqlCommand command = new SqlCommand())
+			{
+				try
+				{
+					command.Connection = connection;
+					command.CommandType = CommandType.Text;
+					command.CommandText =
+							   String.Concat("UPDATE TABLENAME SET agent_email = @agent_email WHERE ",
+												"agentID='", agentID, "'");
+                    command.Parameters.Add("@agent_email", SqlDbType.NVarChar);
+
+                    command.Parameters["@agent_email"].Value = email.ToCharArray();
+
+					command.ExecuteNonQuery();
+				}
+				catch (Exception e)
+				{
+					Console.WriteLine(e.ToString());
+				}
+			}
+        }
+
+		#endregion
+
+		#region Delete an agent
+        public void DeleteAgent(char[] agentID)
+        {
+			using (SqlCommand command = new SqlCommand())
+			{
+				try
+				{
+					command.Connection = connection;
+					command.CommandType = CommandType.Text;
+					command.CommandText =
+                               String.Concat("DELETE FROM TABLENAME WHERE agentID='", agentID, "'");
+
+					command.ExecuteNonQuery();
+				}
+				catch (Exception e)
+				{
+					Console.WriteLine(e.ToString());
+				}
+			}
+        }
+		#endregion
+
+		#region Retrieve stuff from the agent database.
+
+        public int GetTotalNumberOfAgentsUsingService()
+        {
+			int result = 0;
+			using (SqlCommand command = new SqlCommand())
+			{
+				try
+				{
+					command.Connection = connection;
+					command.CommandType = CommandType.Text;
+					command.CommandText = "SELECT COUNT(*) FROM TABLENAME";
+					result = Convert.ToInt32(command.ExecuteScalar());
+				}
+				catch (Exception e)
+				{
+					Console.WriteLine(e.ToString());
+					result = -1;
+				}
+			}
+			return result;
+        }
+
+        public int GetTotalNumberOfAgentsWithAgency(char[] agencyID)
+        {
+			int result = 0;
+			using (SqlCommand command = new SqlCommand())
+			{
+				try
+				{
+					command.Connection = connection;
+					command.CommandType = CommandType.Text;
+                    command.CommandText = String.Concat("SELECT COUNT(*) FROM TABLENAME WHERE agencyID='", agencyID, "'");
+					result = Convert.ToInt32(command.ExecuteScalar());
+				}
+				catch (Exception e)
+				{
+					Console.WriteLine(e.ToString());
+					result = -1;
+				}
+			}
+			return result;
+        }
+
+        public string GetAgentFirstName(char[] agentID)
+        {
+			string result = "";
+			using (SqlCommand command = new SqlCommand())
+			{
+				try
+				{
+					command.Connection = connection;
+					command.CommandType = CommandType.Text;
+                    command.CommandText = String.Concat("SELECT agent_Fname FROM TABLENAME WHERE agentID='", agentID, "'");
+                    result = Convert.ToString(command.ExecuteScalar());
+				}
+				catch (Exception e)
+				{
+					Console.WriteLine(e.ToString());
+					result = "error";
+				}
+			}
+			return result;
+        }
+
+        public string GetAgentLastName(char[] agentID)
+        {
+			string result = "";
+			using (SqlCommand command = new SqlCommand())
+			{
+				try
+				{
+					command.Connection = connection;
+					command.CommandType = CommandType.Text;
+					command.CommandText = String.Concat("SELECT agent_Lname FROM TABLENAME WHERE agentID='", agentID, "'");
+					result = Convert.ToString(command.ExecuteScalar());
+				}
+				catch (Exception e)
+				{
+					Console.WriteLine(e.ToString());
+					result = "error";
+				}
+			}
+			return result;
+        }
+
+        public string GetAgentUserName(char[] agentID)
+        {
+			string result = "";
+			using (SqlCommand command = new SqlCommand())
+			{
+				try
+				{
+					command.Connection = connection;
+					command.CommandType = CommandType.Text;
+					command.CommandText = String.Concat("SELECT agent_Uname FROM TABLENAME WHERE agentID='", agentID, "'");
+					result = Convert.ToString(command.ExecuteScalar());
+				}
+				catch (Exception e)
+				{
+					Console.WriteLine(e.ToString());
+					result = "error";
+				}
+			}
+			return result;
+        }
+
+        public bool GetAgentPassword(char[] agentID, string enteredPassword)
+        {
+			string result = "";
+			using (SqlCommand command = new SqlCommand())
+			{
+				try
+				{
+					command.Connection = connection;
+					command.CommandType = CommandType.Text;
+					command.CommandText = String.Concat("SELECT agent_passwd FROM TABLENAME WHERE agentID='", agentID, "'");
+					result = Convert.ToString(command.ExecuteScalar());
+				}
+				catch (Exception e)
+				{
+					Console.WriteLine(e.ToString());
+					result = "error";
+				}
+			}
+            return String.Equals(enteredPassword,result);
+        }
+
+        public string GetAgentPhoneNumber(char[] agentID)
+        {
+			string result = "";
+			using (SqlCommand command = new SqlCommand())
+			{
+				try
+				{
+					command.Connection = connection;
+					command.CommandType = CommandType.Text;
+					command.CommandText = String.Concat("SELECT agent_number FROM TABLENAME WHERE agentID='", agentID, "'");
+					result = Convert.ToString(command.ExecuteScalar());
+				}
+				catch (Exception e)
+				{
+					Console.WriteLine(e.ToString());
+					result = "error";
+				}
+			}
+			return result;
+        }
+
+        public string GetAgentEmail(char[] agentID)
+        {
+			string result = "";
+			using (SqlCommand command = new SqlCommand())
+			{
+				try
+				{
+					command.Connection = connection;
+					command.CommandType = CommandType.Text;
+					command.CommandText = String.Concat("SELECT agent_email FROM TABLENAME WHERE agentID='", agentID, "'");
+					result = Convert.ToString(command.ExecuteScalar());
+				}
+				catch (Exception e)
+				{
+					Console.WriteLine(e.ToString());
+					result = "error";
+				}
+			}
+			return result;
+        }
+
+        public string GetAgencyOfAgent(char[] agentID)
+        {
+			string result = "";
+			using (SqlCommand command = new SqlCommand())
+			{
+				try
+				{
+					command.Connection = connection;
+					command.CommandType = CommandType.Text;
+					command.CommandText = String.Concat("SELECT agent_Fname FROM TABLENAME WHERE agentID='", agentID, "'");
+					result = Convert.ToString(command.ExecuteScalar());
+				}
+				catch (Exception e)
+				{
+					Console.WriteLine(e.ToString());
+					result = "error";
+				}
+			}
+			return result;
+        }
+
+        public DataTable GetAgent(char[] agentID)
+        {
+			DataTable table = new DataTable();
+			using (SqlCommand command = new SqlCommand())
+			{
+				try
+				{
+					command.Connection = connection;
+					command.CommandType = CommandType.Text;
+					command.CommandText =
+						String.Concat("SELECT ALL agent_Fname, agent_Lname, agent_number, agent_email, agencyID",
+                                      "FROM TABLENAME WHERE agentID='",agentID,"'");
+
+					table.Columns.Add("agent_Fname");
+					table.Columns.Add("agent_Lname");
+					table.Columns.Add("agent_number");
+					table.Columns.Add("agent_email");
+					table.Columns.Add("agencyID");
+
+
+					using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+					{
+						adapter.Fill(table);
+					}
+				}
+				catch (Exception e)
+				{
+					Console.WriteLine(e.ToString());
+				}
+
+			}
+			return table;
+        }
+
+        public DataTable GetAllAgents()
+        {
+			DataTable table = new DataTable();
+			using (SqlCommand command = new SqlCommand())
+			{
+				try
+				{
+					command.Connection = connection;
+					command.CommandType = CommandType.Text;
+					command.CommandText =
+						String.Concat("SELECT ALL agent_Fname, agent_Lname, agent_number, agent_email, agentID, ",
+										  "agencyID FROM TABLENAME");
+
+					table.Columns.Add("agent_Fname");
+					table.Columns.Add("agent_Lname");
+					table.Columns.Add("agent_number");
+					table.Columns.Add("agent_email");
+					table.Columns.Add("agentID");
+					table.Columns.Add("agencyID");
+
+
+					using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+					{
+						adapter.Fill(table);
+					}
+				}
+				catch (Exception e)
+				{
+					Console.WriteLine(e.ToString());
+				}
+
+			}
+			return table;
+        }
+
+        public DataTable GetAllAgentsFromAgency(char[] agencyID)
+        {
+			DataTable table = new DataTable();
+			using (SqlCommand command = new SqlCommand())
+			{
+				try
+				{
+					command.Connection = connection;
+					command.CommandType = CommandType.Text;
+					command.CommandText =
+						String.Concat("SELECT ALL agent_Fname, agent_Lname, agent_number, agent_email, agentID ",
+                                      "FROM TABLENAME WHERE agencyID='", agencyID, "'");
+
+					table.Columns.Add("agent_Fname");
+					table.Columns.Add("agent_Lname");
+					table.Columns.Add("agent_number");
+					table.Columns.Add("agent_email");
+					table.Columns.Add("agentID");
+
+
+					using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+					{
+						adapter.Fill(table);
+					}
+				}
+				catch (Exception e)
+				{
+					Console.WriteLine(e.ToString());
+				}
+
+			}
+			return table;
+        }
+
+		#endregion
+
+		#endregion
+
+
+
+		#region functions that affect the agency database.
+
+		#region Add an agency to the database.
+        public void AddAgency(string agency_name, string agency_email, string agency_phone, string agency_street,
+                              string agency_city, string agency_state, string agency_zip)
+        {
+			using (SqlCommand command = new SqlCommand())
+			{
+				try
+				{
+					command.Connection = connection;
+					command.CommandType = CommandType.Text;
+					command.CommandText =
+							   "INSERT INTO TABLENAME (agency_name, agency_email, agency_phone, agency_street, agency_city, agency_state, "
+							   + "agency_zip) VALUES (@agency_name, @agency_email, @agency_phone, @agency_street, @agency_city, @agency_state, "
+							   + "@agency_zip)";
+					// For each variable just start inserting stuff
+					command.Parameters.Add("@agency_name", SqlDbType.NVarChar);
+					command.Parameters.Add("@agency_email", SqlDbType.NVarChar);
+					command.Parameters.Add("@agency_phone", SqlDbType.NVarChar);
+					command.Parameters.Add("@agency_street", SqlDbType.NVarChar);
+					command.Parameters.Add("@agency_city", SqlDbType.NVarChar);
+					command.Parameters.Add("@agency_state", SqlDbType.NVarChar);
+					command.Parameters.Add("@agency_zip", SqlDbType.NVarChar);
+
+                    command.Parameters["@agency_name"].Value = agency_name.ToCharArray();
+                    command.Parameters["@agency_email"].Value = agency_email.ToCharArray();
+                    command.Parameters["@agency_phone"].Value = agency_phone.ToCharArray();
+                    command.Parameters["@agency_street"].Value = agency_street.ToCharArray();
+                    command.Parameters["@agency_city"].Value = agency_city.ToCharArray();
+                    command.Parameters["@agency_state"].Value = agency_state.ToCharArray();
+                    command.Parameters["@agency_zip"].Value = agency_zip;
+
+					command.ExecuteNonQuery();
+				}
+
+				catch (Exception e)
+				{
+					Console.WriteLine(e.ToString());
+				}
+
+			}
+        }
+		#endregion
+
+		#region Update parts of an agent in the agency database.
+
+        public void UpdateAgencyName(string name, char[] agencyID)
+        {
+			using (SqlCommand command = new SqlCommand())
+			{
+				try
+				{
+					command.Connection = connection;
+					command.CommandType = CommandType.Text;
+					command.CommandText =
+							   String.Concat("UPDATE TABLENAME SET agency_name = @agency_name WHERE ",
+												"agencyID='", agencyID, "'");
+					command.Parameters.Add("@agency_name", SqlDbType.NVarChar);
+
+                    command.Parameters["@agency_name"].Value = name.ToCharArray();
+
+					command.ExecuteNonQuery();
+				}
+				catch (Exception e)
+				{
+					Console.WriteLine(e.ToString());
+				}
+			}
+        }
+
+        public void UpdateAgencyEmail(string email, char[] agencyID)
+        {
+			using (SqlCommand command = new SqlCommand())
+			{
+				try
+				{
+					command.Connection = connection;
+					command.CommandType = CommandType.Text;
+					command.CommandText =
+							   String.Concat("UPDATE TABLENAME SET agency_email = @agency_email WHERE ",
+												"agencyID='", agencyID, "'");
+					command.Parameters.Add("@agency_email", SqlDbType.NVarChar);
+
+                    command.Parameters["@agency_email"].Value = email.ToCharArray();
+
+					command.ExecuteNonQuery();
+				}
+				catch (Exception e)
+				{
+					Console.WriteLine(e.ToString());
+				}
+			}
+        }
+
+        public void UpdateAgencyPhone(string phoneNumber, char[] agencyID)
+        {
+			using (SqlCommand command = new SqlCommand())
+			{
+				try
+				{
+					command.Connection = connection;
+					command.CommandType = CommandType.Text;
+					command.CommandText =
+							   String.Concat("UPDATE TABLENAME SET agent_number = @agent_number WHERE ",
+												"agencyID='", agencyID, "'");
+					command.Parameters.Add("@agent_number", SqlDbType.NVarChar);
+
+                    command.Parameters["@agent_number"].Value = phoneNumber.ToCharArray();
+
+					command.ExecuteNonQuery();
+				}
+				catch (Exception e)
+				{
+					Console.WriteLine(e.ToString());
+				}
+			}
+        }
+
+        public void UpdateAgencyStreet(string street, char[] agencyID)
+        {
+			using (SqlCommand command = new SqlCommand())
+			{
+				try
+				{
+					command.Connection = connection;
+					command.CommandType = CommandType.Text;
+					command.CommandText =
+							   String.Concat("UPDATE TABLENAME SET agency_street = @agency_street WHERE ",
+												"agencyID='", agencyID, "'");
+					command.Parameters.Add("@agency_street", SqlDbType.NVarChar);
+
+                    command.Parameters["@agency_street"].Value = street.ToCharArray();
+
+					command.ExecuteNonQuery();
+				}
+				catch (Exception e)
+				{
+					Console.WriteLine(e.ToString());
+				}
+			}
+        }
+
+        public void UpdateAgencyCity(string city, char[] agencyID)
+        {
+			using (SqlCommand command = new SqlCommand())
+			{
+				try
+				{
+					command.Connection = connection;
+					command.CommandType = CommandType.Text;
+					command.CommandText =
+							   String.Concat("UPDATE TABLENAME SET agency_city = @agency_city WHERE ",
+												"agencyID='", agencyID, "'");
+					command.Parameters.Add("@agency_city", SqlDbType.NVarChar);
+
+                    command.Parameters["@agency_city"].Value = city.ToCharArray();
+
+					command.ExecuteNonQuery();
+				}
+				catch (Exception e)
+				{
+					Console.WriteLine(e.ToString());
+				}
+			}
+        }
+
+        public void UpdateAgencyState(string state, char[] agencyID)
+        {
+			using (SqlCommand command = new SqlCommand())
+			{
+				try
+				{
+					command.Connection = connection;
+					command.CommandType = CommandType.Text;
+					command.CommandText =
+							   String.Concat("UPDATE TABLENAME SET agency_state = @agency_state WHERE ",
+												"agencyID='", agencyID, "'");
+					command.Parameters.Add("@agency_state", SqlDbType.NVarChar);
+
+                    command.Parameters["@agency_state"].Value = state.ToCharArray();
+
+					command.ExecuteNonQuery();
+				}
+				catch (Exception e)
+				{
+					Console.WriteLine(e.ToString());
+				}
+			}
+        }
+
+        public void UpdateAgencyZip(string zip, char[] agencyID)
+        {
+			using (SqlCommand command = new SqlCommand())
+			{
+				try
+				{
+					command.Connection = connection;
+					command.CommandType = CommandType.Text;
+					command.CommandText =
+							   String.Concat("UPDATE TABLENAME SET agency_zip = @agency_zip WHERE ",
+												"agencyID='", agencyID, "'");
+					command.Parameters.Add("@agency_zip", SqlDbType.NVarChar);
+
+                    command.Parameters["@agency_zip"].Value = zip.ToCharArray();
+
+					command.ExecuteNonQuery();
+				}
+				catch (Exception e)
+				{
+					Console.WriteLine(e.ToString());
+				}
+			}
+        }
+		#endregion
+
+		#region Remove/Delete items in the agency database.
+        public void DeleteAgency(char[] agencyID)
+        {
+			using (SqlCommand command = new SqlCommand())
+			{
+				try
+				{
+					command.Connection = connection;
+					command.CommandType = CommandType.Text;
+					command.CommandText =
+                               String.Concat("DELETE FROM TABLENAME WHERE agencyID='", agencyID, "'");
+
+					command.ExecuteNonQuery();
+				}
+				catch (Exception e)
+				{
+					Console.WriteLine(e.ToString());
+				}
+			}
+        }
+		#endregion
+
+		#region Retrieve stuff from the agency database.
+
+        public int GetTotalNumberOfAgencies()
+        {
+			int result = 0;
+			using (SqlCommand command = new SqlCommand())
+			{
+				try
+				{
+					command.Connection = connection;
+					command.CommandType = CommandType.Text;
+					command.CommandText = "SELECT COUNT(*) FROM TABLENAME";
+					result = Convert.ToInt32(command.ExecuteScalar());
+				}
+				catch (Exception e)
+				{
+					Console.WriteLine(e.ToString());
+					result = -1;
+				}
+			}
+			return result;
+        }
+
+        public DataTable GetAllAgencies()
+        {
+			DataTable table = new DataTable();
+			using (SqlCommand command = new SqlCommand())
+			{
+				try
+				{
+					command.Connection = connection;
+					command.CommandType = CommandType.Text;
+					command.CommandText = "SELECT ALL agency_name, agency_email, agency_phone, agency_street, agency_city, "
+                                          + "agency_state, agency_zip FROM TABLENAME";
+
+					table.Columns.Add("agency_name");
+					table.Columns.Add("agency_email");
+					table.Columns.Add("agency_phone");
+					table.Columns.Add("agency_street");
+					table.Columns.Add("agency_city");
+					table.Columns.Add("agency_state");
+					table.Columns.Add("agency_zip");
+
+					using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+					{
+						adapter.Fill(table);
+					}
+				}
+				catch (Exception e)
+				{
+					Console.WriteLine(e.ToString());
+				}
+
+			}
+			return table;
+        }
+
+        public DataTable GetAgency(char[] agencyID)
+        {
+			DataTable table = new DataTable();
+			using (SqlCommand command = new SqlCommand())
+			{
+				try
+				{
+					command.Connection = connection;
+					command.CommandType = CommandType.Text;
+					command.CommandText =
+						String.Concat("SELECT ALL agency_name, agency_email, agency_phone, agency_street, agency_city, ",
+                                      "agency_state, agency_zip FROM TABLENAME WHERE agencyID='", agencyID, "'");
+
+					table.Columns.Add("agency_name");
+					table.Columns.Add("agency_email");
+					table.Columns.Add("agency_phone");
+					table.Columns.Add("agency_street");
+					table.Columns.Add("agency_city");
+					table.Columns.Add("agency_state");
+					table.Columns.Add("agency_zip");
+
+
+					using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+					{
+						adapter.Fill(table);
+					}
+				}
+				catch (Exception e)
+				{
+					Console.WriteLine(e.ToString());
+				}
+
+			}
+			return table;
+        }
+
+
+		#endregion
+
+		#endregion
+
+
+		
 
         public void getText(DataTable myTable)
         {
@@ -1074,6 +1918,7 @@ namespace test2
 
     }
     #endregion
+
     //************************************************************************
 
     class Program
