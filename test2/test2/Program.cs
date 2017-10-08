@@ -1288,7 +1288,7 @@ namespace test2
             return result;
         }
 
-        public int GetTotalNumberOfAgentsWithAgency(char[] agencyID)
+        public int GetTotalNumberOfAgentsWithAgency(int agency_id)
         {
             int result = 0;
             using (SqlCommand command = new SqlCommand())
@@ -1297,7 +1297,7 @@ namespace test2
                 {
                     command.Connection = connection;
                     command.CommandType = CommandType.Text;
-                    command.CommandText = String.Concat("SELECT COUNT(*) FROM TABLENAME WHERE agencyID='", agencyID, "'");
+                    command.CommandText = String.Concat("SELECT COUNT(*) FROM agent WHERE agency_id='", agency_id, "'");
                     result = Convert.ToInt32(command.ExecuteScalar());
                 }
                 catch (Exception e)
@@ -1309,7 +1309,7 @@ namespace test2
             return result;
         }
 
-        public string GetAgentFirstName(char[] agentID)
+        public string GetAgentFirstName(int agent_id)
         {
             string result = "";
             using (SqlCommand command = new SqlCommand())
@@ -1318,7 +1318,7 @@ namespace test2
                 {
                     command.Connection = connection;
                     command.CommandType = CommandType.Text;
-                    command.CommandText = String.Concat("SELECT agent_Fname FROM TABLENAME WHERE agentID='", agentID, "'");
+                    command.CommandText = String.Concat("SELECT agent_Fname FROM agent WHERE agent_id='", agent_id, "'");
                     result = Convert.ToString(command.ExecuteScalar());
                 }
                 catch (Exception e)
@@ -1330,7 +1330,7 @@ namespace test2
             return result;
         }
 
-        public string GetAgentLastName(char[] agentID)
+        public string GetAgentLastName(int agent_id)
         {
             string result = "";
             using (SqlCommand command = new SqlCommand())
@@ -1339,7 +1339,7 @@ namespace test2
                 {
                     command.Connection = connection;
                     command.CommandType = CommandType.Text;
-                    command.CommandText = String.Concat("SELECT agent_Lname FROM TABLENAME WHERE agentID='", agentID, "'");
+                    command.CommandText = String.Concat("SELECT agent_Lname FROM agent WHERE agent_id='", agent_id, "'");
                     result = Convert.ToString(command.ExecuteScalar());
                 }
                 catch (Exception e)
@@ -1351,7 +1351,7 @@ namespace test2
             return result;
         }
 
-        public string GetAgentUserName(char[] agentID)
+        public string GetAgentUserName(int agent_id)
         {
             string result = "";
             using (SqlCommand command = new SqlCommand())
@@ -1360,7 +1360,7 @@ namespace test2
                 {
                     command.Connection = connection;
                     command.CommandType = CommandType.Text;
-                    command.CommandText = String.Concat("SELECT agent_Uname FROM TABLENAME WHERE agentID='", agentID, "'");
+                    command.CommandText = String.Concat("SELECT agent_Uname FROM agent WHERE agent_id='", agent_id, "'");
                     result = Convert.ToString(command.ExecuteScalar());
                 }
                 catch (Exception e)
@@ -1372,7 +1372,7 @@ namespace test2
             return result;
         }
 
-        public bool GetAgentPassword(char[] agentID, string enteredPassword)
+        public bool GetAgentPassword(int agent_id, string enteredPassword)
         {
             string result = "";
             using (SqlCommand command = new SqlCommand())
@@ -1381,7 +1381,7 @@ namespace test2
                 {
                     command.Connection = connection;
                     command.CommandType = CommandType.Text;
-                    command.CommandText = String.Concat("SELECT agent_passwd FROM TABLENAME WHERE agentID='", agentID, "'");
+                    command.CommandText = String.Concat("SELECT agent_passwd FROM agent WHERE agent_id='", agent_id, "'");
                     result = Convert.ToString(command.ExecuteScalar());
                 }
                 catch (Exception e)
@@ -1393,7 +1393,7 @@ namespace test2
             return String.Equals(enteredPassword, result);
         }
 
-        public string GetAgentPhoneNumber(char[] agentID)
+        public string GetAgentPhoneNumber(int agent_id)
         {
             string result = "";
             using (SqlCommand command = new SqlCommand())
@@ -1402,7 +1402,7 @@ namespace test2
                 {
                     command.Connection = connection;
                     command.CommandType = CommandType.Text;
-                    command.CommandText = String.Concat("SELECT agent_number FROM TABLENAME WHERE agentID='", agentID, "'");
+                    command.CommandText = String.Concat("SELECT agent_number FROM agent WHERE agent_id='", agent_id, "'");
                     result = Convert.ToString(command.ExecuteScalar());
                 }
                 catch (Exception e)
@@ -1414,7 +1414,7 @@ namespace test2
             return result;
         }
 
-        public string GetAgentEmail(char[] agentID)
+        public string GetAgentEmail(int agent_id)
         {
             string result = "";
             using (SqlCommand command = new SqlCommand())
@@ -1423,7 +1423,7 @@ namespace test2
                 {
                     command.Connection = connection;
                     command.CommandType = CommandType.Text;
-                    command.CommandText = String.Concat("SELECT agent_email FROM TABLENAME WHERE agentID='", agentID, "'");
+                    command.CommandText = String.Concat("SELECT agent_email FROM agent WHERE agent_id='", agent_id, "'");
                     result = Convert.ToString(command.ExecuteScalar());
                 }
                 catch (Exception e)
@@ -1435,28 +1435,28 @@ namespace test2
             return result;
         }
 
-        public string GetAgencyOfAgent(char[] agentID)
+        public int GetAgencyOfAgent(int agent_id)
         {
-            string result = "";
+            int result = -1;
             using (SqlCommand command = new SqlCommand())
             {
                 try
                 {
                     command.Connection = connection;
                     command.CommandType = CommandType.Text;
-                    command.CommandText = String.Concat("SELECT agent_Fname FROM TABLENAME WHERE agentID='", agentID, "'");
-                    result = Convert.ToString(command.ExecuteScalar());
+                    command.CommandText = String.Concat("SELECT agency_id FROM agent WHERE agent_id='", agent_id, "'");
+                    result = Convert.ToInt32(command.ExecuteScalar());
                 }
                 catch (Exception e)
                 {
                     Console.WriteLine(e.ToString());
-                    result = "error";
+                    result = -1;
                 }
             }
             return result;
         }
 
-        public DataTable GetAgent(char[] agentID)
+        public DataTable GetAgent(int agent_id)
         {
             DataTable table = new DataTable();
             using (SqlCommand command = new SqlCommand())
@@ -1466,14 +1466,14 @@ namespace test2
                     command.Connection = connection;
                     command.CommandType = CommandType.Text;
                     command.CommandText =
-                        String.Concat("SELECT ALL agent_Fname, agent_Lname, agent_number, agent_email, agencyID",
-                                      "FROM TABLENAME WHERE agentID='", agentID, "'");
+                        String.Concat("SELECT ALL agent_Fname, agent_Lname, agent_number, agent_email, agency_id ",
+                                      "FROM agent WHERE agent_id='",agent_id, "'");
 
                     table.Columns.Add("agent_Fname");
                     table.Columns.Add("agent_Lname");
                     table.Columns.Add("agent_number");
                     table.Columns.Add("agent_email");
-                    table.Columns.Add("agencyID");
+                    table.Columns.Add("agency_id");
 
 
                     using (SqlDataAdapter adapter = new SqlDataAdapter(command))
@@ -1500,15 +1500,15 @@ namespace test2
                     command.Connection = connection;
                     command.CommandType = CommandType.Text;
                     command.CommandText =
-                        String.Concat("SELECT ALL agent_Fname, agent_Lname, agent_number, agent_email, agentID, ",
-                                          "agencyID FROM TABLENAME");
+                        String.Concat("SELECT ALL agent_Fname, agent_Lname, agent_number, agent_email, agent_id, ",
+                                          "agency_id FROM agent");
 
                     table.Columns.Add("agent_Fname");
                     table.Columns.Add("agent_Lname");
                     table.Columns.Add("agent_number");
                     table.Columns.Add("agent_email");
-                    table.Columns.Add("agentID");
-                    table.Columns.Add("agencyID");
+                    table.Columns.Add("agent_id");
+                    table.Columns.Add("agency_id");
 
 
                     using (SqlDataAdapter adapter = new SqlDataAdapter(command))
@@ -1525,7 +1525,7 @@ namespace test2
             return table;
         }
 
-        public DataTable GetAllAgentsFromAgency(char[] agencyID)
+        public DataTable GetAllAgentsFromAgency(int agency_id)
         {
             DataTable table = new DataTable();
             using (SqlCommand command = new SqlCommand())
@@ -1535,14 +1535,14 @@ namespace test2
                     command.Connection = connection;
                     command.CommandType = CommandType.Text;
                     command.CommandText =
-                        String.Concat("SELECT ALL agent_Fname, agent_Lname, agent_number, agent_email, agentID ",
-                                      "FROM TABLENAME WHERE agencyID='", agencyID, "'");
+                        String.Concat("SELECT ALL agent_Fname, agent_Lname, agent_number, agent_email, agent_id ",
+                                      "FROM agent WHERE agency_id='", agency_id, "'");
 
                     table.Columns.Add("agent_Fname");
                     table.Columns.Add("agent_Lname");
                     table.Columns.Add("agent_number");
                     table.Columns.Add("agent_email");
-                    table.Columns.Add("agentID");
+                    table.Columns.Add("agent_id");
 
 
                     using (SqlDataAdapter adapter = new SqlDataAdapter(command))
@@ -1960,8 +1960,20 @@ namespace test2
                 //******************************//
                 //end testing code here
                 tester.openConnection();
-                int temp = tester.GetTotalNumberOfAgentsUsingService();
-                Console.WriteLine(temp);
+                string temp1 = tester.GetAgentEmail(2);
+                DataTable temp = tester.GetAgent(2);
+                //test table
+                foreach (DataRow row in temp.Rows)
+                {
+                    Console.WriteLine("----------row------------");
+                    foreach (var item in row.ItemArray)
+                    {
+                        Console.Write("item:  ");
+                        Console.WriteLine(item);
+                    }
+                }
+
+                //Console.WriteLine();
                 //tester.AddAgent(fName, lName, userName,password,number2, email2, agency_id, number2);
                 //Int16 zip = 3580;
 
