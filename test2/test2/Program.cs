@@ -145,11 +145,11 @@ namespace test2
                     command.Connection = connection;
                     command.CommandType = CommandType.Text;
                     command.CommandText =
-                               String.Concat("UPDATE listing SET extraPhotoOne = @extraPhotoOne WHERE ",
+                               String.Concat("UPDATE listing SET pic1 = @pic1 WHERE ",
                                                 "listing_id='", listing_id, "'");
-                    command.Parameters.Add("@extraPhotoOne", SqlDbType.Image);
+                    command.Parameters.Add("@pic1", SqlDbType.Image);
 
-                    command.Parameters["@extraPhotoOne"].Value = replacementImage;
+                    command.Parameters["@pic1"].Value = replacementImage;
 
                     command.ExecuteNonQuery();
                 }
@@ -169,11 +169,11 @@ namespace test2
                     command.Connection = connection;
                     command.CommandType = CommandType.Text;
                     command.CommandText =
-                               String.Concat("UPDATE listing SET extraPhotoTwo = @extraPhotoTwo WHERE ",
+                               String.Concat("UPDATE listing SET pic2 = @pic2 WHERE ",
                                                 "listing_id='", listing_id, "'");
-                    command.Parameters.Add("@extraPhotoTwo", SqlDbType.Image);
+                    command.Parameters.Add("@pic2", SqlDbType.Image);
 
-                    command.Parameters["@extraPhotoTwo"].Value = replacementImage;
+                    command.Parameters["@pic2"].Value = replacementImage;
 
                     command.ExecuteNonQuery();
                 }
@@ -193,11 +193,11 @@ namespace test2
                     command.Connection = connection;
                     command.CommandType = CommandType.Text;
                     command.CommandText =
-                               String.Concat("UPDATE listing SET extraPhotoThree = @extraPhotoThree WHERE ",
+                               String.Concat("UPDATE listing SET pic3 = @pic3 WHERE ",
                                                 "listing_id='", listing_id, "'");
-                    command.Parameters.Add("@extraPhotoThree", SqlDbType.Image);
+                    command.Parameters.Add("@pic3", SqlDbType.Image);
 
-                    command.Parameters["@extraPhotoThree"].Value = replacementImage;
+                    command.Parameters["@pic3"].Value = replacementImage;
 
                     command.ExecuteNonQuery();
                 }
@@ -217,11 +217,11 @@ namespace test2
                     command.Connection = connection;
                     command.CommandType = CommandType.Text;
                     command.CommandText =
-                               String.Concat("UPDATE listing SET extraPhotoFour = @extraPhotoFour WHERE ",
+                               String.Concat("UPDATE listing SET pic4 = @pic4 WHERE ",
                                                 "listing_id='", listing_id, "'");
-                    command.Parameters.Add("@extraPhotoFour", SqlDbType.Image);
+                    command.Parameters.Add("@pic4", SqlDbType.Image);
 
-                    command.Parameters["@extraPhotoFour"].Value = replacementImage;
+                    command.Parameters["@pic4"].Value = replacementImage;
 
                     command.ExecuteNonQuery();
                 }
@@ -241,11 +241,11 @@ namespace test2
                     command.Connection = connection;
                     command.CommandType = CommandType.Text;
                     command.CommandText =
-                               String.Concat("UPDATE listing SET extraPhotoFive = @extraPhotoFive WHERE ",
+                               String.Concat("UPDATE listing SET pic5 = @pic5 WHERE ",
                                                 "listing_id='", listing_id, "'");
-                    command.Parameters.Add("@extraPhotoFive", SqlDbType.Image);
+                    command.Parameters.Add("@pic5", SqlDbType.Image);
 
-                    command.Parameters["@extraPhotoFive"].Value = replacementImage;
+                    command.Parameters["@pic5"].Value = replacementImage;
 
                     command.ExecuteNonQuery();
                 }
