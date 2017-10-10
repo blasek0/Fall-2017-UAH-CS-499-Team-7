@@ -448,7 +448,29 @@ namespace test2
                 }
             }
         }
+        public void UpdateShortDescription(string replacementShortDescription, int listing_id)
+        {
+            using (SqlCommand command = new SqlCommand())
+            {
+                try
+                {
+                    command.Connection = connection;
+                    command.CommandType = CommandType.Text;
+                    command.CommandText =
+                               String.Concat("UPDATE listing SET listing_shortDescription = @listing_shortDescription WHERE ",
+                                                "listing_id='", listing_id, "'");
+                    command.Parameters.Add("@listing_shortDescription", SqlDbType.NVarChar);
 
+                    command.Parameters["@listing_shortDescription"].Value = replacementShortDescription.ToCharArray();
+
+                    command.ExecuteNonQuery();
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.ToString());
+                }
+            }
+        }
         public void UpdateSubdivision(string replacementSubdivision, int listing_id)
         {
             using (SqlCommand command = new SqlCommand())
@@ -1959,7 +1981,7 @@ namespace test2
                 //******************************//
                 //end testing code here
                 tester.openConnection();
-                tester.UpdateAlarmInfo("None",5);
+                tester.UpdateShortDescription("A beautiful, best, bigger than ur house...",5);
                 //test table
                 /*
                 DataTable temp = tester.GetAgency(5);
