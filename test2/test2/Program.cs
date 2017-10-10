@@ -1943,16 +1943,25 @@ namespace test2
             Console.WriteLine(outputString);
         }
 
-        public byte[] ImagetoByte(Image imagea)
+
+        //convert image to byte[]
+        public byte[] ImagetoByte(Image imageIn)
         {
             MemoryStream ms = new MemoryStream();
-            imagea.Save(ms, System.Drawing.Imaging.ImageFormat.Gif);
+            imageIn.Save(ms, System.Drawing.Imaging.ImageFormat.Gif);
             return ms.ToArray();
+        }
+        //convert byte[] to image
+        public Image BytetoImage(byte[] byteArrayIn)
+        {
+            MemoryStream ms = new MemoryStream(byteArrayIn);
+            Image returnImage = Image.FromStream(ms);
+            return returnImage;
         }
 
         private SqlConnection connection;
         private SqlCommand command;
-
+       
     }
     #endregion
     //************************************************************************
