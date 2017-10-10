@@ -87,7 +87,7 @@ namespace test2
 
         #region updating parts of a listing
 
-        public void UpdatePhotoSmall(Image replacementImage, char[] listingID)
+        public void UpdatePhotoSmall(Image replacementImage, int listing_id)
         {
             using (SqlCommand command = new SqlCommand())
             {
@@ -96,11 +96,11 @@ namespace test2
                     command.Connection = connection;
                     command.CommandType = CommandType.Text;
                     command.CommandText =
-                               String.Concat("UPDATE TABLENAME SET smallImage = @smallImage WHERE ",
-                                                "listingID='", listingID, "'");
-                    command.Parameters.Add("@smallImage", SqlDbType.Image);
+                               String.Concat("UPDATE listing SET listing_smallPhoto = @listing_smallPhoto WHERE ",
+                                                "listing_id='", listing_id, "'");
+                    command.Parameters.Add("@listing_smallPhoto", SqlDbType.Image);
 
-                    command.Parameters["@smallImage"].Value = replacementImage;
+                    command.Parameters["@listing_smallPhoto"].Value = replacementImage;
 
                     command.ExecuteNonQuery();
                 }
@@ -112,7 +112,7 @@ namespace test2
 
         }
 
-        public void UpdatePhotoLarge(Image replacementImage, char[] listingID)
+        public void UpdatePhotoLarge(Image replacementImage, int listing_id)
         {
             using (SqlCommand command = new SqlCommand())
             {
@@ -121,11 +121,11 @@ namespace test2
                     command.Connection = connection;
                     command.CommandType = CommandType.Text;
                     command.CommandText =
-                               String.Concat("UPDATE TABLENAME SET largePhoto = @largePhoto WHERE ",
-                                                "listingID='", listingID, "'");
-                    command.Parameters.Add("@largeImage", SqlDbType.Image);
+                               String.Concat("UPDATE listing SET listing_largePhoto = @listing_largePhoto WHERE ",
+                                                "listing_id='", listing_id, "'");
+                    command.Parameters.Add("@listing_largePhoto", SqlDbType.Image);
 
-                    command.Parameters["@largeImage"].Value = replacementImage;
+                    command.Parameters["@listing_largePhoto"].Value = replacementImage;
 
                     command.ExecuteNonQuery();
                 }
@@ -136,7 +136,7 @@ namespace test2
             }
         }
 
-        public void UpdatePhotoOne(Image replacementImage, char[] listingID)
+        public void UpdatePhotoOne(Image replacementImage, int listing_id)
         {
             using (SqlCommand command = new SqlCommand())
             {
@@ -145,8 +145,8 @@ namespace test2
                     command.Connection = connection;
                     command.CommandType = CommandType.Text;
                     command.CommandText =
-                               String.Concat("UPDATE TABLENAME SET extraPhotoOne = @extraPhotoOne WHERE ",
-                                                "listingID='", listingID, "'");
+                               String.Concat("UPDATE listing SET extraPhotoOne = @extraPhotoOne WHERE ",
+                                                "listing_id='", listing_id, "'");
                     command.Parameters.Add("@extraPhotoOne", SqlDbType.Image);
 
                     command.Parameters["@extraPhotoOne"].Value = replacementImage;
@@ -160,7 +160,7 @@ namespace test2
             }
         }
 
-        public void UpdatePhotoTwo(Image replacementImage, char[] listingID)
+        public void UpdatePhotoTwo(Image replacementImage, int listing_id)
         {
             using (SqlCommand command = new SqlCommand())
             {
@@ -169,8 +169,8 @@ namespace test2
                     command.Connection = connection;
                     command.CommandType = CommandType.Text;
                     command.CommandText =
-                               String.Concat("UPDATE TABLENAME SET extraPhotoTwo = @extraPhotoTwo WHERE ",
-                                                "listingID='", listingID, "'");
+                               String.Concat("UPDATE listing SET extraPhotoTwo = @extraPhotoTwo WHERE ",
+                                                "listing_id='", listing_id, "'");
                     command.Parameters.Add("@extraPhotoTwo", SqlDbType.Image);
 
                     command.Parameters["@extraPhotoTwo"].Value = replacementImage;
@@ -184,7 +184,7 @@ namespace test2
             }
         }
 
-        public void UpdatePhotoThree(Image replacementImage, char[] listingID)
+        public void UpdatePhotoThree(Image replacementImage, int listing_id)
         {
             using (SqlCommand command = new SqlCommand())
             {
@@ -193,8 +193,8 @@ namespace test2
                     command.Connection = connection;
                     command.CommandType = CommandType.Text;
                     command.CommandText =
-                               String.Concat("UPDATE TABLENAME SET extraPhotoThree = @extraPhotoThree WHERE ",
-                                                "listingID='", listingID, "'");
+                               String.Concat("UPDATE listing SET extraPhotoThree = @extraPhotoThree WHERE ",
+                                                "listing_id='", listing_id, "'");
                     command.Parameters.Add("@extraPhotoThree", SqlDbType.Image);
 
                     command.Parameters["@extraPhotoThree"].Value = replacementImage;
@@ -208,7 +208,7 @@ namespace test2
             }
         }
 
-        public void UpdatePhotoFour(Image replacementImage, char[] listingID)
+        public void UpdatePhotoFour(Image replacementImage, int listing_id)
         {
             using (SqlCommand command = new SqlCommand())
             {
@@ -217,8 +217,8 @@ namespace test2
                     command.Connection = connection;
                     command.CommandType = CommandType.Text;
                     command.CommandText =
-                               String.Concat("UPDATE TABLENAME SET extraPhotoFour = @extraPhotoFour WHERE ",
-                                                "listingID='", listingID, "'");
+                               String.Concat("UPDATE listing SET extraPhotoFour = @extraPhotoFour WHERE ",
+                                                "listing_id='", listing_id, "'");
                     command.Parameters.Add("@extraPhotoFour", SqlDbType.Image);
 
                     command.Parameters["@extraPhotoFour"].Value = replacementImage;
@@ -232,7 +232,7 @@ namespace test2
             }
         }
 
-        public void UpdatePhotoFive(Image replacementImage, char[] listingID)
+        public void UpdatePhotoFive(Image replacementImage, int listing_id)
         {
             using (SqlCommand command = new SqlCommand())
             {
@@ -241,8 +241,8 @@ namespace test2
                     command.Connection = connection;
                     command.CommandType = CommandType.Text;
                     command.CommandText =
-                               String.Concat("UPDATE TABLENAME SET extraPhotoFive = @extraPhotoFive WHERE ",
-                                                "listingID='", listingID, "'");
+                               String.Concat("UPDATE listing SET extraPhotoFive = @extraPhotoFive WHERE ",
+                                                "listing_id='", listing_id, "'");
                     command.Parameters.Add("@extraPhotoFive", SqlDbType.Image);
 
                     command.Parameters["@extraPhotoFive"].Value = replacementImage;
