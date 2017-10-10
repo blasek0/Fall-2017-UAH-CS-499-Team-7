@@ -257,7 +257,7 @@ namespace test2
         }
 
 
-        public void UpdateListingPrice(int replacementPrice, char[] listingID)
+        public void UpdateListingPrice(int replacementPrice, int listing_id)
         {
             using (SqlCommand command = new SqlCommand())
             {
@@ -266,11 +266,11 @@ namespace test2
                     command.Connection = connection;
                     command.CommandType = CommandType.Text;
                     command.CommandText =
-                               String.Concat("UPDATE TABLENAME SET listingPrice = @listingPrice WHERE ",
-                                                "listingID='", listingID, "'");
-                    command.Parameters.Add("@listingPrice", SqlDbType.Int);
+                               String.Concat("UPDATE listing SET listing_price = @listing_price WHERE ",
+                                                "listing_id='", listing_id, "'");
+                    command.Parameters.Add("@listing_price", SqlDbType.Int);
 
-                    command.Parameters["@listingPrice"].Value = replacementPrice;
+                    command.Parameters["@listing_price"].Value = replacementPrice;
 
                     command.ExecuteNonQuery();
                 }
@@ -281,7 +281,7 @@ namespace test2
             }
         }
 
-        public void UpdateStreet(string replacementStreet, char[] listingID)
+        public void UpdateStreet(string replacementStreet, int listing_id)
         {
             using (SqlCommand command = new SqlCommand())
             {
@@ -290,11 +290,11 @@ namespace test2
                     command.Connection = connection;
                     command.CommandType = CommandType.Text;
                     command.CommandText =
-                               String.Concat("UPDATE TABLENAME SET listingStreet = @listingStreet WHERE ",
-                                                "listingID='", listingID, "'");
-                    command.Parameters.Add("@listingStreet", SqlDbType.NChar);
+                               String.Concat("UPDATE listing SET listing_street = @listing_street WHERE ",
+                                                "listing_id='", listing_id, "'");
+                    command.Parameters.Add("@listing_street", SqlDbType.NChar);
 
-                    command.Parameters["@listingStreet"].Value = replacementStreet.ToCharArray();
+                    command.Parameters["@listing_street"].Value = replacementStreet.ToCharArray();
 
                     command.ExecuteNonQuery();
                 }
@@ -305,7 +305,7 @@ namespace test2
             }
         }
 
-        public void UpdateCity(string replacementCity, char[] listingID)
+        public void UpdateCity(string replacementCity, int listing_id)
         {
             using (SqlCommand command = new SqlCommand())
             {
@@ -314,11 +314,11 @@ namespace test2
                     command.Connection = connection;
                     command.CommandType = CommandType.Text;
                     command.CommandText =
-                               String.Concat("UPDATE TABLENAME SET listingCity = @listingCity WHERE ",
-                                                "listingID='", listingID, "'");
-                    command.Parameters.Add("@listingCity", SqlDbType.NChar);
+                               String.Concat("UPDATE listing SET listing_city = @listing_city WHERE ",
+                                                "listing_id='", listing_id, "'");
+                    command.Parameters.Add("@listing_city", SqlDbType.NChar);
 
-                    command.Parameters["@listingCity"].Value = replacementCity.ToCharArray();
+                    command.Parameters["@listing_city"].Value = replacementCity.ToCharArray();
 
                     command.ExecuteNonQuery();
                 }
@@ -329,7 +329,7 @@ namespace test2
             }
         }
 
-        public void UpdateState(string replacementState, char[] listingID)
+        public void UpdateState(string replacementState, int listing_id)
         {
             using (SqlCommand command = new SqlCommand())
             {
@@ -338,11 +338,11 @@ namespace test2
                     command.Connection = connection;
                     command.CommandType = CommandType.Text;
                     command.CommandText =
-                               String.Concat("UPDATE TABLENAME SET listingState = @listingState WHERE ",
-                                                "listingID='", listingID, "'");
-                    command.Parameters.Add("@listingState", SqlDbType.NChar);
+                               String.Concat("UPDATE listing SET listing_state = @listing_state WHERE ",
+                                                "listing_id='", listing_id, "'");
+                    command.Parameters.Add("@listing_state", SqlDbType.NChar);
 
-                    command.Parameters["@listingState"].Value = replacementState.ToCharArray();
+                    command.Parameters["@listing_state"].Value = replacementState.ToCharArray();
 
                     command.ExecuteNonQuery();
                 }
@@ -353,7 +353,7 @@ namespace test2
             }
         }
 
-        public void UpdateZip(string replacementZip, char[] listingID)
+        public void UpdateZip(string replacementZip, int listing_id)
         {
             using (SqlCommand command = new SqlCommand())
             {
@@ -362,11 +362,11 @@ namespace test2
                     command.Connection = connection;
                     command.CommandType = CommandType.Text;
                     command.CommandText =
-                               String.Concat("UPDATE TABLENAME SET listingZip = @listingZip WHERE ",
-                                                "listingID='", listingID, "'");
-                    command.Parameters.Add("@listingZip", SqlDbType.NChar);
+                               String.Concat("UPDATE listing SET listing_zip = @listing_zip WHERE ",
+                                                "listing_id='", listing_id, "'");
+                    command.Parameters.Add("@listing_zip", SqlDbType.NChar);
 
-                    command.Parameters["@listingZip"].Value = replacementZip.ToCharArray();
+                    command.Parameters["@listing_zip"].Value = replacementZip.ToCharArray();
 
                     command.ExecuteNonQuery();
                 }
@@ -377,7 +377,7 @@ namespace test2
             }
         }
 
-        public void UpdateSquareFootage(int replacementSquareFootage, char[] listingID)
+        public void UpdateSquareFootage(int replacementSquareFootage, int listing_id)
         {
             using (SqlCommand command = new SqlCommand())
             {
@@ -386,11 +386,11 @@ namespace test2
                     command.Connection = connection;
                     command.CommandType = CommandType.Text;
                     command.CommandText =
-                               String.Concat("UPDATE TABLENAME SET listingSquareFootage = @listingSquareFootage WHERE ",
-                                                "listingID='", listingID, "'");
-                    command.Parameters.Add("@listingSquareFootage", SqlDbType.Int);
+                               String.Concat("UPDATE listing SET listing_sqFT = @listing_sqFT WHERE ",
+                                                "listing_id='", listing_id, "'");
+                    command.Parameters.Add("@listing_sqFT", SqlDbType.Int);
 
-                    command.Parameters["@listingSquareFootage"].Value = replacementSquareFootage;
+                    command.Parameters["@listing_sqFT"].Value = replacementSquareFootage;
 
                     command.ExecuteNonQuery();
                 }
@@ -401,7 +401,7 @@ namespace test2
             }
         }
 
-        public void UpdateDescription(string replacementDescription, char[] listingID)
+        public void UpdateDescription(string replacementDescription, int listing_id)
         {
             using (SqlCommand command = new SqlCommand())
             {
@@ -410,11 +410,11 @@ namespace test2
                     command.Connection = connection;
                     command.CommandType = CommandType.Text;
                     command.CommandText =
-                               String.Concat("UPDATE TABLENAME SET listingDescription = @listingDescription WHERE ",
-                                                "listingID='", listingID, "'");
-                    command.Parameters.Add("@listingDescription", SqlDbType.NVarChar);
+                               String.Concat("UPDATE listing SET listing_description = @listing_description WHERE ",
+                                                "listing_id='", listing_id, "'");
+                    command.Parameters.Add("@listing_description", SqlDbType.NVarChar);
 
-                    command.Parameters["@listingDescription"].Value = replacementDescription.ToCharArray();
+                    command.Parameters["@listing_description"].Value = replacementDescription.ToCharArray();
 
                     command.ExecuteNonQuery();
                 }
@@ -425,7 +425,7 @@ namespace test2
             }
         }
 
-        public void UpdateRoomDescription(string replacementRoomDescription, char[] listingID)
+        public void UpdateRoomDescription(string replacementRoomDescription, int listing_id)
         {
             using (SqlCommand command = new SqlCommand())
             {
@@ -434,11 +434,11 @@ namespace test2
                     command.Connection = connection;
                     command.CommandType = CommandType.Text;
                     command.CommandText =
-                               String.Concat("UPDATE TABLENAME SET listingRoomDescription = @listingRoomDescription WHERE ",
-                                                "listingID='", listingID, "'");
-                    command.Parameters.Add("@listingRoomDescription", SqlDbType.NVarChar);
+                               String.Concat("UPDATE listing SET listing_roomDescription = @listing_roomDescription WHERE ",
+                                                "listing_id='", listing_id, "'");
+                    command.Parameters.Add("@listing_roomDescription", SqlDbType.NVarChar);
 
-                    command.Parameters["@listingRoomDescription"].Value = replacementRoomDescription.ToCharArray();
+                    command.Parameters["@listing_roomDescription"].Value = replacementRoomDescription.ToCharArray();
 
                     command.ExecuteNonQuery();
                 }
@@ -449,7 +449,7 @@ namespace test2
             }
         }
 
-        public void UpdateSubdivision(string replacementSubdivision, char[] listingID)
+        public void UpdateSubdivision(string replacementSubdivision, int listing_id)
         {
             using (SqlCommand command = new SqlCommand())
             {
@@ -458,11 +458,11 @@ namespace test2
                     command.Connection = connection;
                     command.CommandType = CommandType.Text;
                     command.CommandText =
-                               String.Concat("UPDATE TABLENAME SET listingSubdivision = @listingSubdivision WHERE ",
-                                                "listingID='", listingID, "'");
+                               String.Concat("UPDATE listing SET listing_nameSubdivision = @listing_nameSubdivision WHERE ",
+                                                "listing_id='", listing_id, "'");
 
-                    command.Parameters.Add("@listingSubdivision", SqlDbType.NVarChar);
-                    command.Parameters["@listingSubdivision"].Value = replacementSubdivision.ToCharArray();
+                    command.Parameters.Add("@listing_nameSubdivision", SqlDbType.NVarChar);
+                    command.Parameters["@listing_nameSubdivision"].Value = replacementSubdivision.ToCharArray();
 
                     command.ExecuteNonQuery();
                 }
@@ -474,7 +474,7 @@ namespace test2
         }
 
         // I don't know if this will work correctly, but it should. -Nate
-        public void IncrementDailyHitCount(char[] listingID)
+        public void IncrementDailyHitCount(int listing_id)
         {
             using (SqlCommand command = new SqlCommand())
             {
@@ -483,8 +483,8 @@ namespace test2
                     command.Connection = connection;
                     command.CommandType = CommandType.Text;
                     command.CommandText =
-                               String.Concat("UPDATE TABLENAME SET listingDailyHitCount = listingDailyHitCount + 1 WHERE ",
-                                                "listingID='", listingID, "'");
+                               String.Concat("UPDATE listing SET listing_hitCount = listing_hitCount + 1 WHERE ",
+                                                "listing_id='", listing_id, "'");
 
                     command.ExecuteNonQuery();
                 }
@@ -495,7 +495,7 @@ namespace test2
             }
         }
 
-        public void ResetDailyHitCount(char[] listingID)
+        public void ResetDailyHitCount(int listing_id)
         {
             using (SqlCommand command = new SqlCommand())
             {
@@ -504,8 +504,8 @@ namespace test2
                     command.Connection = connection;
                     command.CommandType = CommandType.Text;
                     command.CommandText =
-                               String.Concat("UPDATE TABLENAME SET listingDailyHitCount = 0 WHERE ",
-                                                "listingID='", listingID, "'");
+                               String.Concat("UPDATE listing SET listing_hitCount = 0 WHERE ",
+                                                "listing_id='", listing_id, "'");
 
                     command.ExecuteNonQuery();
                 }
@@ -516,8 +516,7 @@ namespace test2
             }
         }
 
-
-        public void UpdateLifetimeHitCount(char[] listingID)
+        public void UpdateLifetimeHitCount(int listing_id)
         {
             using (SqlCommand command = new SqlCommand())
             {
@@ -526,8 +525,8 @@ namespace test2
                     command.Connection = connection;
                     command.CommandType = CommandType.Text;
                     command.CommandText =
-                               String.Concat("UPDATE TABLENAME SET listingLifetimeHitCount = listingDailyHitCount + listingLifetimeHitCount WHERE ",
-                                                "listingID='", listingID, "'");
+                               String.Concat("UPDATE listing SET listingLifetimeHitCount = listingDailyHitCount + listingLifetimeHitCount WHERE ",
+                                                "listing_id='", listing_id, "'");
 
                     command.ExecuteNonQuery();
                 }
@@ -538,7 +537,7 @@ namespace test2
             }
         }
 
-        public void UpdateAlarmInfo(string replacementAlarmInfo, char[] listingID)
+        public void UpdateAlarmInfo(string replacementAlarmInfo, int listing_id)
         {
             using (SqlCommand command = new SqlCommand())
             {
@@ -547,12 +546,12 @@ namespace test2
                     command.Connection = connection;
                     command.CommandType = CommandType.Text;
                     command.CommandText =
-                               String.Concat("UPDATE TABLENAME SET listingAlarmInfo = @listingAlarmInfo WHERE ",
-                                                "listingID='", listingID, "'");
+                               String.Concat("UPDATE listing SET listing_alarmInfo = @listing_alarmInfo WHERE ",
+                                                "listing_id='", listing_id, "'");
                     // For each variable just start inserting stuff
-                    command.Parameters.Add("@listingAlarmInfo", SqlDbType.NVarChar);
+                    command.Parameters.Add("@listing_alarmInfo", SqlDbType.NVarChar);
 
-                    command.Parameters["@listingAlarmInfo"].Value = replacementAlarmInfo.ToCharArray();
+                    command.Parameters["@listing_alarmInfo"].Value = replacementAlarmInfo.ToCharArray();
 
                     command.ExecuteNonQuery();
                 }
@@ -1960,6 +1959,7 @@ namespace test2
                 //******************************//
                 //end testing code here
                 tester.openConnection();
+                tester.UpdateAlarmInfo("None",5);
                 //test table
                 /*
                 DataTable temp = tester.GetAgency(5);
