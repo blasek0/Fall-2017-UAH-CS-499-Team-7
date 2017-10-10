@@ -1,14 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data.SqlClient;
-using System.Data.SqlTypes;
-using System.Data.Sql;
 using System.Drawing;
-
+using System.IO;
 
 namespace test2
 {
@@ -23,7 +17,7 @@ namespace test2
         public void openConnection()
         {
             connection = new SqlConnection();
-            connection.ConnectionString = "Data Source=DESKTOP-TGE6FLJ;Initial Catalog=Housing;Integrated Security=True";
+            connection.ConnectionString = "Data Source=DESKTOP-QM2SFGD;Initial Catalog=Housing;Integrated Security=True";
             connection.Open();
         }
 
@@ -142,6 +136,9 @@ namespace test2
             {
                 try
                 {
+                    //convert image to byte
+                    byte[] temp = ImagetoByte(replacementImage);
+
                     command.Connection = connection;
                     command.CommandType = CommandType.Text;
                     command.CommandText =
@@ -149,7 +146,7 @@ namespace test2
                                                 "listing_id='", listing_id, "'");
                     command.Parameters.Add("@pic1", SqlDbType.Image);
 
-                    command.Parameters["@pic1"].Value = replacementImage;
+                    command.Parameters["@pic1"].Value = temp;
 
                     command.ExecuteNonQuery();
                 }
@@ -166,6 +163,9 @@ namespace test2
             {
                 try
                 {
+                    //convert image to byte
+                    byte[] temp = ImagetoByte(replacementImage);
+
                     command.Connection = connection;
                     command.CommandType = CommandType.Text;
                     command.CommandText =
@@ -173,7 +173,7 @@ namespace test2
                                                 "listing_id='", listing_id, "'");
                     command.Parameters.Add("@pic2", SqlDbType.Image);
 
-                    command.Parameters["@pic2"].Value = replacementImage;
+                    command.Parameters["@pic2"].Value = temp;
 
                     command.ExecuteNonQuery();
                 }
@@ -190,6 +190,9 @@ namespace test2
             {
                 try
                 {
+                    //convert image to byte
+                    byte[] temp = ImagetoByte(replacementImage);
+
                     command.Connection = connection;
                     command.CommandType = CommandType.Text;
                     command.CommandText =
@@ -197,7 +200,7 @@ namespace test2
                                                 "listing_id='", listing_id, "'");
                     command.Parameters.Add("@pic3", SqlDbType.Image);
 
-                    command.Parameters["@pic3"].Value = replacementImage;
+                    command.Parameters["@pic3"].Value = temp;
 
                     command.ExecuteNonQuery();
                 }
@@ -214,6 +217,9 @@ namespace test2
             {
                 try
                 {
+                    //convert image to byte
+                    byte[] temp = ImagetoByte(replacementImage);
+
                     command.Connection = connection;
                     command.CommandType = CommandType.Text;
                     command.CommandText =
@@ -221,7 +227,7 @@ namespace test2
                                                 "listing_id='", listing_id, "'");
                     command.Parameters.Add("@pic4", SqlDbType.Image);
 
-                    command.Parameters["@pic4"].Value = replacementImage;
+                    command.Parameters["@pic4"].Value = temp;
 
                     command.ExecuteNonQuery();
                 }
@@ -238,6 +244,9 @@ namespace test2
             {
                 try
                 {
+                    //convert image to byte
+                    byte[] temp = ImagetoByte(replacementImage);
+
                     command.Connection = connection;
                     command.CommandType = CommandType.Text;
                     command.CommandText =
@@ -245,7 +254,7 @@ namespace test2
                                                 "listing_id='", listing_id, "'");
                     command.Parameters.Add("@pic5", SqlDbType.Image);
 
-                    command.Parameters["@pic5"].Value = replacementImage;
+                    command.Parameters["@pic5"].Value = temp;
 
                     command.ExecuteNonQuery();
                 }
@@ -1488,7 +1497,7 @@ namespace test2
                     command.CommandType = CommandType.Text;
                     command.CommandText =
                         String.Concat("SELECT ALL agent_Fname, agent_Lname, agent_number, agent_email, agency_id ",
-                                      "FROM agent WHERE agent_id='",agent_id, "'");
+                                      "FROM agent WHERE agent_id='", agent_id, "'");
 
                     table.Columns.Add("agent_Fname");
                     table.Columns.Add("agent_Lname");
@@ -1934,18 +1943,26 @@ namespace test2
             Console.WriteLine(outputString);
         }
 
+        public byte[] ImagetoByte(Image imagea)
+        {
+            MemoryStream ms = new MemoryStream();
+            imagea.Save(ms, System.Drawing.Imaging.ImageFormat.Gif);
+            return ms.ToArray();
+        }
+
         private SqlConnection connection;
         private SqlCommand command;
 
     }
     #endregion
-
+    //************************************************************************
+   
     //************************************************************************
     class Program
     {
         static void Main(string[] args)
         {
-            string conString = "Data Source=DESKTOP-TGE6FLJ;Initial Catalog=Housing;Integrated Security=True";
+            string conString = "Data Source=DESKTOP-QM2SFGD;Initial Catalog=Housing;Integrated Security=True";
 
             SqlConnection con = new SqlConnection(conString);
             con.Open();
@@ -1981,7 +1998,12 @@ namespace test2
                 //******************************//
                 //end testing code here
                 tester.openConnection();
-                tester.UpdateShortDescription("A beautiful, best, bigger than ur house...",5);
+                //tester.UpdateShortDescription("A beautiful, best, bigger than ur house...",5);
+                Image image1 = Image.FromFile("c:\\image1.jpeg");
+                tester.UpdatePhotoOne(image1, 5);
+            
+
+
                 //test table
                 /*
                 DataTable temp = tester.GetAgency(5);
@@ -1996,8 +2018,8 @@ namespace test2
                 }
                 */
 
-                
-                
+
+
                 //Console.WriteLine();
                 //tester.AddAgent(fName, lName, userName,password,number2, email2, agency_id, number2);
                 //Int16 zip = 3580;
