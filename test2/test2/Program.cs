@@ -23,7 +23,7 @@ namespace test2
         public void openConnection()
         {
             connection = new SqlConnection();
-            connection.ConnectionString = "Data Source=DESKTOP-QM2SFGD;Initial Catalog=Housing;Integrated Security=True";
+            connection.ConnectionString = "Data Source=DESKTOP-TGE6FLJ;Initial Catalog=Housing;Integrated Security=True";
             connection.Open();
         }
 
@@ -1578,7 +1578,7 @@ namespace test2
                     command.Connection = connection;
                     command.CommandType = CommandType.Text;
                     command.CommandText =
-                               "INSERT INTO TABLENAME (agency_name, agency_email, agency_phone, agency_street, agency_city, agency_state, "
+                               "INSERT INTO agency (agency_name, agency_email, agency_phone, agency_street, agency_city, agency_state, "
                                + "agency_zip) VALUES (@agency_name, @agency_email, @agency_phone, @agency_street, @agency_city, @agency_state, "
                                + "@agency_zip)";
                     // For each variable just start inserting stuff
@@ -1612,7 +1612,7 @@ namespace test2
 
         #region Update parts of an agent in the agency database.
 
-        public void UpdateAgencyName(string name, char[] agencyID)
+        public void UpdateAgencyName(string name, int agency_id)
         {
             using (SqlCommand command = new SqlCommand())
             {
@@ -1621,8 +1621,8 @@ namespace test2
                     command.Connection = connection;
                     command.CommandType = CommandType.Text;
                     command.CommandText =
-                               String.Concat("UPDATE TABLENAME SET agency_name = @agency_name WHERE ",
-                                                "agencyID='", agencyID, "'");
+                               String.Concat("UPDATE agency SET agency_name = @agency_name WHERE ",
+                                                "agency_id='", agency_id, "'");
                     command.Parameters.Add("@agency_name", SqlDbType.NVarChar);
 
                     command.Parameters["@agency_name"].Value = name.ToCharArray();
@@ -1636,7 +1636,7 @@ namespace test2
             }
         }
 
-        public void UpdateAgencyEmail(string email, char[] agencyID)
+        public void UpdateAgencyEmail(string email, int agency_id)
         {
             using (SqlCommand command = new SqlCommand())
             {
@@ -1645,8 +1645,8 @@ namespace test2
                     command.Connection = connection;
                     command.CommandType = CommandType.Text;
                     command.CommandText =
-                               String.Concat("UPDATE TABLENAME SET agency_email = @agency_email WHERE ",
-                                                "agencyID='", agencyID, "'");
+                               String.Concat("UPDATE agency SET agency_email = @agency_email WHERE ",
+                                                "agency_id='", agency_id, "'");
                     command.Parameters.Add("@agency_email", SqlDbType.NVarChar);
 
                     command.Parameters["@agency_email"].Value = email.ToCharArray();
@@ -1660,7 +1660,7 @@ namespace test2
             }
         }
 
-        public void UpdateAgencyPhone(string phoneNumber, char[] agencyID)
+        public void UpdateAgencyPhone(string phoneNumber, int agency_id)
         {
             using (SqlCommand command = new SqlCommand())
             {
@@ -1669,11 +1669,11 @@ namespace test2
                     command.Connection = connection;
                     command.CommandType = CommandType.Text;
                     command.CommandText =
-                               String.Concat("UPDATE TABLENAME SET agent_number = @agent_number WHERE ",
-                                                "agencyID='", agencyID, "'");
-                    command.Parameters.Add("@agent_number", SqlDbType.NVarChar);
+                               String.Concat("UPDATE agency SET agency_phone = @agency_phone WHERE ",
+                                                "agency_id='", agency_id, "'");
+                    command.Parameters.Add("@agency_phone", SqlDbType.NVarChar);
 
-                    command.Parameters["@agent_number"].Value = phoneNumber.ToCharArray();
+                    command.Parameters["@agency_phone"].Value = phoneNumber.ToCharArray();
 
                     command.ExecuteNonQuery();
                 }
@@ -1684,7 +1684,7 @@ namespace test2
             }
         }
 
-        public void UpdateAgencyStreet(string street, char[] agencyID)
+        public void UpdateAgencyStreet(string street, int agency_id)
         {
             using (SqlCommand command = new SqlCommand())
             {
@@ -1693,8 +1693,8 @@ namespace test2
                     command.Connection = connection;
                     command.CommandType = CommandType.Text;
                     command.CommandText =
-                               String.Concat("UPDATE TABLENAME SET agency_street = @agency_street WHERE ",
-                                                "agencyID='", agencyID, "'");
+                               String.Concat("UPDATE agency SET agency_street = @agency_street WHERE ",
+                                                "agency_id='", agency_id, "'");
                     command.Parameters.Add("@agency_street", SqlDbType.NVarChar);
 
                     command.Parameters["@agency_street"].Value = street.ToCharArray();
@@ -1708,7 +1708,7 @@ namespace test2
             }
         }
 
-        public void UpdateAgencyCity(string city, char[] agencyID)
+        public void UpdateAgencyCity(string city, int agency_id)
         {
             using (SqlCommand command = new SqlCommand())
             {
@@ -1717,8 +1717,8 @@ namespace test2
                     command.Connection = connection;
                     command.CommandType = CommandType.Text;
                     command.CommandText =
-                               String.Concat("UPDATE TABLENAME SET agency_city = @agency_city WHERE ",
-                                                "agencyID='", agencyID, "'");
+                               String.Concat("UPDATE agency SET agency_city = @agency_city WHERE ",
+                                                "agency_id='", agency_id, "'");
                     command.Parameters.Add("@agency_city", SqlDbType.NVarChar);
 
                     command.Parameters["@agency_city"].Value = city.ToCharArray();
@@ -1732,7 +1732,7 @@ namespace test2
             }
         }
 
-        public void UpdateAgencyState(string state, char[] agencyID)
+        public void UpdateAgencyState(string state, int agency_id)
         {
             using (SqlCommand command = new SqlCommand())
             {
@@ -1741,8 +1741,8 @@ namespace test2
                     command.Connection = connection;
                     command.CommandType = CommandType.Text;
                     command.CommandText =
-                               String.Concat("UPDATE TABLENAME SET agency_state = @agency_state WHERE ",
-                                                "agencyID='", agencyID, "'");
+                               String.Concat("UPDATE agency SET agency_state = @agency_state WHERE ",
+                                                "agency_id='", agency_id, "'");
                     command.Parameters.Add("@agency_state", SqlDbType.NVarChar);
 
                     command.Parameters["@agency_state"].Value = state.ToCharArray();
@@ -1756,7 +1756,7 @@ namespace test2
             }
         }
 
-        public void UpdateAgencyZip(string zip, char[] agencyID)
+        public void UpdateAgencyZip(string zip, int agency_id)
         {
             using (SqlCommand command = new SqlCommand())
             {
@@ -1765,8 +1765,8 @@ namespace test2
                     command.Connection = connection;
                     command.CommandType = CommandType.Text;
                     command.CommandText =
-                               String.Concat("UPDATE TABLENAME SET agency_zip = @agency_zip WHERE ",
-                                                "agencyID='", agencyID, "'");
+                               String.Concat("UPDATE agency SET agency_zip = @agency_zip WHERE ",
+                                                "agency_id='", agency_id, "'");
                     command.Parameters.Add("@agency_zip", SqlDbType.NVarChar);
 
                     command.Parameters["@agency_zip"].Value = zip.ToCharArray();
@@ -1782,7 +1782,7 @@ namespace test2
         #endregion
 
         #region Remove/Delete items in the agency database.
-        public void DeleteAgency(char[] agencyID)
+        public void DeleteAgency(int agency_id)
         {
             using (SqlCommand command = new SqlCommand())
             {
@@ -1791,7 +1791,7 @@ namespace test2
                     command.Connection = connection;
                     command.CommandType = CommandType.Text;
                     command.CommandText =
-                               String.Concat("DELETE FROM TABLENAME WHERE agencyID='", agencyID, "'");
+                               String.Concat("DELETE FROM agency WHERE agency_id='", agency_id, "'");
 
                     command.ExecuteNonQuery();
                 }
@@ -1814,7 +1814,7 @@ namespace test2
                 {
                     command.Connection = connection;
                     command.CommandType = CommandType.Text;
-                    command.CommandText = "SELECT COUNT(*) FROM TABLENAME";
+                    command.CommandText = "SELECT COUNT(*) FROM agency";
                     result = Convert.ToInt32(command.ExecuteScalar());
                 }
                 catch (Exception e)
@@ -1836,7 +1836,7 @@ namespace test2
                     command.Connection = connection;
                     command.CommandType = CommandType.Text;
                     command.CommandText = "SELECT ALL agency_name, agency_email, agency_phone, agency_street, agency_city, "
-                                          + "agency_state, agency_zip FROM TABLENAME";
+                                          + "agency_state, agency_zip FROM agency";
 
                     table.Columns.Add("agency_name");
                     table.Columns.Add("agency_email");
@@ -1860,7 +1860,7 @@ namespace test2
             return table;
         }
 
-        public DataTable GetAgency(char[] agencyID)
+        public DataTable GetAgency(int agency_id)
         {
             DataTable table = new DataTable();
             using (SqlCommand command = new SqlCommand())
@@ -1871,7 +1871,7 @@ namespace test2
                     command.CommandType = CommandType.Text;
                     command.CommandText =
                         String.Concat("SELECT ALL agency_name, agency_email, agency_phone, agency_street, agency_city, ",
-                                      "agency_state, agency_zip FROM TABLENAME WHERE agencyID='", agencyID, "'");
+                                      "agency_state, agency_zip FROM agency WHERE agency_id='", agency_id, "'");
 
                     table.Columns.Add("agency_name");
                     table.Columns.Add("agency_email");
@@ -1924,7 +1924,7 @@ namespace test2
     {
         static void Main(string[] args)
         {
-            string conString = "Data Source=DESKTOP-QM2SFGD;Initial Catalog=Housing;Integrated Security=True";
+            string conString = "Data Source=DESKTOP-TGE6FLJ;Initial Catalog=Housing;Integrated Security=True";
 
             SqlConnection con = new SqlConnection(conString);
             con.Open();
@@ -1934,7 +1934,7 @@ namespace test2
             if (con.State == System.Data.ConnectionState.Open)
             {
                 //initilize data to variables
-                string name = "Destruction";
+                string name = "Boston";
                 string email = "death.org";
                 string phone = "6669996666";
                 string street = "666 Street";
@@ -1960,9 +1960,9 @@ namespace test2
                 //******************************//
                 //end testing code here
                 tester.openConnection();
-                string temp1 = tester.GetAgentEmail(2);
-                DataTable temp = tester.GetAgent(2);
                 //test table
+                /*
+                DataTable temp = tester.GetAgency(5);
                 foreach (DataRow row in temp.Rows)
                 {
                     Console.WriteLine("----------row------------");
@@ -1972,7 +1972,10 @@ namespace test2
                         Console.WriteLine(item);
                     }
                 }
+                */
 
+                
+                
                 //Console.WriteLine();
                 //tester.AddAgent(fName, lName, userName,password,number2, email2, agency_id, number2);
                 //Int16 zip = 3580;
