@@ -1381,6 +1381,29 @@ namespace test2
             return result;
         }
 
+        public int GetAgentID(String username)
+		{
+			int result = 0;
+			using (SqlCommand command = new SqlCommand())
+			{
+				try
+				{
+					command.Connection = connection;
+					command.CommandType = CommandType.Text;
+                    command.CommandText = "SELECT agent_id FROM agent WHERE agent_Uname = @username";
+                    command.Parameters.Add("@username",SqlDbType.NVarChar);
+                    command.Parameters["@username"].Value = username.ToCharArray();
+					result = Convert.ToInt32(command.ExecuteScalar());
+				}
+				catch (Exception e)
+				{
+					Console.WriteLine(e.ToString());
+					result = -1;
+				}
+			}
+			return result;
+		}
+
         public string GetAgentUserName(int agent_id)
         {
             string result = "";
@@ -1402,7 +1425,7 @@ namespace test2
             return result;
         }
 
-        public bool GetAgentPassword(int agent_id, string enteredPassword)
+        public bool CheckAgentPassword(string username, string enteredPassword)
         {
             string result = "";
             using (SqlCommand command = new SqlCommand())
@@ -1411,7 +1434,9 @@ namespace test2
                 {
                     command.Connection = connection;
                     command.CommandType = CommandType.Text;
-                    command.CommandText = String.Concat("SELECT agent_passwd FROM agent WHERE agent_id='", agent_id, "'");
+                    command.CommandText = "SELECT agent_passwd FROM agent WHERE agent_Uname = @username";
+                    command.Parameters.Add("@username", SqlDbType.NVarChar);
+                    command.Parameters["@username"].Value = username.ToCharArray();
                     result = Convert.ToString(command.ExecuteScalar());
                 }
                 catch (Exception e)
