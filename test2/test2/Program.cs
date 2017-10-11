@@ -1072,6 +1072,61 @@ namespace test2
             return table;
         }
 
+        // Get all info for one specific listing. To be used for the agent detailed page.
+        public DataTable GetSpecificListing(int listingID)
+        {
+            DataTable table = new DataTable();
+            using (SqlCommand command = new SqlCommand())
+            {
+                try
+                {
+                    command.Connection = connection;
+                    command.CommandType = CommandType.Text;
+                    command.CommandText = "SELECT * FROM TABLENAME WHERE listing_id = @listingID";
+
+                    command.Parameters.Add("@listingID", SqlDbType.Int);
+                    command.Parameters["@listingID"].Value = listingID;
+
+                    table.Columns.Add("smallPhoto");
+                    table.Columns.Add("largePhoto");
+                    table.Columns.Add("pic1");
+                    table.Columns.Add("pic2");
+                    table.Columns.Add("pic3");
+                    table.Columns.Add("pic4");
+                    table.Columns.Add("pic5");
+                    table.Columns.Add("listingPrice");
+                    table.Columns.Add("listingStreet");
+                    table.Columns.Add("listingCity");
+                    table.Columns.Add("listingState");
+                    table.Columns.Add("listingZip");
+                    table.Columns.Add("listingSquareFootage");
+                    table.Columns.Add("listing_description");
+                    table.Columns.Add("listing_roomDescription");
+                    table.Columns.Add("listing_short_Description");
+                    table.Columns.Add("listing_nameSubdivision");
+                    table.Columns.Add("listing_alarmInfo");
+                    table.Columns.Add("listingHitCount");
+                    table.Columns.Add("listingLifetimeHitCount");
+                    table.Columns.Add("agentID");
+                    table.Columns.Add("agencyID");
+
+
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                    {
+                        adapter.Fill(table);
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.ToString());
+                }
+
+            }
+            return table;
+        }
+
+
+
         #endregion
 
         #endregion
