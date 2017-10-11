@@ -1047,7 +1047,7 @@ namespace test2
                         String.Concat("SELECT ALL smallPhoto, listingPrice, listingStreet, listingCity, listingState, ",
                                           "listingZip, listingSquareFootage, agentID, agencyID FROM TABLENAME");
 
-                    table.Columns.Add("smallPhoto");
+                    table.Columns.Add("listing_smallPhoto");
                     table.Columns.Add("listingPrice");
                     table.Columns.Add("listingStreet");
                     table.Columns.Add("listingCity");
@@ -1087,8 +1087,8 @@ namespace test2
                     command.Parameters.Add("@listingID", SqlDbType.Int);
                     command.Parameters["@listingID"].Value = listingID;
 
-                    table.Columns.Add("smallPhoto");
-                    table.Columns.Add("largePhoto");
+                    table.Columns.Add("listing_smallPhoto");
+                    table.Columns.Add("listing_largePhoto");
                     table.Columns.Add("pic1");
                     table.Columns.Add("pic2");
                     table.Columns.Add("pic3");
@@ -1125,6 +1125,635 @@ namespace test2
             return table;
         }
 
+        // Get the large photo for a specific listing
+        public Image GetLargePhoto(int listing_id)
+        {
+            Image image = null;
+            using (SqlCommand command = new SqlCommand())
+            {
+                try
+                {
+                    command.Connection = connection;
+                    command.CommandType = CommandType.Text;
+                    command.CommandText = "SELECT listing_largePhoto FROM TABLENAME WHERE listing_id = @listingID";
+
+                    command.Parameters.Add("@listingID", SqlDbType.Int);
+                    command.Parameters["@listingID"].Value = listing_id;
+
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                    {
+                        DataSet dataSet = new DataSet();
+                        adapter.Fill(dataSet);
+
+                        if (dataSet.Tables[0].Rows.Count == 1)
+                        {
+                            Byte[] dataStream = new Byte[0];
+                            dataStream = (Byte[])(dataSet.Tables[0].Rows[0]["listing_largePhoto"]);
+                            image = BytetoImage(dataStream);
+                        }
+                    }
+
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.ToString());
+                }
+            }
+            return image;
+        }
+
+        // Get the small photo for a specific listing.
+        public Image GetSmallPhoto(int listing_id)
+        {
+            Image image = null;
+            using (SqlCommand command = new SqlCommand())
+            {
+                try
+                {
+                    command.Connection = connection;
+                    command.CommandType = CommandType.Text;
+                    command.CommandText = "SELECT listing_smallPhoto FROM TABLENAME WHERE listing_id = @listingID";
+
+                    command.Parameters.Add("@listingID", SqlDbType.Int);
+                    command.Parameters["@listingID"].Value = listing_id;
+
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                    {
+                        DataSet dataSet = new DataSet();
+                        adapter.Fill(dataSet);
+
+                        if (dataSet.Tables[0].Rows.Count == 1)
+                        {
+                            Byte[] dataStream = new Byte[0];
+                            dataStream = (Byte[])(dataSet.Tables[0].Rows[0]["listing_smallPhoto"]);
+                            image = BytetoImage(dataStream);
+                        }
+                    }
+
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.ToString());
+                }
+            }
+            return image;
+        }
+
+        // Get the first extra picture for a specific listing.
+        public Image GetPhotoOne(int listing_id)
+        {
+            Image image = null;
+            using (SqlCommand command = new SqlCommand())
+            {
+                try
+                {
+                    command.Connection = connection;
+                    command.CommandType = CommandType.Text;
+                    command.CommandText = "SELECT pic1 FROM TABLENAME WHERE listing_id = @listingID";
+
+                    command.Parameters.Add("@listingID", SqlDbType.Int);
+                    command.Parameters["@listingID"].Value = listing_id;
+
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                    {
+                        DataSet dataSet = new DataSet();
+                        adapter.Fill(dataSet);
+
+                        if (dataSet.Tables[0].Rows.Count == 1)
+                        {
+                            Byte[] dataStream = new Byte[0];
+                            dataStream = (Byte[])(dataSet.Tables[0].Rows[0]["pic1"]);
+                            image = BytetoImage(dataStream);
+                        }
+                    }
+
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.ToString());
+                }
+            }
+            return image;
+        }
+
+        // Get the second extra picture for a specific listing.
+        public Image GetPhotoTwo(int listing_id)
+        {
+            Image image = null;
+            using (SqlCommand command = new SqlCommand())
+            {
+                try
+                {
+                    command.Connection = connection;
+                    command.CommandType = CommandType.Text;
+                    command.CommandText = "SELECT pic2 FROM TABLENAME WHERE listing_id = @listingID";
+
+                    command.Parameters.Add("@listingID", SqlDbType.Int);
+                    command.Parameters["@listingID"].Value = listing_id;
+
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                    {
+                        DataSet dataSet = new DataSet();
+                        adapter.Fill(dataSet);
+
+                        if (dataSet.Tables[0].Rows.Count == 1)
+                        {
+                            Byte[] dataStream = new Byte[0];
+                            dataStream = (Byte[])(dataSet.Tables[0].Rows[0]["pic2"]);
+                            image = BytetoImage(dataStream);
+                        }
+                    }
+
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.ToString());
+                }
+            }
+            return image;
+        }
+
+        // Get the third extra picture for a specific listing.
+        public Image GetPhotoThree(int listing_id)
+        {
+            Image image = null;
+            using (SqlCommand command = new SqlCommand())
+            {
+                try
+                {
+                    command.Connection = connection;
+                    command.CommandType = CommandType.Text;
+                    command.CommandText = "SELECT pic3 FROM TABLENAME WHERE listing_id = @listingID";
+
+                    command.Parameters.Add("@listingID", SqlDbType.Int);
+                    command.Parameters["@listingID"].Value = listing_id;
+
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                    {
+                        DataSet dataSet = new DataSet();
+                        adapter.Fill(dataSet);
+
+                        if (dataSet.Tables[0].Rows.Count == 1)
+                        {
+                            Byte[] dataStream = new Byte[0];
+                            dataStream = (Byte[])(dataSet.Tables[0].Rows[0]["pic3"]);
+                            image = BytetoImage(dataStream);
+                        }
+                    }
+
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.ToString());
+                }
+            }
+            return image;
+        }
+
+        // Get the fourth extra picture for a specific listing.
+        public Image GetPhotoFour(int listing_id)
+        {
+            Image image = null;
+            using (SqlCommand command = new SqlCommand())
+            {
+                try
+                {
+                    command.Connection = connection;
+                    command.CommandType = CommandType.Text;
+                    command.CommandText = "SELECT pic4 FROM TABLENAME WHERE listing_id = @listingID";
+
+                    command.Parameters.Add("@listingID", SqlDbType.Int);
+                    command.Parameters["@listingID"].Value = listing_id;
+
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                    {
+                        DataSet dataSet = new DataSet();
+                        adapter.Fill(dataSet);
+
+                        if (dataSet.Tables[0].Rows.Count == 1)
+                        {
+                            Byte[] dataStream = new Byte[0];
+                            dataStream = (Byte[])(dataSet.Tables[0].Rows[0]["pic4"]);
+                            image = BytetoImage(dataStream);
+                        }
+                    }
+
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.ToString());
+                }
+            }
+            return image;
+        }
+
+        // Get the fifth extra picture for a specific listing.
+        public Image GetPhotoFive(int listing_id)
+        {
+            Image image = null;
+            using (SqlCommand command = new SqlCommand())
+            {
+                try
+                {
+                    command.Connection = connection;
+                    command.CommandType = CommandType.Text;
+                    command.CommandText = "SELECT pic5 FROM TABLENAME WHERE listing_id = @listingID";
+
+                    command.Parameters.Add("@listingID", SqlDbType.Int);
+                    command.Parameters["@listingID"].Value = listing_id;
+
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                    {
+                        DataSet dataSet = new DataSet();
+                        adapter.Fill(dataSet);
+
+                        if (dataSet.Tables[0].Rows.Count == 1)
+                        {
+                            Byte[] dataStream = new Byte[0];
+                            dataStream = (Byte[])(dataSet.Tables[0].Rows[0]["pic5"]);
+                            image = BytetoImage(dataStream);
+                        }
+                    }
+
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.ToString());
+                }
+            }
+            return image;
+        }
+
+        // Get the listing price for a specific listing.
+        public int GetListingPrice(int listing_id)
+        {
+            int result = 0;
+            using (SqlCommand command = new SqlCommand())
+            {
+                try
+                {
+                    command.Connection = connection;
+                    command.CommandType = CommandType.Text;
+                    command.CommandText = "SELECT listing_price FROM listing WHERE listing_id = @listing";
+                    command.Parameters.Add("@listing", SqlDbType.Int);
+                    command.Parameters["@listing"].Value = listing_id;
+                    result = Convert.ToInt32(command.ExecuteScalar());
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.ToString());
+                    result = -1;
+                }
+            }
+            return result;
+        }
+
+        // Get the listing street for a specific listing.
+        public string GetListingStreet(int listing_id)
+        {
+            string result = "";
+            using (SqlCommand command = new SqlCommand())
+            {
+                try
+                {
+                    command.Connection = connection;
+                    command.CommandType = CommandType.Text;
+                    command.CommandText = "SELECT listing_street FROM listing WHERE listing_id = @listing";
+                    command.Parameters.Add("@listing",SqlDbType.Int);
+                    command.Parameters["@listing"].Value = listing_id;
+
+                    result = Convert.ToString(command.ExecuteScalar());
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.ToString());
+                    result = "error";
+                }
+            }
+            return result;
+        }
+
+        // Get the listing city for a specific listing.
+        public string GetListingCity(int listing_id)
+        {
+            string result = "";
+            using (SqlCommand command = new SqlCommand())
+            {
+                try
+                {
+                    command.Connection = connection;
+                    command.CommandType = CommandType.Text;
+                    command.CommandText = "SELECT listing_city FROM listing WHERE listing_id = @listing";
+                    command.Parameters.Add("@listing", SqlDbType.Int);
+                    command.Parameters["@listing"].Value = listing_id;
+
+                    result = Convert.ToString(command.ExecuteScalar());
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.ToString());
+                    result = "error";
+                }
+            }
+            return result;
+        }
+
+        // Get the listing state for a specific listing.
+        public string GetListingState(int listing_id)
+        {
+            string result = "";
+            using (SqlCommand command = new SqlCommand())
+            {
+                try
+                {
+                    command.Connection = connection;
+                    command.CommandType = CommandType.Text;
+                    command.CommandText = "SELECT listing_state FROM listing WHERE listing_id = @listing";
+                    command.Parameters.Add("@listing", SqlDbType.Int);
+                    command.Parameters["@listing"].Value = listing_id;
+
+                    result = Convert.ToString(command.ExecuteScalar());
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.ToString());
+                    result = "error";
+                }
+            }
+            return result;
+        }
+
+        // Get the listing zip code for a specific listing.
+        public string GetListingZip(int listing_id)
+        {
+            string result = "";
+            using (SqlCommand command = new SqlCommand())
+            {
+                try
+                {
+                    command.Connection = connection;
+                    command.CommandType = CommandType.Text;
+                    command.CommandText = "SELECT listing_zip FROM listing WHERE listing_id = @listing";
+                    command.Parameters.Add("@listing", SqlDbType.Int);
+                    command.Parameters["@listing"].Value = listing_id;
+
+                    result = Convert.ToString(command.ExecuteScalar());
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.ToString());
+                    result = "error";
+                }
+            }
+            return result;
+        }
+
+        // Get the listing square footage for a specific listing.
+        public int GetListingSquareFootage(int listing_id)
+        {
+            int result = 0;
+            using (SqlCommand command = new SqlCommand())
+            {
+                try
+                {
+                    command.Connection = connection;
+                    command.CommandType = CommandType.Text;
+                    command.CommandText = "SELECT listing_sqFt FROM listing WHERE listing_id = @listing";
+                    command.Parameters.Add("@listing", SqlDbType.Int);
+                    command.Parameters["@listing"].Value = listing_id;
+                    result = Convert.ToInt32(command.ExecuteScalar());
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.ToString());
+                    result = -1;
+                }
+            }
+            return result;
+        }
+
+        // Get the short description for a specific listing.
+        public string GetListingShortDescription(int listing_id)
+        {
+            string result = "";
+            using (SqlCommand command = new SqlCommand())
+            {
+                try
+                {
+                    command.Connection = connection;
+                    command.CommandType = CommandType.Text;
+                    command.CommandText = "SELECT listing_shortDescription FROM listing WHERE listing_id = @listing";
+                    command.Parameters.Add("@listing", SqlDbType.Int);
+                    command.Parameters["@listing"].Value = listing_id;
+
+                    result = Convert.ToString(command.ExecuteScalar());
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.ToString());
+                    result = "error";
+                }
+            }
+            return result;
+        }
+
+        // Get the description for a specific listing.
+        public string GetListingDescription(int listing_id)
+        {
+            string result = "";
+            using (SqlCommand command = new SqlCommand())
+            {
+                try
+                {
+                    command.Connection = connection;
+                    command.CommandType = CommandType.Text;
+                    command.CommandText = "SELECT listing_description FROM listing WHERE listing_id = @listing";
+                    command.Parameters.Add("@listing", SqlDbType.Int);
+                    command.Parameters["@listing"].Value = listing_id;
+
+                    result = Convert.ToString(command.ExecuteScalar());
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.ToString());
+                    result = "error";
+                }
+            }
+            return result;
+        }
+
+        // Get the room description for a specific listing.
+        public string GetListingRoomDescription(int listing_id)
+        {
+            string result = "";
+            using (SqlCommand command = new SqlCommand())
+            {
+                try
+                {
+                    command.Connection = connection;
+                    command.CommandType = CommandType.Text;
+                    command.CommandText = "SELECT listing_roomDescription FROM listing WHERE listing_id = @listing";
+                    command.Parameters.Add("@listing", SqlDbType.Int);
+                    command.Parameters["@listing"].Value = listing_id;
+
+                    result = Convert.ToString(command.ExecuteScalar());
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.ToString());
+                    result = "error";
+                }
+            }
+            return result;
+        }
+
+        // Get the subdivision for a specific listing.
+        public string GetListingSubdivision(int listing_id)
+        {
+            string result = "";
+            using (SqlCommand command = new SqlCommand())
+            {
+                try
+                {
+                    command.Connection = connection;
+                    command.CommandType = CommandType.Text;
+                    command.CommandText = "SELECT listing_nameSubdivision FROM listing WHERE listing_id = @listing";
+                    command.Parameters.Add("@listing", SqlDbType.Int);
+                    command.Parameters["@listing"].Value = listing_id;
+
+                    result = Convert.ToString(command.ExecuteScalar());
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.ToString());
+                    result = "error";
+                }
+            }
+            return result;
+        }
+
+        // Get the alarm information for a specific listing.
+        public string GetListingAlarmInfo(int listing_id)
+        {
+            string result = "";
+            using (SqlCommand command = new SqlCommand())
+            {
+                try
+                {
+                    command.Connection = connection;
+                    command.CommandType = CommandType.Text;
+                    command.CommandText = "SELECT listing_alarmInfo FROM listing WHERE listing_id = @listing";
+                    command.Parameters.Add("@listing", SqlDbType.Int);
+                    command.Parameters["@listing"].Value = listing_id;
+
+                    result = Convert.ToString(command.ExecuteScalar());
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.ToString());
+                    result = "error";
+                }
+            }
+            return result;
+        }
+
+        // Get the daily hit count for a specific listing.
+        public int GetListingDailyHitCount(int listing_id)
+        {
+            int result = 0;
+            using (SqlCommand command = new SqlCommand())
+            {
+                try
+                {
+                    command.Connection = connection;
+                    command.CommandType = CommandType.Text;
+                    command.CommandText = "SELECT listingDailyHitCount FROM listing WHERE listing_id = @listing";
+                    command.Parameters.Add("@listing", SqlDbType.Int);
+                    command.Parameters["@listing"].Value = listing_id;
+                    result = Convert.ToInt32(command.ExecuteScalar());
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.ToString());
+                    result = -1;
+                }
+            }
+            return result;
+        }
+
+        // Get the lifetime hit count for a specific listing.
+        public int GetListingLifetimeHitCount(int listing_id)
+        {
+            int result = 0;
+            using (SqlCommand command = new SqlCommand())
+            {
+                try
+                {
+                    command.Connection = connection;
+                    command.CommandType = CommandType.Text;
+                    command.CommandText = "SELECT listingLifetimeHitCount FROM listing WHERE listing_id = @listing";
+                    command.Parameters.Add("@listing", SqlDbType.Int);
+                    command.Parameters["@listing"].Value = listing_id;
+                    result = Convert.ToInt32(command.ExecuteScalar());
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.ToString());
+                    result = -1;
+                }
+            }
+            return result;
+        }
+
+        // Get the listing agent id for a specific listing.
+        public char[] GetListingAgentID(int listing_id)
+        {
+            string result = "";
+            using (SqlCommand command = new SqlCommand())
+            {
+                try
+                {
+                    command.Connection = connection;
+                    command.CommandType = CommandType.Text;
+                    command.CommandText = "SELECT agent_id FROM listing WHERE listing_id = @listing";
+                    command.Parameters.Add("@listing", SqlDbType.Int);
+                    command.Parameters["@listing"].Value = listing_id;
+
+                    result = Convert.ToString(command.ExecuteScalar());
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.ToString());
+                    result = "error";
+                }
+            }
+            return result.ToCharArray();
+        }
+
+        // Get the agency id for a specific listing.
+        public char[] GetListingAgencyID(int listing_id)
+        {
+            string result = "";
+            using (SqlCommand command = new SqlCommand())
+            {
+                try
+                {
+                    command.Connection = connection;
+                    command.CommandType = CommandType.Text;
+                    command.CommandText = "SELECT agency_id FROM listing WHERE listing_id = @listing";
+                    command.Parameters.Add("@listing", SqlDbType.Int);
+                    command.Parameters["@listing"].Value = listing_id;
+
+                    result = Convert.ToString(command.ExecuteScalar());
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.ToString());
+                    result = "error";
+                }
+            }
+            return result.ToCharArray();
+        }
 
 
         #endregion
@@ -1672,9 +2301,7 @@ namespace test2
         #endregion
 
         #endregion
-
-
-
+       
         #region functions that affect the agency database.
 
         #region Add an agency to the database.
@@ -2010,8 +2637,6 @@ namespace test2
         #endregion
 
         #endregion
-
-
 
 
         public void getText(DataTable myTable)
