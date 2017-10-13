@@ -29,7 +29,7 @@ namespace test2
         #region Adding a listing
 
         public void AddListing(Image smallImage, Image largeImage, int listingPrice, String street, String city,
-                               String state, String zip, int squareFootage, char[] agentID, char[] agencyID)
+                               String state, String zip, int squareFootage, string agentID, string agencyID)
         {
             using (SqlCommand command = new SqlCommand())
             {
@@ -38,8 +38,8 @@ namespace test2
                     command.Connection = connection;
                     command.CommandType = CommandType.Text;
                     command.CommandText =
-                               "INSERT INTO TABLENAME (smallImage, largeImage, listingPrice, listingStreet, listingCity, listingState, "
-                               + "listingZip, listingSquareFootage, agentID, agencyID) VALUES (@smallImage, @largeImage, @listingPrice, "
+                               "INSERT INTO TABLENAME (listing_smallImage, listing_largeImage, listing_price, listing_street, listing_city, listing_state, "
+                               + "listing_zip, listing_sqFT, agentID, agencyID) VALUES (@smallImage, @largeImage, @listingPrice, "
                                + "@listingStreet, @listingCity, @listingState, @listingZip, @listingSquareFootage, @agentID, @agencyID)";
                     // For each variable just start inserting stuff
                     command.Parameters.Add("@smallImage", SqlDbType.Image);
@@ -53,16 +53,16 @@ namespace test2
                     command.Parameters.Add("@agentID", SqlDbType.NVarChar);
                     command.Parameters.Add("@agencyID", SqlDbType.NVarChar);
 
-                    command.Parameters["@smallImage"].Value = smallImage;
-                    command.Parameters["@largeImage"].Value = largeImage;
+                    command.Parameters["@smallImage"].Value = ImagetoByte(smallImage);
+                    command.Parameters["@largeImage"].Value = ImagetoByte(largeImage);
                     command.Parameters["@listingPrice"].Value = listingPrice;
                     command.Parameters["@listingStreet"].Value = street.ToCharArray();
                     command.Parameters["@listingCity"].Value = city.ToCharArray();
                     command.Parameters["@listingState"].Value = state.ToCharArray();
                     command.Parameters["@listingZip"].Value = zip.ToCharArray();
                     command.Parameters["@squareFootage"].Value = squareFootage;
-                    command.Parameters["@agentID"].Value = agentID;
-                    command.Parameters["@agencyID"].Value = agencyID;
+                    command.Parameters["@agentID"].Value = agentID.ToCharArray();
+                    command.Parameters["@agencyID"].Value = agencyID.ToCharArray();
 
                     command.ExecuteNonQuery();
                 }
@@ -94,7 +94,7 @@ namespace test2
                                                 "listing_id='", listing_id, "'");
                     command.Parameters.Add("@listing_smallPhoto", SqlDbType.Image);
 
-                    command.Parameters["@listing_smallPhoto"].Value = replacementImage;
+                    command.Parameters["@listing_smallPhoto"].Value = ImagetoByte(replacementImage);
 
                     command.ExecuteNonQuery();
                 }
@@ -119,7 +119,7 @@ namespace test2
                                                 "listing_id='", listing_id, "'");
                     command.Parameters.Add("@listing_largePhoto", SqlDbType.Image);
 
-                    command.Parameters["@listing_largePhoto"].Value = replacementImage;
+                    command.Parameters["@listing_largePhoto"].Value = ImagetoByte(replacementImage);
 
                     command.ExecuteNonQuery();
                 }
@@ -136,9 +136,6 @@ namespace test2
             {
                 try
                 {
-                    //convert image to byte
-                    byte[] temp = ImagetoByte(replacementImage);
-
                     command.Connection = connection;
                     command.CommandType = CommandType.Text;
                     command.CommandText =
@@ -146,7 +143,7 @@ namespace test2
                                                 "listing_id='", listing_id, "'");
                     command.Parameters.Add("@pic1", SqlDbType.Image);
 
-                    command.Parameters["@pic1"].Value = temp;
+                    command.Parameters["@pic1"].Value = ImagetoByte(replacementImage);
 
                     command.ExecuteNonQuery();
                 }
@@ -163,9 +160,6 @@ namespace test2
             {
                 try
                 {
-                    //convert image to byte
-                    byte[] temp = ImagetoByte(replacementImage);
-
                     command.Connection = connection;
                     command.CommandType = CommandType.Text;
                     command.CommandText =
@@ -173,7 +167,7 @@ namespace test2
                                                 "listing_id='", listing_id, "'");
                     command.Parameters.Add("@pic2", SqlDbType.Image);
 
-                    command.Parameters["@pic2"].Value = temp;
+                    command.Parameters["@pic2"].Value = ImagetoByte(replacementImage);
 
                     command.ExecuteNonQuery();
                 }
@@ -190,9 +184,6 @@ namespace test2
             {
                 try
                 {
-                    //convert image to byte
-                    byte[] temp = ImagetoByte(replacementImage);
-
                     command.Connection = connection;
                     command.CommandType = CommandType.Text;
                     command.CommandText =
@@ -200,7 +191,7 @@ namespace test2
                                                 "listing_id='", listing_id, "'");
                     command.Parameters.Add("@pic3", SqlDbType.Image);
 
-                    command.Parameters["@pic3"].Value = temp;
+                    command.Parameters["@pic3"].Value = ImagetoByte(replacementImage);
 
                     command.ExecuteNonQuery();
                 }
@@ -217,9 +208,6 @@ namespace test2
             {
                 try
                 {
-                    //convert image to byte
-                    byte[] temp = ImagetoByte(replacementImage);
-
                     command.Connection = connection;
                     command.CommandType = CommandType.Text;
                     command.CommandText =
@@ -227,7 +215,7 @@ namespace test2
                                                 "listing_id='", listing_id, "'");
                     command.Parameters.Add("@pic4", SqlDbType.Image);
 
-                    command.Parameters["@pic4"].Value = temp;
+                    command.Parameters["@pic4"].Value = ImagetoByte(replacementImage);
 
                     command.ExecuteNonQuery();
                 }
@@ -244,9 +232,6 @@ namespace test2
             {
                 try
                 {
-                    //convert image to byte
-                    byte[] temp = ImagetoByte(replacementImage);
-
                     command.Connection = connection;
                     command.CommandType = CommandType.Text;
                     command.CommandText =
@@ -254,7 +239,7 @@ namespace test2
                                                 "listing_id='", listing_id, "'");
                     command.Parameters.Add("@pic5", SqlDbType.Image);
 
-                    command.Parameters["@pic5"].Value = temp;
+                    command.Parameters["@pic5"].Value = ImagetoByte(replacementImage);
 
                     command.ExecuteNonQuery();
                 }
@@ -264,7 +249,6 @@ namespace test2
                 }
             }
         }
-
 
         public void UpdateListingPrice(int replacementPrice, int listing_id)
         {
@@ -457,6 +441,7 @@ namespace test2
                 }
             }
         }
+
         public void UpdateShortDescription(string replacementShortDescription, int listing_id)
         {
             using (SqlCommand command = new SqlCommand())
@@ -480,6 +465,7 @@ namespace test2
                 }
             }
         }
+
         public void UpdateSubdivision(string replacementSubdivision, int listing_id)
         {
             using (SqlCommand command = new SqlCommand())
@@ -556,7 +542,7 @@ namespace test2
                     command.Connection = connection;
                     command.CommandType = CommandType.Text;
                     command.CommandText =
-                               String.Concat("UPDATE listing SET listingLifetimeHitCount = listingDailyHitCount + listingLifetimeHitCount WHERE ",
+                               String.Concat("UPDATE listing SET listingLifetimeHitCount = listing_HitCount + listingLifetimeHitCount WHERE ",
                                                 "listing_id='", listing_id, "'");
 
                     command.ExecuteNonQuery();
@@ -598,7 +584,7 @@ namespace test2
         // This region sets a value to null if used on part of a listing.
         #region deleting part of a listing/removing a listing
 
-        public void RemovePhotoOne(char[] listingID)
+        public void RemovePhotoOne(int listingID)
         {
             using (SqlCommand command = new SqlCommand())
             {
@@ -608,7 +594,7 @@ namespace test2
                     command.CommandType = CommandType.Text;
                     command.CommandText =
                                String.Concat("UPDATE TABLENAME SET extraPhotoOne = NULL WHERE ",
-                                                "listingID='", listingID, "'");
+                                                "listing_id='", listingID, "'");
 
                     command.ExecuteNonQuery();
                 }
@@ -619,7 +605,7 @@ namespace test2
             }
         }
 
-        public void RemovePhotoTwo(char[] listingID)
+        public void RemovePhotoTwo(int listingID)
         {
             using (SqlCommand command = new SqlCommand())
             {
@@ -629,7 +615,7 @@ namespace test2
                     command.CommandType = CommandType.Text;
                     command.CommandText =
                                String.Concat("UPDATE TABLENAME SET extraPhotoTwo = NULL WHERE ",
-                                                "listingID='", listingID, "'");
+                                             "listing_id='", listingID, "'");
 
                     command.ExecuteNonQuery();
                 }
@@ -640,7 +626,7 @@ namespace test2
             }
         }
 
-        public void RemovePhotoThree(char[] listingID)
+        public void RemovePhotoThree(int listingID)
         {
             using (SqlCommand command = new SqlCommand())
             {
@@ -650,7 +636,7 @@ namespace test2
                     command.CommandType = CommandType.Text;
                     command.CommandText =
                                String.Concat("UPDATE TABLENAME SET extraPhotoThree = NULL WHERE ",
-                                                "listingID='", listingID, "'");
+                                             "listing_id='", listingID, "'");
 
                     command.ExecuteNonQuery();
                 }
@@ -661,7 +647,7 @@ namespace test2
             }
         }
 
-        public void RemovePhotoFour(char[] listingID)
+        public void RemovePhotoFour(int listingID)
         {
             using (SqlCommand command = new SqlCommand())
             {
@@ -671,7 +657,7 @@ namespace test2
                     command.CommandType = CommandType.Text;
                     command.CommandText =
                                String.Concat("UPDATE TABLENAME SET extraPhotoFour = NULL WHERE ",
-                                                "listingID='", listingID, "'");
+                                             "listing_id='", listingID, "'");
 
                     command.ExecuteNonQuery();
                 }
@@ -682,7 +668,7 @@ namespace test2
             }
         }
 
-        public void RemovePhotoFive(char[] listingID)
+        public void RemovePhotoFive(int listingID)
         {
             using (SqlCommand command = new SqlCommand())
             {
@@ -692,7 +678,7 @@ namespace test2
                     command.CommandType = CommandType.Text;
                     command.CommandText =
                                String.Concat("UPDATE TABLENAME SET extraPhotoFive = NULL WHERE ",
-                                                "listingID='", listingID, "'");
+                                             "listing_id='", listingID, "'");
 
                     command.ExecuteNonQuery();
                 }
@@ -703,7 +689,7 @@ namespace test2
             }
         }
 
-        public void RemoveSquareFootage(char[] listingID)
+        public void RemoveSquareFootage(int listingID)
         {
             using (SqlCommand command = new SqlCommand())
             {
@@ -713,7 +699,7 @@ namespace test2
                     command.CommandType = CommandType.Text;
                     command.CommandText =
                                String.Concat("UPDATE TABLENAME SET listingSquareFootage = NULL WHERE ",
-                                                "listingID='", listingID, "'");
+                                             "listing_id='", listingID, "'");
 
                     command.ExecuteNonQuery();
                 }
@@ -724,7 +710,7 @@ namespace test2
             }
         }
 
-        public void RemoveDescription(char[] listingID)
+        public void RemoveDescription(int listingID)
         {
             using (SqlCommand command = new SqlCommand())
             {
@@ -734,7 +720,7 @@ namespace test2
                     command.CommandType = CommandType.Text;
                     command.CommandText =
                                String.Concat("UPDATE TABLENAME SET listingDescription = NULL WHERE ",
-                                                "listingID='", listingID, "'");
+                                             "listing_id='", listingID, "'");
 
                     command.ExecuteNonQuery();
                 }
@@ -745,7 +731,7 @@ namespace test2
             }
         }
 
-        public void RemoveRoomDescription(char[] listingID)
+        public void RemoveRoomDescription(int listingID)
         {
             using (SqlCommand command = new SqlCommand())
             {
@@ -755,7 +741,7 @@ namespace test2
                     command.CommandType = CommandType.Text;
                     command.CommandText =
                                String.Concat("UPDATE TABLENAME SET listingRoomDescription = NULL WHERE ",
-                                                "listingID='", listingID, "'");
+                                             "listing_id='", listingID, "'");
 
                     command.ExecuteNonQuery();
                 }
@@ -766,7 +752,7 @@ namespace test2
             }
         }
 
-        public void RemoveSubdivision(char[] listingID)
+        public void RemoveSubdivision(int listingID)
         {
             using (SqlCommand command = new SqlCommand())
             {
@@ -776,7 +762,7 @@ namespace test2
                     command.CommandType = CommandType.Text;
                     command.CommandText =
                                String.Concat("UPDATE TABLENAME SET listingSubdivision = NULL WHERE ",
-                                                "listingID='", listingID, "'");
+                                             "listing_id='", listingID, "'");
 
                     command.ExecuteNonQuery();
                 }
@@ -787,7 +773,7 @@ namespace test2
             }
         }
 
-        public void RemoveAlarmInfo(char[] listingID)
+        public void RemoveAlarmInfo(int listingID)
         {
             using (SqlCommand command = new SqlCommand())
             {
@@ -797,7 +783,7 @@ namespace test2
                     command.CommandType = CommandType.Text;
                     command.CommandText =
                                String.Concat("UPDATE TABLENAME SET listingAlarmInfo = NULL WHERE ",
-                                                "listingID='", listingID, "'");
+                                             "listing_id='", listingID, "'");
 
                     command.ExecuteNonQuery();
                 }
@@ -808,7 +794,7 @@ namespace test2
             }
         }
 
-        public void RemoveListing(char[] listingID)
+        public void RemoveListing(int listingID)
         {
             using (SqlCommand command = new SqlCommand())
             {
@@ -817,7 +803,7 @@ namespace test2
                     command.Connection = connection;
                     command.CommandType = CommandType.Text;
                     command.CommandText =
-                               String.Concat("DELETE FROM TABLENAME WHERE listingID='", listingID, "'");
+                               String.Concat("DELETE FROM TABLENAME WHERE listing_id='", listingID, "'");
 
                     command.ExecuteNonQuery();
                 }
@@ -856,7 +842,7 @@ namespace test2
         }
 
         // Get the number of listings (from the agent).
-        public int GetTotalNumberOfListingsFromAgent(char[] agentID)
+        public int GetTotalNumberOfListingsFromAgent(string agentID)
         {
             int result = 0;
             using (SqlCommand command = new SqlCommand())
@@ -865,7 +851,7 @@ namespace test2
                 {
                     command.Connection = connection;
                     command.CommandType = CommandType.Text;
-                    command.CommandText = String.Concat("SELECT COUNT(*) FROM TABLENAME WHERE agentID ='", agentID, "'");
+                    command.CommandText = String.Concat("SELECT COUNT(*) FROM TABLENAME WHERE agent_id ='", agentID.ToCharArray(), "'");
                     result = Convert.ToInt32(command.ExecuteScalar());
                 }
                 catch (Exception e)
@@ -878,7 +864,7 @@ namespace test2
         }
 
         // Get the number of listings (from an agency).
-        public int GetTotalNumberOfListingsFromAgency(char[] agencyID)
+        public int GetTotalNumberOfListingsFromAgency(string agencyID)
         {
             int result = 0;
             using (SqlCommand command = new SqlCommand())
@@ -887,7 +873,7 @@ namespace test2
                 {
                     command.Connection = connection;
                     command.CommandType = CommandType.Text;
-                    command.CommandText = String.Concat("SELECT COUNT(*) FROM TABLENAME WHERE agencyID ='", agencyID, "'");
+                    command.CommandText = String.Concat("SELECT COUNT(*) FROM TABLENAME WHERE agency_id ='", agencyID.ToCharArray(), "'");
                     result = Convert.ToInt32(command.ExecuteScalar());
                 }
                 catch (Exception e)
@@ -910,29 +896,35 @@ namespace test2
                     command.Connection = connection;
                     command.CommandType = CommandType.Text;
                     command.CommandText =
-                        String.Concat("SELECT ALL smallPhoto, listingPrice, listingStreet, listingCity, listingState, ",
-                                      "listingZip, listingSquareFootage, agentID, agencyID FROM TABLENAME WHERE ",
-                                         "listingSquareFootage BETWEEN @low AND @high");
+                        String.Concat("SELECT ALL listing_smallPhoto, listing_price, listing_street, listing_city, listing_state, ",
+                                      "listing_zip, listing_sqFT, agent_id, agency_id FROM listing WHERE ",
+                                         "listing_sqFT BETWEEN @low AND @high");
 
                     command.Parameters.Add("@low", SqlDbType.Int);
                     command.Parameters.Add("@high", SqlDbType.Int);
                     command.Parameters["@low"].Value = squareFootLow;
                     command.Parameters["@high"].Value = squareFootHigh;
 
-                    table.Columns.Add("smallPhoto");
-                    table.Columns.Add("listingPrice");
-                    table.Columns.Add("listingStreet");
-                    table.Columns.Add("listingCity");
-                    table.Columns.Add("listingState");
-                    table.Columns.Add("listingZip");
-                    table.Columns.Add("listingSquareFootage");
-                    table.Columns.Add("agentID");
-                    table.Columns.Add("agencyID");
+                    table.Columns.Add("listing_smallPhoto");
+                    table.Columns.Add("listing_price");
+                    table.Columns.Add("listing_street");
+                    table.Columns.Add("listing_city");
+                    table.Columns.Add("listing_state");
+                    table.Columns.Add("listing_zip");
+                    table.Columns.Add("listing_sqFT");
+                    table.Columns.Add("agent_id");
+                    table.Columns.Add("agency_id");
 
 
                     using (SqlDataAdapter adapter = new SqlDataAdapter(command))
                     {
                         adapter.Fill(table);
+                        foreach (DataRow row in table.Rows)
+                        {
+                            Byte[] dataStream = new Byte[0];
+                            dataStream = (Byte[])(row["listing_smallPhoto"]);
+                            row["listing_smallPhoto"] = BytetoImage(dataStream);
+                        }
                     }
                 }
                 catch (Exception e)
@@ -956,8 +948,8 @@ namespace test2
                     command.Connection = connection;
                     command.CommandType = CommandType.Text;
                     command.CommandText =
-                        String.Concat("SELECT ALL smallPhoto, listingPrice, listingStreet, listingCity, listingState, ",
-                                      "listingZip, listingSquareFootage, agentID, agencyID FROM TABLENAME WHERE ",
+                               String.Concat("SELECT ALL listing_smallPhoto, listing_price, listing_street, listing_city, listing_state, ",
+                                      "listing_zip, listing_sqFT, agent_id, agency_id FROM listing WHERE ",
                                          "listingPrice BETWEEN @low AND @high");
 
                     command.Parameters.Add("@low", SqlDbType.Int);
@@ -965,20 +957,26 @@ namespace test2
                     command.Parameters["@low"].Value = costLow;
                     command.Parameters["@high"].Value = costHigh;
 
-                    table.Columns.Add("smallPhoto");
-                    table.Columns.Add("listingPrice");
-                    table.Columns.Add("listingStreet");
-                    table.Columns.Add("listingCity");
-                    table.Columns.Add("listingState");
-                    table.Columns.Add("listingZip");
-                    table.Columns.Add("listingSquareFootage");
-                    table.Columns.Add("agentID");
-                    table.Columns.Add("agencyID");
+                    table.Columns.Add("listing_smallPhoto");
+                    table.Columns.Add("listing_price");
+                    table.Columns.Add("listing_street");
+                    table.Columns.Add("listing_city");
+                    table.Columns.Add("listing_state");
+                    table.Columns.Add("listing_zip");
+                    table.Columns.Add("listing_sqFT");
+                    table.Columns.Add("agent_id");
+                    table.Columns.Add("agency_id");
 
 
                     using (SqlDataAdapter adapter = new SqlDataAdapter(command))
                     {
                         adapter.Fill(table);
+                        foreach (DataRow row in table.Rows)
+                        {
+                            Byte[] dataStream = new Byte[0];
+                            dataStream = (Byte[])(row["listing_smallPhoto"]);
+                            row["listing_smallPhoto"] = BytetoImage(dataStream);
+                        }
                     }
                 }
                 catch (Exception e)
@@ -1001,27 +999,33 @@ namespace test2
                     command.Connection = connection;
                     command.CommandType = CommandType.Text;
                     command.CommandText =
-                        String.Concat("SELECT ALL smallPhoto, listingPrice, listingStreet, listingCity, listingState, ",
-                                      "listingZip, listingSquareFootage, agentID, agencyID FROM TABLENAME WHERE ",
+                               String.Concat("SELECT ALL listing_smallPhoto, listing_price, listing_street, listing_city, listing_state, ",
+                                      "listing_zip, listing_sqFT, agent_id, agency_id FROM listing WHERE ",
                                          "listingZip = @searchZip");
 
                     command.Parameters.Add("@searchZip", SqlDbType.NChar);
                     command.Parameters["@searchZip"].Value = zip.ToCharArray();
 
-                    table.Columns.Add("smallPhoto");
-                    table.Columns.Add("listingPrice");
-                    table.Columns.Add("listingStreet");
-                    table.Columns.Add("listingCity");
-                    table.Columns.Add("listingState");
-                    table.Columns.Add("listingZip");
-                    table.Columns.Add("listingSquareFootage");
-                    table.Columns.Add("agentID");
-                    table.Columns.Add("agencyID");
+                    table.Columns.Add("listing_smallPhoto");
+                    table.Columns.Add("listing_price");
+                    table.Columns.Add("listing_street");
+                    table.Columns.Add("listing_city");
+                    table.Columns.Add("listing_state");
+                    table.Columns.Add("listing_zip");
+                    table.Columns.Add("listing_sqFT");
+                    table.Columns.Add("agent_id");
+                    table.Columns.Add("agency_id");
 
 
                     using (SqlDataAdapter adapter = new SqlDataAdapter(command))
                     {
                         adapter.Fill(table);
+                        foreach (DataRow row in table.Rows)
+                        {
+                            Byte[] dataStream = new Byte[0];
+                            dataStream = (Byte[])(row["listing_smallPhoto"]);
+                            row["listing_smallPhoto"] = BytetoImage(dataStream);
+                        }
                     }
                 }
                 catch (Exception e)
@@ -1044,23 +1048,30 @@ namespace test2
                     command.Connection = connection;
                     command.CommandType = CommandType.Text;
                     command.CommandText =
-                        String.Concat("SELECT ALL smallPhoto, listingPrice, listingStreet, listingCity, listingState, ",
-                                          "listingZip, listingSquareFootage, agentID, agencyID FROM TABLENAME");
+                               String.Concat("SELECT ALL listing_smallPhoto, listing_price, listing_street, listing_city, listing_state, ",
+                                             "listing_zip, listing_sqFT, agent_id, agency_id FROM");
 
                     table.Columns.Add("listing_smallPhoto");
-                    table.Columns.Add("listingPrice");
-                    table.Columns.Add("listingStreet");
-                    table.Columns.Add("listingCity");
-                    table.Columns.Add("listingState");
-                    table.Columns.Add("listingZip");
-                    table.Columns.Add("listingSquareFootage");
-                    table.Columns.Add("agentID");
-                    table.Columns.Add("agencyID");
+                    table.Columns.Add("listing_price");
+                    table.Columns.Add("listing_street");
+                    table.Columns.Add("listing_city");
+                    table.Columns.Add("listing_state");
+                    table.Columns.Add("listing_zip");
+                    table.Columns.Add("listing_sqFT");
+                    table.Columns.Add("agent_id");
+                    table.Columns.Add("agency_id");
 
 
                     using (SqlDataAdapter adapter = new SqlDataAdapter(command))
                     {
                         adapter.Fill(table);
+
+                        foreach (DataRow row in table.Rows)
+                        {
+                            Byte[] dataStream = new Byte[0];
+                            dataStream = (Byte[])(row["listing_smallPhoto"]);
+                            row["listing_smallPhoto"] = BytetoImage(dataStream);
+                        }
                     }
                 }
                 catch (Exception e)
@@ -1094,26 +1105,51 @@ namespace test2
                     table.Columns.Add("pic3");
                     table.Columns.Add("pic4");
                     table.Columns.Add("pic5");
-                    table.Columns.Add("listingPrice");
-                    table.Columns.Add("listingStreet");
-                    table.Columns.Add("listingCity");
-                    table.Columns.Add("listingState");
-                    table.Columns.Add("listingZip");
-                    table.Columns.Add("listingSquareFootage");
+                    table.Columns.Add("listing_price");
+                    table.Columns.Add("listing_street");
+                    table.Columns.Add("listing_city");
+                    table.Columns.Add("listing_state");
+                    table.Columns.Add("listing_zip");
+                    table.Columns.Add("listing_sqFT");
                     table.Columns.Add("listing_description");
                     table.Columns.Add("listing_roomDescription");
                     table.Columns.Add("listing_short_Description");
                     table.Columns.Add("listing_nameSubdivision");
                     table.Columns.Add("listing_alarmInfo");
-                    table.Columns.Add("listingHitCount");
+                    table.Columns.Add("listing_hitCount");
                     table.Columns.Add("listingLifetimeHitCount");
-                    table.Columns.Add("agentID");
-                    table.Columns.Add("agencyID");
+                    table.Columns.Add("agent_id");
+                    table.Columns.Add("agency_id");
 
 
                     using (SqlDataAdapter adapter = new SqlDataAdapter(command))
                     {
                         adapter.Fill(table);
+                        foreach (DataRow row in table.Rows)
+                        {
+                            Byte[] dataStream = new Byte[0];
+
+                            dataStream = (Byte[])(row["listing_smallPhoto"]);
+                            row["listing_smallPhoto"] = BytetoImage(dataStream);
+
+                            dataStream = (Byte[])(row["listing_largePhoto"]);
+                            row["listing_largePhoto"] = BytetoImage(dataStream);
+
+                            dataStream = (Byte[])(row["pic1"]);
+                            row["pic1"] = BytetoImage(dataStream);
+
+                            dataStream = (Byte[])(row["pic2"]);
+                            row["pic2"] = BytetoImage(dataStream);
+
+                            dataStream = (Byte[])(row["pic3"]);
+                            row["pic3"] = BytetoImage(dataStream);
+
+                            dataStream = (Byte[])(row["pic4"]);
+                            row["pic4"] = BytetoImage(dataStream);
+
+                            dataStream = (Byte[])(row["pic5"]);
+                            row["pic5"] = BytetoImage(dataStream);
+                        }
                     }
                 }
                 catch (Exception e)
@@ -1518,7 +1554,7 @@ namespace test2
                 {
                     command.Connection = connection;
                     command.CommandType = CommandType.Text;
-                    command.CommandText = "SELECT listing_sqFt FROM listing WHERE listing_id = @listing";
+                    command.CommandText = "SELECT listing_sqFT FROM listing WHERE listing_id = @listing";
                     command.Parameters.Add("@listing", SqlDbType.Int);
                     command.Parameters["@listing"].Value = listing_id;
                     result = Convert.ToInt32(command.ExecuteScalar());
@@ -1667,7 +1703,7 @@ namespace test2
                 {
                     command.Connection = connection;
                     command.CommandType = CommandType.Text;
-                    command.CommandText = "SELECT listingDailyHitCount FROM listing WHERE listing_id = @listing";
+                    command.CommandText = "SELECT listing_hitCount FROM listing WHERE listing_id = @listing";
                     command.Parameters.Add("@listing", SqlDbType.Int);
                     command.Parameters["@listing"].Value = listing_id;
                     result = Convert.ToInt32(command.ExecuteScalar());
@@ -1706,7 +1742,7 @@ namespace test2
         }
 
         // Get the listing agent id for a specific listing.
-        public char[] GetListingAgentID(int listing_id)
+        public string GetListingAgentID(int listing_id)
         {
             string result = "";
             using (SqlCommand command = new SqlCommand())
@@ -1727,11 +1763,11 @@ namespace test2
                     result = "error";
                 }
             }
-            return result.ToCharArray();
+            return result;
         }
 
         // Get the agency id for a specific listing.
-        public char[] GetListingAgencyID(int listing_id)
+        public string GetListingAgencyID(int listing_id)
         {
             string result = "";
             using (SqlCommand command = new SqlCommand())
@@ -1752,7 +1788,7 @@ namespace test2
                     result = "error";
                 }
             }
-            return result.ToCharArray();
+            return result;
         }
 
 
