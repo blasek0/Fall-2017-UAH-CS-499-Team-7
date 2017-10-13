@@ -28,6 +28,11 @@ public partial class _Default : System.Web.UI.Page
         DataTable a = tester.GetAllAgents();
         return ConvertDataTableToHTML(a);
     }
+    [WebMethod]
+    protected void login(object sender, System.EventArgs e)
+    {
+        Response.Redirect("login.aspx");
+    }
     public static string ConvertDataTableToHTML(DataTable dt)
     {
         string html = "<table>";

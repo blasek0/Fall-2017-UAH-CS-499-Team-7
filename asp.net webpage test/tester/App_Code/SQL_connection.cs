@@ -22,7 +22,7 @@ public class SQL_connection
     public void openConnection()
     {
         connection = new SqlConnection();
-        connection.ConnectionString = "Data Source=DESKTOP-QM2SFGD;Initial Catalog=Housing;Integrated Security=True";
+        connection.ConnectionString = "Data Source=DESKTOP-TGE6FLJ;Initial Catalog=Housing;Integrated Security=True";
         connection.Open();
     }
     public void closeConnection()

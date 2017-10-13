@@ -9,6 +9,7 @@
 <body>
     <form id="form1" runat="server">
         <div>
+            <h1>Client Page</h1>
             <p>all agents: </p>
              <p id="agents">...</p><br />
 
@@ -19,9 +20,14 @@
             Search agent id: <asp:TextBox ID="TextBoxName" runat="server"></asp:TextBox>
             <br />
             <p id="agentOne">...</p><br />
-            <asp:Button ID="Button2" runat="server" Text="Get One agent" OnClientClick = "getName('TextBoxName'); return false;" />
+            <asp:Button ID="Login" runat="server" Text="Login" OnClientClick = "toLogin();return false;" />
 
             <script type="text/javascript">
+
+                function toLogin()
+                {
+                    window.location.href = "login.aspx";
+                }
                 function getAllagents(x)
                 {
                     var x2 = document.getElementById(x).value;
