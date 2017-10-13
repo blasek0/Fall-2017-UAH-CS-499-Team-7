@@ -1161,6 +1161,7 @@ namespace test2
             return table;
         }
 
+        //
         // Get the large photo for a specific listing
         public Image GetLargePhoto(int listing_id)
         {
