@@ -8,7 +8,7 @@ namespace test2
 {
 
     #region Nate's input
-
+    // Hi me!
     public class SQL_Connection
     {
 
