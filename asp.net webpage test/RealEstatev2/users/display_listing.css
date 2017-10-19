@@ -1,0 +1,135 @@
+﻿* {
+    padding: 0;
+    margin: 0;
+    outline: 0;
+}
+
+body {
+    
+    font-family: "Trebuchet MS", Arial, sans-serif;
+    font-size: 12px;
+    line-height: 16px;
+    color: #636363;
+}
+
+.products{
+
+    margin: auto;
+    width: 60%;
+    padding: 70px;
+    padding-top: 80px;
+}
+
+ .products ul {
+      
+     list-style-type: none;
+ }
+
+        
+ .products ul li {
+    
+     position: relative;      
+     padding-top: 30px;      
+     border: solid 1px #dedede;      
+     float: left;      
+     width: 300px;      
+     margin-right: 9px;      
+     height: 300px;      
+     overflow: hidden;
+}
+
+  
+ .products ul li.last {
+   
+     margin-right: 0;
+      
+}
+
+    
+ .products ul li.product {
+    
+     margin-right: 0;
+}
+
+.product-info {
+    position: absolute;
+    width: 153px;
+    top: 194px;
+    left: 0;
+}
+
+    
+.product-info h3 {
+ 
+    background: #8b0000;
+     
+    color: #fff;
+     
+    padding: 6px 10px;
+}
+
+  
+.product-info h4 {
+   
+    font-weight: normal;
+}
+
+
+
+    
+.product-info p {
+        font-size: 10px;
+        line-height: 18px;
+        text-transform: uppercase;
+        color: black;
+        padding: 5px 0 7px 0;
+        background: #8b0000;
+}
+
+
+    
+.product-info .product-desc {
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 15px;
+        color: white;
+        padding: 10px;
+        width: 133px;
+        background: #8b0000;
+    
+}
+
+
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: black;
+}
+
+li a {
+    display: block;
+    color: aliceblue;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+ li a.active {
+  
+     background-color: #4CAF50;     
+     color: white;
+}
+
+  
+ li a:hover:not(.active) {
+     
+     background-color: #555;     
+     color: white;
+    
+}
+
+li {
+    float: right;
+}

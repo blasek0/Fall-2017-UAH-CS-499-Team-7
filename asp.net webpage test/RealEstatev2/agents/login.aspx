@@ -20,6 +20,7 @@
     </style>
 </head>
 <body>
+    <a href="../users/display_houses.aspx"> Viww Listings</a>
     <form id="form1" runat="server">
         <h1>Real Estate Agencies</h1>
         <div>
