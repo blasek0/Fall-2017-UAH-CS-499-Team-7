@@ -26,10 +26,11 @@ namespace test2
         {
             try
             {
+                // Connect to the database.
                 emailConnectionToDatabase.openConnection();
-                // Call the newest function you added to the database.
-                // This function must update all of the lifetime hitcounts.
-
+                // Update all lifetime hit counts.
+                emailConnectionToDatabase.UpdateLifetimeHitCount();
+                // Prepare the emails!!!
                 GatherAgentsToEmail();
             }
             catch (Exception e)
@@ -135,6 +136,8 @@ namespace test2
         private void ResetDailyHitCounts()
         {
             // Call to function to reset all daily hit counts.
+            emailConnectionToDatabase.ResetDailyHitCount();
+            // Close the connection.
             FinishedSendingEmails();
         }
 

@@ -511,6 +511,25 @@ namespace test2
             }
         }
 
+        public void ResetDailyHitCount()
+        {
+            using (var command = new SqlCommand())
+            {
+                try
+                {
+                    command.Connection = connection;
+                    command.CommandType = CommandType.Text;
+                    command.CommandText = "UPDATE listing SET listing_hitCount = 0";
+
+                    command.ExecuteNonQuery();
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.ToString());
+                }
+            }
+        }
+
         public void ResetDailyHitCount(int listing_id)
         {
             using (var command = new SqlCommand())
@@ -522,6 +541,25 @@ namespace test2
                     command.CommandText =
                         string.Concat("UPDATE listing SET listing_hitCount = 0 WHERE ",
                             "listing_id='", listing_id, "'");
+
+                    command.ExecuteNonQuery();
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.ToString());
+                }
+            }
+        }
+
+        public void UpdateLifetimeHitCount()
+        {
+            using (var command = new SqlCommand())
+            {
+                try
+                {
+                    command.Connection = connection;
+                    command.CommandType = CommandType.Text;
+                    command.CommandText = "UPDATE listing SET listingLifetimeHitCount = listing_HitCount + listingLifetimeHitCount";
 
                     command.ExecuteNonQuery();
                 }
