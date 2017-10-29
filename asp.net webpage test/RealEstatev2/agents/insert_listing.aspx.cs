@@ -37,55 +37,6 @@ public partial class agents_insert_listing : System.Web.UI.Page
         string conString = "Data Source=DESKTOP-KFI49LK;Initial Catalog=Housing;Integrated Security=True";
         string agent_id = null;
         string agency_id = null;
-        string picture1, picture2, picture3, picture4, picture5, picture6;
-
-
-        picture1 = Path.GetFileName(pic1.FileName);
-        pic1.SaveAs(Server.MapPath("~") + picture1);
-
-        picture2 = Path.GetFileName(pic2.FileName);
-        pic2.SaveAs(Server.MapPath("~") + picture2);
-
-        picture3 = Path.GetFileName(pic3.FileName);
-        pic3.SaveAs(Server.MapPath("~") + picture3);
-
-        picture4 = Path.GetFileName(pic4.FileName);
-        pic4.SaveAs(Server.MapPath("~") + picture4);
-
-        picture5 = Path.GetFileName(pic5.FileName);
-        pic5.SaveAs(Server.MapPath("~") + picture5);
-
-        picture6 = Path.GetFileName(pic6.FileName);
-        pic6.SaveAs(Server.MapPath("~") + picture6);
-
-        /*
-        picture1 = pic1.FileName.ToString();
-        picture2 =  pic2.FileName.ToString();
-        picture3 =  pic3.FileName.ToString();
-        picture4 =  pic4.FileName.ToString();
-        picture5 =  pic5.FileName.ToString();
-        picture6 =  pic6.FileName.ToString();
-
-        
-        byte[] byte1 = Encoding.UTF8.GetBytes(picture1);
-        var encode1 = Convert.ToBase64String(byte1);
-
-        byte[] byte2 = Encoding.UTF8.GetBytes(picture2);
-        var encode2 = Convert.ToBase64String(byte2);
-
-        byte[] byte3 = Encoding.UTF8.GetBytes(picture3);
-        var encode3 = Convert.ToBase64String(byte3);
-
-        byte[] byte4 = Encoding.UTF8.GetBytes(picture4);
-        var encode4 = Convert.ToBase64String(byte4);
-
-        byte[] byte5 = Encoding.UTF8.GetBytes(picture5);
-        var encode5 = Convert.ToBase64String(byte5);
-
-        byte[] byte6 = Encoding.UTF8.GetBytes(picture6);
-        var encode6 = Convert.ToBase64String(byte6);
-
-    */
 
         byte[] encodePic1 = pic1.FileBytes;
         byte[] encodePic2 = pic2.FileBytes;
@@ -111,10 +62,17 @@ public partial class agents_insert_listing : System.Web.UI.Page
             agentID = Convert.ToInt32(agent_id);
             agencyID = Convert.ToInt32(agency_id);
 
+            Boolean listOcc = Convert.ToBoolean(0);
+
+            if(listing_occupied.Text == "true" )
+            {
+                listOcc = Convert.ToBoolean(1);
+            }
+
             
             
             con.Open();
-            string sql = "INSERT INTO listing(pic1,pic2,pic3,pic4,pic5,pic6,listing_price,listing_street,listing_state,listing_city,listing_zip,listing_sqFT,listing_description,listing_roomDescription,listing_shortDescription,listing_nameSubDivision,listing_alarmInfo,agent_id,agency_id)VALUES(@img1, @img2, @img3, @img4, @img5, @img6,'" + listing_price.Text + "','" + listing_street.Text + "','" + listing_state.Text + "','" + listing_city.Text + "','" + listing_zip.Text + "','" + listing_sqFT.Text + "','" + listing_description.Text + "','" + listing_roomDescription.Text + "','" + listing_shortDescription.Text + "','" + listing_nameSubDivision.Text + "','" + listing_alarmInfo.Text + "','" + agent_id + "','" + agency_id + "')";
+            string sql = "INSERT INTO listing(pic1,pic2,pic3,pic4,pic5,pic6,listing_price,listing_street,listing_state,listing_city,listing_zip,listing_sqFT,listing_description,listing_roomDescription,listing_shortDescription,listing_nameSubDivision,listing_alarmInfo,agent_id,agency_id,listing_occupied)VALUES(@img1, @img2, @img3, @img4, @img5, @img6,'" + listing_price.Text + "','" + listing_street.Text + "','" + listing_state.Text + "','" + listing_city.Text + "','" + listing_zip.Text + "','" + listing_sqFT.Text + "','" + listing_description.Text + "','" + listing_roomDescription.Text + "','" + listing_shortDescription.Text + "','" + listing_nameSubDivision.Text + "','" + listing_alarmInfo.Text + "','" + agent_id + "','" + agency_id + "','"+listOcc+"')";
 
             command = new SqlCommand(sql, con);
             command.Parameters.Add(new SqlParameter("@img1", encodePic1));
@@ -125,7 +83,7 @@ public partial class agents_insert_listing : System.Web.UI.Page
             command.Parameters.Add(new SqlParameter("@img6", encodePic6));
 
             int x = command.ExecuteNonQuery();
-                con.Close();
+            con.Close();
         }
     }
 }

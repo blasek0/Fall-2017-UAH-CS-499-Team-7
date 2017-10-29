@@ -1,0 +1,50 @@
+﻿body {
+}
+
+
+.navBar {
+    z-index: 1; /*If we want bar to not dissapear behind content when scrolling, z-index is very important*/
+    position: fixed;
+    top: 0;
+    overflow: hidden;
+    background-color: black;
+    width: 100%;
+    height: 70px;
+}
+
+        
+.navBar #login {
+        
+    float: right;       
+    display: block;        
+    color: white;    
+    text-align: center;    
+    padding: 14px 16px;
+    
+}
+
+    .navBar #listings {
+        
+        text-align: center;
+        color: white;
+        padding: 14px 16px;
+        float: left;
+    }
+
+
+
+
+        
+.navBar a.active {
+    
+    background-color: #4CAF50;
+    color: white;
+}
+
+
+        
+.navBar li a:hover:not(.active) {
+        
+    background-color: #555;
+    color: white;
+}
