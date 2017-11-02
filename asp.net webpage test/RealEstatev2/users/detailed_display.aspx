@@ -68,6 +68,39 @@
                
             </div>
 
+                <div style="width: 100%; height: 90px; margin-top: 130px; background-color: black; margin: 5px 0px 5px 0px">
+                    <h1 style="position: relative; text-align: center; color: white; margin: 30px 0px 0px 0px">More Information</h1>
+                </div>
+ 
+                <div class="container1" style="position: absolute; margin-top: 70px; width: 100%; height: 500px; overflow:hidden" >
+                
+                    <div class="house_info" style="width:30%; height:100%; float:left; margin: 10px 20px 0px 20px; background-color:darkblue">
+
+                         <p style="color: white">Info</p>
+            
+                
+                    </div>
+
+            
+                
+                    <div class="house_info2" style="width:30%; height:100%; margin-bottom: 100px; float:left; margin: 10px 20px 0px 20px; background-color: darkred">
+
+                         <p style="color: white">Info</p>
+            
+                
+                    </div>
+
+
+                
+                    <div class="house_info3" style="width:30%; height:100%; float:left; margin-bottom: 100px; margin: 10px 20px 0px 0px; background-color: darkblue">
+                
+                            <p style="color: white">Info</p>
+                
+                    </div>
+            
+                </div>
+
+
         </ItemTemplate>
         <FooterTemplate>            
         </FooterTemplate>
