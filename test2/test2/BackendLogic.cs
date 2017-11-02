@@ -16,7 +16,7 @@ namespace test2
     public class SQL_Connection
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="SQL_Connection"/> class.
+        /// Initializes a new instance of the <see cref="SQL_Connection" /> class.
         /// </summary>
         public SQL_Connection() { }
 

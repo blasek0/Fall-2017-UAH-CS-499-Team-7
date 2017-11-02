@@ -15,7 +15,7 @@ namespace test2
     public class EmailClient
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="EmailClient"/> class.
+        /// Initializes a new instance of the <see cref="EmailClient" /> class.
         /// </summary>
         public EmailClient()
         {
