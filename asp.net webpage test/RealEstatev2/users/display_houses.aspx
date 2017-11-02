@@ -75,20 +75,25 @@
         
         <ItemTemplate>
             <li class="last">
-                <a id="login" href="detailed_display.aspx?id=<%#Eval("listing_id") %>"><img src='data:image/jpg;base64,<%#Eval("pic1") != System.DBNull.Value ? Convert.ToBase64String((byte[])Eval("pic1")) : string.Empty %>' alt="pic1" height="300" width="300" /></a>
-                <div class="product-info">
-                    <h3>$<%#Eval("listing_price") %></h3>
-                    <div class="product-desc">
-                        <h4><%#Eval("listing_street") %></h4>
-                       
-                        <p><%#Eval("listing_city") %> , <%#Eval("listing_state") %>, <%#Eval("listing_zip") %></p>
-                        <p>Agency: <%#Eval("agency_name") %></p>
-                        <p>Agent: <%#Eval("agent_Fname") %> <%#Eval("agent_Lname") %></p>
-                        
-                        </div>
+                <div class="over">
+                    <a id="login" href="detailed_display.aspx?id=<%#Eval("listing_id") %>"><img src='data:image/jpg;base64,<%#Eval("pic1") != System.DBNull.Value ? Convert.ToBase64String((byte[])Eval("pic1")) : string.Empty %>' alt="pic1" height="300" width="300" /></a>
+                     <div class="overlay">
+                         <div class="text">
+                            <h2>$<%#Eval("listing_price") %></h2>
+                            <h5><%#Eval("listing_street") %></h5>
+                            <p style=""font-color: white"><%#Eval("listing_city") %> , <%#Eval("listing_state") %>, <%#Eval("listing_zip") %></p>
+                            <p>Agency: <%#Eval("agency_name") %></p>
+                            <p>Agent: <%#Eval("agent_Fname") %> <%#Eval("agent_Lname") %></p>
+                         </div> 
                     </div>
-                </li>
+                </div>
 
+                 
+
+               
+          </li>
+
+      
 
         </ItemTemplate>
         <FooterTemplate>

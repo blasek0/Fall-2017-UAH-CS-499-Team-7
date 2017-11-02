@@ -47,6 +47,7 @@ public partial class users_display_houses : System.Web.UI.Page
             d1.DataBind();
 
             con.Close();
+            
         }
         else if(search_req.SelectedValue == "2")
         {
@@ -82,6 +83,7 @@ public partial class users_display_houses : System.Web.UI.Page
 
             con.Close();
             TextBox1.Visible = false;
+            
         }
 
         
@@ -95,9 +97,16 @@ public partial class users_display_houses : System.Web.UI.Page
             TextBox1.Text = "Enter Min Price";
             TextBox2.Text = "Enter Max Price";
         }
+        else if(search_req.SelectedValue == "1")
+        {
+            TextBox1.Text = "Enter Min SqFt";
+            TextBox2.Visible = false;
+           
+        }
         else
         {
             TextBox2.Visible = false;
+            TextBox1.Text = "Enter ZipCode";
         }
 
         if(search_req.SelectedValue != "-1")
