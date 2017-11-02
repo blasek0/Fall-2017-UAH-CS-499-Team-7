@@ -70,14 +70,17 @@ body {
      margin-right: 0;
 }
 
+ /*
 .product-info {
     position: absolute;
     width: 153px;
     top: 194px;
     left: 0;
 }
-
+     */
 /*Controls price*/    
+
+/*
 .product-info h3 {
  
     background: #8b0000;
@@ -86,35 +89,37 @@ body {
      
     padding: 3px 5px;
 }
+    */
 
 
 
-
-
+/*
 .product-info p {
         font-family: 'Times New Roman', Times, serif;
         font-size: 10px;
         line-height: 10px;
-        /*text-transform: uppercase;*/
+        /*text-transform: uppercase;
         color: white;
         padding: 5px 0 5px 0;
         background: #8b0000;
 
 }
 
+    */
 
-    
+/*    
 .product-info .product-desc {
         font-family: 'Times New Roman', Times, serif;
         font-size: 10px;
         line-height: 10px;
         color: white;
         padding: 5px 0 5px 0px;
-        /*width: 133px;*/
+        /*width: 133px;
         background: #8b0000;
     
 }
 
+*/
 .searchBar{
     overflow: hidden;
     background-color: black;
@@ -184,14 +189,15 @@ body {
 
 
 
- .navBar a.active {
+
+.navBar a.active {
   
      background-color: #4CAF50;     
      color: white;
 }
 
   
- .navBar li a:hover:not(.active) {
+.navBar li a:hover:not(.active) {
      
      background-color: #555;     
      color: white;
@@ -199,8 +205,35 @@ body {
 }
 
 
- /*
-li.login {
-    float: right;
+
+.overlay {
+
+
+    margin-top: 150px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 150px;
+    width: 100%;
+    opacity: 0;
+    transition: .5s ease;
+
+    /*background-color: #008CBA;*/
+    background-color: black;
 }
-     */
+
+.over:hover .overlay {
+    opacity: 3;
+}
+
+.text {
+    
+    color: white;
+    
+    position: inherit;
+    overflow: hidden;
+    
+   
+}
