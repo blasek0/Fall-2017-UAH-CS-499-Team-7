@@ -9,17 +9,24 @@ using System.Data.SqlClient;
 
 public partial class users_detailed_display : System.Web.UI.Page
 {
-    SqlConnection con = new SqlConnection("Data Source=DESKTOP-KFI49LK;Initial Catalog=Housing;Integrated Security=True");
-    int id;
+    
+    SqlConnection con = new SqlConnection("Data Source=DESKTOP-KFI49LK;Initial Catalog=Housing;Integrated Security=True");                  //connects to dayabase
+    int id;                                                                                                                                 //will hold the id variable created in the display_house.aspx code
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Request.QueryString["id"] == null)
+
+        //d1.Visible = false;
+        //this.Page.FindControl("d1").Visible = false;
+        //theDiv.Visible = false;
+        
+        
+        if (Request.QueryString["id"] == null)                                                                                              //id is the name of the variable holding the listing id
         {
-            Response.Redirect("display_houses.aspx");
+            Response.Redirect("display_houses.aspx");                                                                                       //if id is null then user is redirected to main page when page is loaded
         }
         else
         {
-            id = Convert.ToInt32(Request.QueryString["id"].ToString());
+            id = Convert.ToInt32(Request.QueryString["id"].ToString());                                                                     //Changes the listing id into a string so we can use it in our command
             con.Open();
             SqlCommand cmd = con.CreateCommand();
             cmd.CommandType = CommandType.Text;

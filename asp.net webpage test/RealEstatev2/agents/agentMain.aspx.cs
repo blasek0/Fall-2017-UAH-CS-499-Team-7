@@ -11,7 +11,7 @@ public partial class agentMain : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         
-        HttpCookie _userInfo = Request.Cookies["_userInfo"];
+        HttpCookie _userInfo = Request.Cookies["_userInfo"];            //creates cookie called userinfo 
        
         
         if (_userInfo == null)

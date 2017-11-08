@@ -92,7 +92,7 @@
 
 
                 
-                    <div class="house_info3" style="width:30%; height:100%; float:left; margin-bottom: 100px; margin: 10px 20px 0px 0px; background-color: darkblue">
+                    <div id="theDiv" runat="server" class="house_info3" style="width:30%; height:100%; float:left; margin-bottom: 100px; margin: 10px 20px 0px 0px; background-color: darkblue">
                 
                             <p style="color: white">Info</p>
                 

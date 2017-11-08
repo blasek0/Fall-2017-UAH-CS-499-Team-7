@@ -22,15 +22,15 @@ public partial class users_display_houses : System.Web.UI.Page
         DataTable dt = new DataTable();
         SqlDataAdapter da = new SqlDataAdapter(cmd);
         da.Fill(dt);
-        d1.DataSource = dt;     //d1 is defined in the source portion of this website page
+        d1.DataSource = dt;                                   //d1 is defined in the source portion of this website page
         d1.DataBind();
         con.Close();
     }
 
-    protected void Button1_Click(object sender, EventArgs e)
+    protected void Button1_Click(object sender, EventArgs e)        //code for when the search button is clicked
     {
        
-        if(search_req.SelectedValue == "1")
+        if(search_req.SelectedValue == "1")                 //If search request equals to minimum square feet
         {
 
             con.Open();
@@ -49,7 +49,7 @@ public partial class users_display_houses : System.Web.UI.Page
             con.Close();
             
         }
-        else if(search_req.SelectedValue == "2")
+        else if(search_req.SelectedValue == "2")        //if price min and max are selected
         {
             con.Open();
             SqlCommand cmd = con.CreateCommand();
@@ -66,7 +66,7 @@ public partial class users_display_houses : System.Web.UI.Page
 
             con.Close();
         }
-        else if(search_req.SelectedValue == "3")
+        else if(search_req.SelectedValue == "3")    //if zip is selected
         {
             con.Open();
             SqlCommand cmd = con.CreateCommand();
@@ -89,6 +89,10 @@ public partial class users_display_houses : System.Web.UI.Page
         
     }
 
+
+    //This piece of code correlates to the search bar. Basically 
+    //The code here will make the text box change depending on what search the user wants to perform
+    //If user wants to select search by zip then the text box will say "enter minimum zip" and so on and so on
     protected void search_req_SelectedIndexChanged(object sender, EventArgs e)
     {
         if(search_req.SelectedValue == "2")

@@ -21,6 +21,9 @@
     </div>
     <!-- This is the end of the unordered list (the bar at the top -->
 
+     <!--The div searchbar is floated to the left side of the page. It allows the user to enter in specific parameters they would like for their houses to fall under -->
+     <!--Things to notice inside this div are the aspDropDownList which reloads the page every time it is clicked with the command "AutoPostBack=true" -->
+     <!--Another thing to note is the fact that we have a TextBox1 and a TextBox2 where user enters in values. RegularExpressionValidators allow only certaint things to be inputted -->
      <div class="searchBar">
          <p>SEARCH</p>
 
@@ -61,7 +64,7 @@
     
     <!-- Right now the repeater is only pulling from listing table. It also needs to display from the 
          agent, and agency table as well. To do this I will need to implement some type of join in the cs portion of this code
-       
+      
     -->
     
     <div class="products">
@@ -76,6 +79,7 @@
         <ItemTemplate>
             <li class="last">
                 <div class="over">
+                    <!-- id= whatever is how we are passing the specific listing id-->
                     <a id="login" href="detailed_display.aspx?id=<%#Eval("listing_id") %>"><img src='data:image/jpg;base64,<%#Eval("pic1") != System.DBNull.Value ? Convert.ToBase64String((byte[])Eval("pic1")) : string.Empty %>' alt="pic1" height="300" width="300" /></a>
                      <div class="overlay">
                          <div class="text">
