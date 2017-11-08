@@ -9,8 +9,14 @@ using System.Threading.Tasks;
 
 namespace test2
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class EmailClient
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EmailClient" /> class.
+        /// </summary>
         public EmailClient()
         {
             emailConnectionToDatabase = new SQL_Connection();
@@ -22,6 +28,9 @@ namespace test2
             };
         }
 
+        /// <summary>
+        /// Prepares the hit counts prior to emails.
+        /// </summary>
         public void PrepareHitCountsPriorToEmails()
         {
             try
@@ -39,6 +48,9 @@ namespace test2
             }
         }
 
+        /// <summary>
+        /// Gathers the agents to email.
+        /// </summary>
         private void GatherAgentsToEmail()
         {
             var AgentTable = new DataTable();
@@ -46,6 +58,10 @@ namespace test2
             TrimEmailList(AgentTable);
         }
 
+        /// <summary>
+        /// Trims the email list.
+        /// </summary>
+        /// <param name="AgentTable">The agent table.</param>
         private void TrimEmailList(DataTable AgentTable)
         {
             DataTable AgentsWithProperties = new DataTable();
@@ -59,6 +75,10 @@ namespace test2
             PrepareSpamEmails(AgentsWithProperties);
         }
 
+        /// <summary>
+        /// Prepares the spam emails.
+        /// </summary>
+        /// <param name="AgentTable">The agent table.</param>
         private void PrepareSpamEmails(DataTable AgentTable)
         {
             DataTable PropertiesTableForSpecificAgent = new DataTable();
@@ -70,6 +90,11 @@ namespace test2
             ResetDailyHitCounts();
         }
 
+        /// <summary>
+        /// Emails an agent.
+        /// </summary>
+        /// <param name="AgentToEmail">The agent to email.</param>
+        /// <param name="Properties">The properties.</param>
         private void EmailAnAgent(DataRow AgentToEmail, DataTable Properties)
         {
             String firstLine = String.Concat("Hello ", (String) AgentToEmail["agent_Fname"],
@@ -133,6 +158,9 @@ namespace test2
             
         }
 
+        /// <summary>
+        /// Resets the daily hit counts.
+        /// </summary>
         private void ResetDailyHitCounts()
         {
             // Call to function to reset all daily hit counts.
@@ -141,13 +169,22 @@ namespace test2
             FinishedSendingEmails();
         }
 
+        /// <summary>
+        /// Finisheds the sending emails.
+        /// </summary>
         private void FinishedSendingEmails()
         {
             emailConnectionToDatabase.closeConnection();
         }
 
 
+        /// <summary>
+        /// The client
+        /// </summary>
         private SmtpClient client;
+        /// <summary>
+        /// The email connection to database
+        /// </summary>
         private SQL_Connection emailConnectionToDatabase;
     }
 }

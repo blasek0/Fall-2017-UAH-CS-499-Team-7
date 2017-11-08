@@ -10,10 +10,19 @@ namespace test2
     #region Nate's input
 
     // Hi me!
+    /// <summary>
+    /// 
+    /// </summary>
     public class SQL_Connection
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SQL_Connection" /> class.
+        /// </summary>
         public SQL_Connection() { }
 
+        /// <summary>
+        /// Opens the connection.
+        /// </summary>
         public void openConnection()
         {
             connection = new SqlConnection();
@@ -22,6 +31,9 @@ namespace test2
             connection.Open();
         }
 
+        /// <summary>
+        /// Closes the connection.
+        /// </summary>
         public void closeConnection()
         {
             connection.Close();
@@ -31,6 +43,19 @@ namespace test2
 
         #region Adding a listing
 
+        /// <summary>
+        /// Adds the listing.
+        /// </summary>
+        /// <param name="smallImage">The small image.</param>
+        /// <param name="largeImage">The large image.</param>
+        /// <param name="listingPrice">The listing price.</param>
+        /// <param name="street">The street.</param>
+        /// <param name="city">The city.</param>
+        /// <param name="state">The state.</param>
+        /// <param name="zip">The zip.</param>
+        /// <param name="squareFootage">The square footage.</param>
+        /// <param name="agent_id">The agent identifier.</param>
+        /// <param name="agency_id">The agency identifier.</param>
         public void AddListing(Image smallImage, Image largeImage, int listingPrice, string street, string city,
             string state, string zip, int squareFootage, int agent_id, int agency_id)
         {
@@ -81,6 +106,11 @@ namespace test2
 
         #region updating parts of a listing
 
+        /// <summary>
+        /// Updates the photo small.
+        /// </summary>
+        /// <param name="replacementImage">The replacement image.</param>
+        /// <param name="listing_id">The listing identifier.</param>
         public void UpdatePhotoSmall(Image replacementImage, int listing_id)
         {
             using (var command = new SqlCommand())
@@ -105,6 +135,11 @@ namespace test2
             }
         }
 
+        /// <summary>
+        /// Updates the photo large.
+        /// </summary>
+        /// <param name="replacementImage">The replacement image.</param>
+        /// <param name="listing_id">The listing identifier.</param>
         public void UpdatePhotoLarge(Image replacementImage, int listing_id)
         {
             using (var command = new SqlCommand())
@@ -129,6 +164,11 @@ namespace test2
             }
         }
 
+        /// <summary>
+        /// Updates the photo one.
+        /// </summary>
+        /// <param name="replacementImage">The replacement image.</param>
+        /// <param name="listing_id">The listing identifier.</param>
         public void UpdatePhotoOne(Image replacementImage, int listing_id)
         {
             using (var command = new SqlCommand())
@@ -153,6 +193,11 @@ namespace test2
             }
         }
 
+        /// <summary>
+        /// Updates the photo two.
+        /// </summary>
+        /// <param name="replacementImage">The replacement image.</param>
+        /// <param name="listing_id">The listing identifier.</param>
         public void UpdatePhotoTwo(Image replacementImage, int listing_id)
         {
             using (var command = new SqlCommand())
@@ -177,6 +222,11 @@ namespace test2
             }
         }
 
+        /// <summary>
+        /// Updates the photo three.
+        /// </summary>
+        /// <param name="replacementImage">The replacement image.</param>
+        /// <param name="listing_id">The listing identifier.</param>
         public void UpdatePhotoThree(Image replacementImage, int listing_id)
         {
             using (var command = new SqlCommand())
@@ -201,6 +251,11 @@ namespace test2
             }
         }
 
+        /// <summary>
+        /// Updates the photo four.
+        /// </summary>
+        /// <param name="replacementImage">The replacement image.</param>
+        /// <param name="listing_id">The listing identifier.</param>
         public void UpdatePhotoFour(Image replacementImage, int listing_id)
         {
             using (var command = new SqlCommand())
@@ -225,6 +280,11 @@ namespace test2
             }
         }
 
+        /// <summary>
+        /// Updates the photo five.
+        /// </summary>
+        /// <param name="replacementImage">The replacement image.</param>
+        /// <param name="listing_id">The listing identifier.</param>
         public void UpdatePhotoFive(Image replacementImage, int listing_id)
         {
             using (var command = new SqlCommand())
@@ -249,6 +309,11 @@ namespace test2
             }
         }
 
+        /// <summary>
+        /// Updates the listing price.
+        /// </summary>
+        /// <param name="replacementPrice">The replacement price.</param>
+        /// <param name="listing_id">The listing identifier.</param>
         public void UpdateListingPrice(int replacementPrice, int listing_id)
         {
             using (var command = new SqlCommand())
@@ -273,6 +338,11 @@ namespace test2
             }
         }
 
+        /// <summary>
+        /// Updates the street.
+        /// </summary>
+        /// <param name="replacementStreet">The replacement street.</param>
+        /// <param name="listing_id">The listing identifier.</param>
         public void UpdateStreet(string replacementStreet, int listing_id)
         {
             using (var command = new SqlCommand())
@@ -297,6 +367,11 @@ namespace test2
             }
         }
 
+        /// <summary>
+        /// Updates the city.
+        /// </summary>
+        /// <param name="replacementCity">The replacement city.</param>
+        /// <param name="listing_id">The listing identifier.</param>
         public void UpdateCity(string replacementCity, int listing_id)
         {
             using (var command = new SqlCommand())
@@ -321,6 +396,11 @@ namespace test2
             }
         }
 
+        /// <summary>
+        /// Updates the state.
+        /// </summary>
+        /// <param name="replacementState">State of the replacement.</param>
+        /// <param name="listing_id">The listing identifier.</param>
         public void UpdateState(string replacementState, int listing_id)
         {
             using (var command = new SqlCommand())
@@ -345,6 +425,11 @@ namespace test2
             }
         }
 
+        /// <summary>
+        /// Updates the zip.
+        /// </summary>
+        /// <param name="replacementZip">The replacement zip.</param>
+        /// <param name="listing_id">The listing identifier.</param>
         public void UpdateZip(string replacementZip, int listing_id)
         {
             using (var command = new SqlCommand())
@@ -369,6 +454,11 @@ namespace test2
             }
         }
 
+        /// <summary>
+        /// Updates the square footage.
+        /// </summary>
+        /// <param name="replacementSquareFootage">The replacement square footage.</param>
+        /// <param name="listing_id">The listing identifier.</param>
         public void UpdateSquareFootage(int replacementSquareFootage, int listing_id)
         {
             using (var command = new SqlCommand())
@@ -393,6 +483,11 @@ namespace test2
             }
         }
 
+        /// <summary>
+        /// Updates the description.
+        /// </summary>
+        /// <param name="replacementDescription">The replacement description.</param>
+        /// <param name="listing_id">The listing identifier.</param>
         public void UpdateDescription(string replacementDescription, int listing_id)
         {
             using (var command = new SqlCommand())
@@ -417,6 +512,11 @@ namespace test2
             }
         }
 
+        /// <summary>
+        /// Updates the room description.
+        /// </summary>
+        /// <param name="replacementRoomDescription">The replacement room description.</param>
+        /// <param name="listing_id">The listing identifier.</param>
         public void UpdateRoomDescription(string replacementRoomDescription, int listing_id)
         {
             using (var command = new SqlCommand())
@@ -441,6 +541,11 @@ namespace test2
             }
         }
 
+        /// <summary>
+        /// Updates the short description.
+        /// </summary>
+        /// <param name="replacementShortDescription">The replacement short description.</param>
+        /// <param name="listing_id">The listing identifier.</param>
         public void UpdateShortDescription(string replacementShortDescription, int listing_id)
         {
             using (var command = new SqlCommand())
@@ -465,6 +570,11 @@ namespace test2
             }
         }
 
+        /// <summary>
+        /// Updates the subdivision.
+        /// </summary>
+        /// <param name="replacementSubdivision">The replacement subdivision.</param>
+        /// <param name="listing_id">The listing identifier.</param>
         public void UpdateSubdivision(string replacementSubdivision, int listing_id)
         {
             using (var command = new SqlCommand())
@@ -490,6 +600,10 @@ namespace test2
         }
 
         // I don't know if this will work correctly, but it should. -Nate
+        /// <summary>
+        /// Increments the daily hit count.
+        /// </summary>
+        /// <param name="listing_id">The listing identifier.</param>
         public void IncrementDailyHitCount(int listing_id)
         {
             using (var command = new SqlCommand())
@@ -511,6 +625,9 @@ namespace test2
             }
         }
 
+        /// <summary>
+        /// Resets the daily hit count.
+        /// </summary>
         public void ResetDailyHitCount()
         {
             using (var command = new SqlCommand())
@@ -530,6 +647,10 @@ namespace test2
             }
         }
 
+        /// <summary>
+        /// Resets the daily hit count.
+        /// </summary>
+        /// <param name="listing_id">The listing identifier.</param>
         public void ResetDailyHitCount(int listing_id)
         {
             using (var command = new SqlCommand())
@@ -551,6 +672,9 @@ namespace test2
             }
         }
 
+        /// <summary>
+        /// Updates the lifetime hit count.
+        /// </summary>
         public void UpdateLifetimeHitCount()
         {
             using (var command = new SqlCommand())
@@ -570,6 +694,10 @@ namespace test2
             }
         }
 
+        /// <summary>
+        /// Updates the lifetime hit count.
+        /// </summary>
+        /// <param name="listing_id">The listing identifier.</param>
         public void UpdateLifetimeHitCount(int listing_id)
         {
             using (var command = new SqlCommand())
@@ -592,6 +720,11 @@ namespace test2
             }
         }
 
+        /// <summary>
+        /// Updates the alarm information.
+        /// </summary>
+        /// <param name="replacementAlarmInfo">The replacement alarm information.</param>
+        /// <param name="listing_id">The listing identifier.</param>
         public void UpdateAlarmInfo(string replacementAlarmInfo, int listing_id)
         {
             using (var command = new SqlCommand())
@@ -623,6 +756,10 @@ namespace test2
 
         #region deleting part of a listing/removing a listing
 
+        /// <summary>
+        /// Removes the photo one.
+        /// </summary>
+        /// <param name="listingID">The listing identifier.</param>
         public void RemovePhotoOne(int listingID)
         {
             using (var command = new SqlCommand())
@@ -644,6 +781,10 @@ namespace test2
             }
         }
 
+        /// <summary>
+        /// Removes the photo two.
+        /// </summary>
+        /// <param name="listingID">The listing identifier.</param>
         public void RemovePhotoTwo(int listingID)
         {
             using (var command = new SqlCommand())
@@ -665,6 +806,10 @@ namespace test2
             }
         }
 
+        /// <summary>
+        /// Removes the photo three.
+        /// </summary>
+        /// <param name="listingID">The listing identifier.</param>
         public void RemovePhotoThree(int listingID)
         {
             using (var command = new SqlCommand())
@@ -686,6 +831,10 @@ namespace test2
             }
         }
 
+        /// <summary>
+        /// Removes the photo four.
+        /// </summary>
+        /// <param name="listingID">The listing identifier.</param>
         public void RemovePhotoFour(int listingID)
         {
             using (var command = new SqlCommand())
@@ -707,6 +856,10 @@ namespace test2
             }
         }
 
+        /// <summary>
+        /// Removes the photo five.
+        /// </summary>
+        /// <param name="listingID">The listing identifier.</param>
         public void RemovePhotoFive(int listingID)
         {
             using (var command = new SqlCommand())
@@ -728,6 +881,10 @@ namespace test2
             }
         }
 
+        /// <summary>
+        /// Removes the square footage.
+        /// </summary>
+        /// <param name="listingID">The listing identifier.</param>
         public void RemoveSquareFootage(int listingID)
         {
             using (var command = new SqlCommand())
@@ -749,6 +906,10 @@ namespace test2
             }
         }
 
+        /// <summary>
+        /// Removes the description.
+        /// </summary>
+        /// <param name="listingID">The listing identifier.</param>
         public void RemoveDescription(int listingID)
         {
             using (var command = new SqlCommand())
@@ -770,6 +931,10 @@ namespace test2
             }
         }
 
+        /// <summary>
+        /// Removes the room description.
+        /// </summary>
+        /// <param name="listingID">The listing identifier.</param>
         public void RemoveRoomDescription(int listingID)
         {
             using (var command = new SqlCommand())
@@ -791,6 +956,10 @@ namespace test2
             }
         }
 
+        /// <summary>
+        /// Removes the subdivision.
+        /// </summary>
+        /// <param name="listingID">The listing identifier.</param>
         public void RemoveSubdivision(int listingID)
         {
             using (var command = new SqlCommand())
@@ -812,6 +981,10 @@ namespace test2
             }
         }
 
+        /// <summary>
+        /// Removes the alarm information.
+        /// </summary>
+        /// <param name="listingID">The listing identifier.</param>
         public void RemoveAlarmInfo(int listingID)
         {
             using (var command = new SqlCommand())
@@ -833,6 +1006,10 @@ namespace test2
             }
         }
 
+        /// <summary>
+        /// Removes the listing.
+        /// </summary>
+        /// <param name="listingID">The listing identifier.</param>
         public void RemoveListing(int listingID)
         {
             using (var command = new SqlCommand())
@@ -859,6 +1036,10 @@ namespace test2
         #region Retrieving info for listing.
 
         // Get the number of listings (total).
+        /// <summary>
+        /// Gets the total number of listings.
+        /// </summary>
+        /// <returns></returns>
         public int GetTotalNumberOfListings()
         {
             var result = 0;
@@ -881,6 +1062,11 @@ namespace test2
         }
 
         // Get the number of listings (from the agent).
+        /// <summary>
+        /// Gets the total number of listings from agent.
+        /// </summary>
+        /// <param name="agent_id">The agent identifier.</param>
+        /// <returns></returns>
         public int GetTotalNumberOfListingsFromAgent(int agent_id)
         {
             var result = 0;
@@ -904,6 +1090,11 @@ namespace test2
         }
 
         // Get the number of listings (from an agency).
+        /// <summary>
+        /// Gets the total number of listings from agency.
+        /// </summary>
+        /// <param name="agency_id">The agency identifier.</param>
+        /// <returns></returns>
         public int GetTotalNumberOfListingsFromAgency(int agency_id)
         {
             var result = 0;
@@ -927,6 +1118,12 @@ namespace test2
         }
 
         // Get all listings within a given square footage range.
+        /// <summary>
+        /// Gets the listings filter by square footage.
+        /// </summary>
+        /// <param name="squareFootLow">The square foot low.</param>
+        /// <param name="squareFootHigh">The square foot high.</param>
+        /// <returns></returns>
         public DataTable GetListingsFilterBySquareFootage(int squareFootLow, int squareFootHigh)
         {
             var table = new DataTable();
@@ -979,6 +1176,12 @@ namespace test2
         }
 
         // Get all listings within a given price range.
+        /// <summary>
+        /// Gets the listings filter by price range.
+        /// </summary>
+        /// <param name="costLow">The cost low.</param>
+        /// <param name="costHigh">The cost high.</param>
+        /// <returns></returns>
         public DataTable GetListingsFilterByPriceRange(int costLow, int costHigh)
         {
             var table = new DataTable();
@@ -1032,6 +1235,11 @@ namespace test2
         }
 
         // Get all listings matching the searched zip code.
+        /// <summary>
+        /// Gets the listings filter by zip code.
+        /// </summary>
+        /// <param name="zip">The zip.</param>
+        /// <returns></returns>
         public DataTable GetListingsFilterByZipCode(string zip)
         {
             var table = new DataTable();
@@ -1082,6 +1290,10 @@ namespace test2
         }
 
         // Get all listings, no filtering.
+        /// <summary>
+        /// Gets all listings.
+        /// </summary>
+        /// <returns></returns>
         public DataTable GetAllListings()
         {
             var table = new DataTable();
@@ -1128,6 +1340,11 @@ namespace test2
         }
 
         // Get all info for one specific listing. To be used for the agent detailed page.
+        /// <summary>
+        /// Gets the specific listing.
+        /// </summary>
+        /// <param name="listingID">The listing identifier.</param>
+        /// <returns></returns>
         public DataTable GetSpecificListing(int listingID)
         {
             var table = new DataTable();
@@ -1204,6 +1421,11 @@ namespace test2
             return table;
         }
 
+        /// <summary>
+        /// Gets all listings for email to specific agent.
+        /// </summary>
+        /// <param name="agent_id">The agent identifier.</param>
+        /// <returns></returns>
         public DataTable GetAllListingsForEmailToSpecificAgent(int agent_id)
         {
             var table = new DataTable();
@@ -1243,6 +1465,11 @@ namespace test2
 
 
         // Get the large photo for a specific listing
+        /// <summary>
+        /// Gets the large photo.
+        /// </summary>
+        /// <param name="listing_id">The listing identifier.</param>
+        /// <returns></returns>
         public Image GetLargePhoto(int listing_id)
         {
             Image image = null;
@@ -1279,6 +1506,11 @@ namespace test2
         }
 
         // Get the small photo for a specific listing.
+        /// <summary>
+        /// Gets the small photo.
+        /// </summary>
+        /// <param name="listing_id">The listing identifier.</param>
+        /// <returns></returns>
         public Image GetSmallPhoto(int listing_id)
         {
             Image image = null;
@@ -1315,6 +1547,11 @@ namespace test2
         }
 
         // Get the first extra picture for a specific listing.
+        /// <summary>
+        /// Gets the photo one.
+        /// </summary>
+        /// <param name="listing_id">The listing identifier.</param>
+        /// <returns></returns>
         public Image GetPhotoOne(int listing_id)
         {
             Image image = null;
@@ -1351,6 +1588,11 @@ namespace test2
         }
 
         // Get the second extra picture for a specific listing.
+        /// <summary>
+        /// Gets the photo two.
+        /// </summary>
+        /// <param name="listing_id">The listing identifier.</param>
+        /// <returns></returns>
         public Image GetPhotoTwo(int listing_id)
         {
             Image image = null;
@@ -1387,6 +1629,11 @@ namespace test2
         }
 
         // Get the third extra picture for a specific listing.
+        /// <summary>
+        /// Gets the photo three.
+        /// </summary>
+        /// <param name="listing_id">The listing identifier.</param>
+        /// <returns></returns>
         public Image GetPhotoThree(int listing_id)
         {
             Image image = null;
@@ -1423,6 +1670,11 @@ namespace test2
         }
 
         // Get the fourth extra picture for a specific listing.
+        /// <summary>
+        /// Gets the photo four.
+        /// </summary>
+        /// <param name="listing_id">The listing identifier.</param>
+        /// <returns></returns>
         public Image GetPhotoFour(int listing_id)
         {
             Image image = null;
@@ -1459,6 +1711,11 @@ namespace test2
         }
 
         // Get the fifth extra picture for a specific listing.
+        /// <summary>
+        /// Gets the photo five.
+        /// </summary>
+        /// <param name="listing_id">The listing identifier.</param>
+        /// <returns></returns>
         public Image GetPhotoFive(int listing_id)
         {
             Image image = null;
@@ -1495,6 +1752,11 @@ namespace test2
         }
 
         // Get the listing price for a specific listing.
+        /// <summary>
+        /// Gets the listing price.
+        /// </summary>
+        /// <param name="listing_id">The listing identifier.</param>
+        /// <returns></returns>
         public int GetListingPrice(int listing_id)
         {
             var result = 0;
@@ -1519,6 +1781,11 @@ namespace test2
         }
 
         // Get the listing street for a specific listing.
+        /// <summary>
+        /// Gets the listing street.
+        /// </summary>
+        /// <param name="listing_id">The listing identifier.</param>
+        /// <returns></returns>
         public string GetListingStreet(int listing_id)
         {
             var result = "";
@@ -1544,6 +1811,11 @@ namespace test2
         }
 
         // Get the listing city for a specific listing.
+        /// <summary>
+        /// Gets the listing city.
+        /// </summary>
+        /// <param name="listing_id">The listing identifier.</param>
+        /// <returns></returns>
         public string GetListingCity(int listing_id)
         {
             var result = "";
@@ -1569,6 +1841,11 @@ namespace test2
         }
 
         // Get the listing state for a specific listing.
+        /// <summary>
+        /// Gets the state of the listing.
+        /// </summary>
+        /// <param name="listing_id">The listing identifier.</param>
+        /// <returns></returns>
         public string GetListingState(int listing_id)
         {
             var result = "";
@@ -1594,6 +1871,11 @@ namespace test2
         }
 
         // Get the listing zip code for a specific listing.
+        /// <summary>
+        /// Gets the listing zip.
+        /// </summary>
+        /// <param name="listing_id">The listing identifier.</param>
+        /// <returns></returns>
         public string GetListingZip(int listing_id)
         {
             var result = "";
@@ -1619,6 +1901,11 @@ namespace test2
         }
 
         // Get the listing square footage for a specific listing.
+        /// <summary>
+        /// Gets the listing square footage.
+        /// </summary>
+        /// <param name="listing_id">The listing identifier.</param>
+        /// <returns></returns>
         public int GetListingSquareFootage(int listing_id)
         {
             var result = 0;
@@ -1643,6 +1930,11 @@ namespace test2
         }
 
         // Get the short description for a specific listing.
+        /// <summary>
+        /// Gets the listing short description.
+        /// </summary>
+        /// <param name="listing_id">The listing identifier.</param>
+        /// <returns></returns>
         public string GetListingShortDescription(int listing_id)
         {
             var result = "";
@@ -1668,6 +1960,11 @@ namespace test2
         }
 
         // Get the description for a specific listing.
+        /// <summary>
+        /// Gets the listing description.
+        /// </summary>
+        /// <param name="listing_id">The listing identifier.</param>
+        /// <returns></returns>
         public string GetListingDescription(int listing_id)
         {
             var result = "";
@@ -1693,6 +1990,11 @@ namespace test2
         }
 
         // Get the room description for a specific listing.
+        /// <summary>
+        /// Gets the listing room description.
+        /// </summary>
+        /// <param name="listing_id">The listing identifier.</param>
+        /// <returns></returns>
         public string GetListingRoomDescription(int listing_id)
         {
             var result = "";
@@ -1718,6 +2020,11 @@ namespace test2
         }
 
         // Get the subdivision for a specific listing.
+        /// <summary>
+        /// Gets the listing subdivision.
+        /// </summary>
+        /// <param name="listing_id">The listing identifier.</param>
+        /// <returns></returns>
         public string GetListingSubdivision(int listing_id)
         {
             var result = "";
@@ -1743,6 +2050,11 @@ namespace test2
         }
 
         // Get the alarm information for a specific listing.
+        /// <summary>
+        /// Gets the listing alarm information.
+        /// </summary>
+        /// <param name="listing_id">The listing identifier.</param>
+        /// <returns></returns>
         public string GetListingAlarmInfo(int listing_id)
         {
             var result = "";
@@ -1768,6 +2080,11 @@ namespace test2
         }
 
         // Get the daily hit count for a specific listing.
+        /// <summary>
+        /// Gets the listing daily hit count.
+        /// </summary>
+        /// <param name="listing_id">The listing identifier.</param>
+        /// <returns></returns>
         public int GetListingDailyHitCount(int listing_id)
         {
             var result = 0;
@@ -1792,6 +2109,11 @@ namespace test2
         }
 
         // Get the lifetime hit count for a specific listing.
+        /// <summary>
+        /// Gets the listing lifetime hit count.
+        /// </summary>
+        /// <param name="listing_id">The listing identifier.</param>
+        /// <returns></returns>
         public int GetListingLifetimeHitCount(int listing_id)
         {
             var result = 0;
@@ -1816,6 +2138,11 @@ namespace test2
         }
 
         // Get the listing agent id for a specific listing.
+        /// <summary>
+        /// Gets the listing agent identifier.
+        /// </summary>
+        /// <param name="listing_id">The listing identifier.</param>
+        /// <returns></returns>
         public string GetListingAgentID(int listing_id)
         {
             var result = "";
@@ -1841,6 +2168,11 @@ namespace test2
         }
 
         // Get the agency id for a specific listing.
+        /// <summary>
+        /// Gets the listingagency identifier.
+        /// </summary>
+        /// <param name="listing_id">The listing identifier.</param>
+        /// <returns></returns>
         public string GetListingagency_id(int listing_id)
         {
             var result = "";
@@ -1873,6 +2205,17 @@ namespace test2
 
         #region Add an agent to the database.
 
+        /// <summary>
+        /// Adds the agent.
+        /// </summary>
+        /// <param name="agent_Fname">The agent fname.</param>
+        /// <param name="agent_Lname">The agent lname.</param>
+        /// <param name="agent_Uname">The agent uname.</param>
+        /// <param name="agent_password">The agent password.</param>
+        /// <param name="agent_number">The agent number.</param>
+        /// <param name="agent_email">The agent email.</param>
+        /// <param name="agency_id">The agency identifier.</param>
+        /// <param name="agent_number2">The agent number2.</param>
         public void AddAgent(string agent_Fname, string agent_Lname, string agent_Uname, string agent_password,
             string agent_number,
             string agent_email, int agency_id, string agent_number2)
@@ -1920,6 +2263,11 @@ namespace test2
 
         #region Update parts of an agent in the agent database.
 
+        /// <summary>
+        /// Updates the first name of the agent.
+        /// </summary>
+        /// <param name="firstName">The first name.</param>
+        /// <param name="agent_id">The agent identifier.</param>
         public void UpdateAgentFirstName(string firstName, int agent_id)
         {
             using (var command = new SqlCommand())
@@ -1944,6 +2292,11 @@ namespace test2
             }
         }
 
+        /// <summary>
+        /// Updates the last name of the agent.
+        /// </summary>
+        /// <param name="lastName">The last name.</param>
+        /// <param name="agent_id">The agent identifier.</param>
         public void UpdateAgentLastName(string lastName, int agent_id)
         {
             using (var command = new SqlCommand())
@@ -1968,6 +2321,11 @@ namespace test2
             }
         }
 
+        /// <summary>
+        /// Updates the agent username.
+        /// </summary>
+        /// <param name="userName">Name of the user.</param>
+        /// <param name="agent_id">The agent identifier.</param>
         public void UpdateAgentUsername(string userName, int agent_id)
         {
             using (var command = new SqlCommand())
@@ -1992,6 +2350,11 @@ namespace test2
             }
         }
 
+        /// <summary>
+        /// Updates the agent password.
+        /// </summary>
+        /// <param name="password">The password.</param>
+        /// <param name="agent_id">The agent identifier.</param>
         public void UpdateAgentPassword(string password, int agent_id)
         {
             using (var command = new SqlCommand())
@@ -2016,6 +2379,11 @@ namespace test2
             }
         }
 
+        /// <summary>
+        /// Updates the agent number.
+        /// </summary>
+        /// <param name="phoneNumber">The phone number.</param>
+        /// <param name="agent_id">The agent identifier.</param>
         public void UpdateAgentNumber(string phoneNumber, int agent_id)
         {
             using (var command = new SqlCommand())
@@ -2040,6 +2408,11 @@ namespace test2
             }
         }
 
+        /// <summary>
+        /// Updates the agent email.
+        /// </summary>
+        /// <param name="email">The email.</param>
+        /// <param name="agent_id">The agent identifier.</param>
         public void UpdateAgentEmail(string email, int agent_id)
         {
             using (var command = new SqlCommand())
@@ -2068,6 +2441,10 @@ namespace test2
 
         #region Delete an agent
 
+        /// <summary>
+        /// Deletes the agent.
+        /// </summary>
+        /// <param name="agent_id">The agent identifier.</param>
         public void DeleteAgent(int agent_id)
         {
             using (var command = new SqlCommand())
@@ -2092,6 +2469,10 @@ namespace test2
 
         #region Retrieve stuff from the agent database.
 
+        /// <summary>
+        /// Gets the total number of agents using service.
+        /// </summary>
+        /// <returns></returns>
         public int GetTotalNumberOfAgentsUsingService()
         {
             var result = 0;
@@ -2113,6 +2494,11 @@ namespace test2
             return result;
         }
 
+        /// <summary>
+        /// Gets the total number of agents with agency.
+        /// </summary>
+        /// <param name="agency_id">The agency identifier.</param>
+        /// <returns></returns>
         public int GetTotalNumberOfAgentsWithAgency(int agency_id)
         {
             var result = 0;
@@ -2134,6 +2520,11 @@ namespace test2
             return result;
         }
 
+        /// <summary>
+        /// Gets the first name of the agent.
+        /// </summary>
+        /// <param name="agent_id">The agent identifier.</param>
+        /// <returns></returns>
         public string GetAgentFirstName(int agent_id)
         {
             var result = "";
@@ -2156,6 +2547,11 @@ namespace test2
             return result;
         }
 
+        /// <summary>
+        /// Gets the last name of the agent.
+        /// </summary>
+        /// <param name="agent_id">The agent identifier.</param>
+        /// <returns></returns>
         public string GetAgentLastName(int agent_id)
         {
             var result = "";
@@ -2178,6 +2574,11 @@ namespace test2
             return result;
         }
 
+        /// <summary>
+        /// Gets the agent identifier.
+        /// </summary>
+        /// <param name="username">The username.</param>
+        /// <returns></returns>
         public int GetAgentID(string username)
         {
             var result = 0;
@@ -2201,6 +2602,11 @@ namespace test2
             return result;
         }
 
+        /// <summary>
+        /// Gets the name of the agent user.
+        /// </summary>
+        /// <param name="agent_id">The agent identifier.</param>
+        /// <returns></returns>
         public string GetAgentUserName(int agent_id)
         {
             var result = "";
@@ -2223,6 +2629,12 @@ namespace test2
             return result;
         }
 
+        /// <summary>
+        /// Checks the agent password.
+        /// </summary>
+        /// <param name="username">The username.</param>
+        /// <param name="enteredPassword">The entered password.</param>
+        /// <returns></returns>
         public bool CheckAgentPassword(string username, string enteredPassword)
         {
             var result = "";
@@ -2246,6 +2658,11 @@ namespace test2
             return string.Equals(enteredPassword, result);
         }
 
+        /// <summary>
+        /// Gets the agent phone number.
+        /// </summary>
+        /// <param name="agent_id">The agent identifier.</param>
+        /// <returns></returns>
         public string GetAgentPhoneNumber(int agent_id)
         {
             var result = "";
@@ -2268,6 +2685,11 @@ namespace test2
             return result;
         }
 
+        /// <summary>
+        /// Gets the agent email.
+        /// </summary>
+        /// <param name="agent_id">The agent identifier.</param>
+        /// <returns></returns>
         public string GetAgentEmail(int agent_id)
         {
             var result = "";
@@ -2290,6 +2712,11 @@ namespace test2
             return result;
         }
 
+        /// <summary>
+        /// Gets the agency of agent.
+        /// </summary>
+        /// <param name="agent_id">The agent identifier.</param>
+        /// <returns></returns>
         public int GetAgencyOfAgent(int agent_id)
         {
             var result = -1;
@@ -2311,6 +2738,11 @@ namespace test2
             return result;
         }
 
+        /// <summary>
+        /// Gets the agent.
+        /// </summary>
+        /// <param name="agent_id">The agent identifier.</param>
+        /// <returns></returns>
         public DataTable GetAgent(int agent_id)
         {
             var table = new DataTable();
@@ -2344,6 +2776,10 @@ namespace test2
             return table;
         }
 
+        /// <summary>
+        /// Gets all agents.
+        /// </summary>
+        /// <returns></returns>
         public DataTable GetAllAgents()
         {
             var table = new DataTable();
@@ -2378,6 +2814,11 @@ namespace test2
             return table;
         }
 
+        /// <summary>
+        /// Gets all agents from agency.
+        /// </summary>
+        /// <param name="agency_id">The agency identifier.</param>
+        /// <returns></returns>
         public DataTable GetAllAgentsFromAgency(int agency_id)
         {
             var table = new DataTable();
@@ -2419,6 +2860,16 @@ namespace test2
 
         #region Add an agency to the database.
 
+        /// <summary>
+        /// Adds the agency.
+        /// </summary>
+        /// <param name="agency_name">Name of the agency.</param>
+        /// <param name="agency_email">The agency email.</param>
+        /// <param name="agency_phone">The agency phone.</param>
+        /// <param name="agency_street">The agency street.</param>
+        /// <param name="agency_city">The agency city.</param>
+        /// <param name="agency_state">State of the agency.</param>
+        /// <param name="agency_zip">The agency zip.</param>
         public void AddAgency(string agency_name, string agency_email, string agency_phone, string agency_street,
             string agency_city, string agency_state, string agency_zip)
         {
@@ -2463,6 +2914,11 @@ namespace test2
 
         #region Update parts of an agent in the agency database.
 
+        /// <summary>
+        /// Updates the name of the agency.
+        /// </summary>
+        /// <param name="name">The name.</param>
+        /// <param name="agency_id">The agency identifier.</param>
         public void UpdateAgencyName(string name, int agency_id)
         {
             using (var command = new SqlCommand())
@@ -2487,6 +2943,11 @@ namespace test2
             }
         }
 
+        /// <summary>
+        /// Updates the agency email.
+        /// </summary>
+        /// <param name="email">The email.</param>
+        /// <param name="agency_id">The agency identifier.</param>
         public void UpdateAgencyEmail(string email, int agency_id)
         {
             using (var command = new SqlCommand())
@@ -2511,6 +2972,11 @@ namespace test2
             }
         }
 
+        /// <summary>
+        /// Updates the agency phone.
+        /// </summary>
+        /// <param name="phoneNumber">The phone number.</param>
+        /// <param name="agency_id">The agency identifier.</param>
         public void UpdateAgencyPhone(string phoneNumber, int agency_id)
         {
             using (var command = new SqlCommand())
@@ -2535,6 +3001,11 @@ namespace test2
             }
         }
 
+        /// <summary>
+        /// Updates the agency street.
+        /// </summary>
+        /// <param name="street">The street.</param>
+        /// <param name="agency_id">The agency identifier.</param>
         public void UpdateAgencyStreet(string street, int agency_id)
         {
             using (var command = new SqlCommand())
@@ -2559,6 +3030,11 @@ namespace test2
             }
         }
 
+        /// <summary>
+        /// Updates the agency city.
+        /// </summary>
+        /// <param name="city">The city.</param>
+        /// <param name="agency_id">The agency identifier.</param>
         public void UpdateAgencyCity(string city, int agency_id)
         {
             using (var command = new SqlCommand())
@@ -2583,6 +3059,11 @@ namespace test2
             }
         }
 
+        /// <summary>
+        /// Updates the state of the agency.
+        /// </summary>
+        /// <param name="state">The state.</param>
+        /// <param name="agency_id">The agency identifier.</param>
         public void UpdateAgencyState(string state, int agency_id)
         {
             using (var command = new SqlCommand())
@@ -2607,6 +3088,11 @@ namespace test2
             }
         }
 
+        /// <summary>
+        /// Updates the agency zip.
+        /// </summary>
+        /// <param name="zip">The zip.</param>
+        /// <param name="agency_id">The agency identifier.</param>
         public void UpdateAgencyZip(string zip, int agency_id)
         {
             using (var command = new SqlCommand())
@@ -2635,6 +3121,10 @@ namespace test2
 
         #region Remove/Delete items in the agency database.
 
+        /// <summary>
+        /// Deletes the agency.
+        /// </summary>
+        /// <param name="agency_id">The agency identifier.</param>
         public void DeleteAgency(int agency_id)
         {
             using (var command = new SqlCommand())
@@ -2659,6 +3149,10 @@ namespace test2
 
         #region Retrieve stuff from the agency database.
 
+        /// <summary>
+        /// Gets the total number of agencies.
+        /// </summary>
+        /// <returns></returns>
         public int GetTotalNumberOfAgencies()
         {
             var result = 0;
@@ -2680,6 +3174,10 @@ namespace test2
             return result;
         }
 
+        /// <summary>
+        /// Gets all agencies.
+        /// </summary>
+        /// <returns></returns>
         public DataTable GetAllAgencies()
         {
             var table = new DataTable();
@@ -2714,6 +3212,11 @@ namespace test2
             return table;
         }
 
+        /// <summary>
+        /// Gets the agency.
+        /// </summary>
+        /// <param name="agency_id">The agency identifier.</param>
+        /// <returns></returns>
         public DataTable GetAgency(int agency_id)
         {
             var table = new DataTable();
@@ -2755,6 +3258,10 @@ namespace test2
         #endregion
 
 
+        /// <summary>
+        /// Gets the text.
+        /// </summary>
+        /// <param name="myTable">My table.</param>
         public void getText(DataTable myTable)
         {
             var row = myTable.Rows[0];
@@ -2766,6 +3273,11 @@ namespace test2
 
 
         //convert image to byte[]
+        /// <summary>
+        /// Imagetoes the byte.
+        /// </summary>
+        /// <param name="imageIn">The image in.</param>
+        /// <returns></returns>
         public byte[] ImagetoByte(Image imageIn)
         {
             var ms = new MemoryStream();
@@ -2774,6 +3286,11 @@ namespace test2
         }
 
         //convert byte[] to image
+        /// <summary>
+        /// Bytetoes the image.
+        /// </summary>
+        /// <param name="byteArrayIn">The byte array in.</param>
+        /// <returns></returns>
         public Image BytetoImage(byte[] byteArrayIn)
         {
             var ms = new MemoryStream(byteArrayIn);
@@ -2781,7 +3298,13 @@ namespace test2
             return returnImage;
         }
 
+        /// <summary>
+        /// The connection
+        /// </summary>
         private SqlConnection connection;
+        /// <summary>
+        /// The command
+        /// </summary>
         private SqlCommand command;
     }
 
@@ -2790,8 +3313,15 @@ namespace test2
     //************************************************************************
 
     //************************************************************************
+    /// <summary>
+    /// 
+    /// </summary>
     internal class Program
     {
+        /// <summary>
+        /// Mains the specified arguments.
+        /// </summary>
+        /// <param name="args">The arguments.</param>
         private static void Main(string[] args)
         {
             var conString = "Data Source=DESKTOP-QM2SFGD;Initial Catalog=Housing;Integrated Security=True";
