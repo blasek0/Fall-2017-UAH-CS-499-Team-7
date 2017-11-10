@@ -57,44 +57,59 @@
                 
                 
                 
-                <div style="height: 320px; width: 300px; margin-top: 100px; margin-right: 60px; background-color: darkblue; float:right">
+                <div style="height: 320px; width: 300px; margin-top: 100px; margin-right: 60px; background-color: black; float:right">
                     <p style="font-family:'Times New Roman', Times, serif; color: white; font-size: 25px; text-align: center">Contact Us!</p>
                     <br />
-                    <p style="font-family:'Times New Roman', Times, serif; color: white; font-size: 15px;">Ageny: <%#Eval("agency_name") %></p>
-                    <br />
-                    <p style="font-family:'Times New Roman', Times, serif; color: white; font-size: 15px;">Agent: <%#Eval("agent_Fname") %> <%#Eval("agent_Lname") %></p>
+                    <p style="color:white">First Name <asp:TextBox ID="fName" runat="server"></asp:TextBox> </p>  
+                    </br>
+                    <p style="color:white">Last Name <asp:TextBox  ID="lName" runat="server"></asp:TextBox> </p>
+                    </br> </br>
+                    <asp:Button ID="submitButton" runat="server" Text="Submit"></asp:Button>
+                    
                 </div>
                 
                
             </div>
 
+                
+                
+                <!-- Bar that says more information -->
                 <div style="width: 100%; height: 90px; margin-top: 130px; background-color: black; margin: 5px 0px 5px 0px">
                     <h1 style="position: relative; text-align: center; color: white; margin: 30px 0px 0px 0px">More Information</h1>
                 </div>
  
-                <div class="container1" style="position: absolute; margin-top: 70px; width: 100%; height: 500px; overflow:hidden" >
-                
-                    <div class="house_info" style="width:30%; height:100%; float:left; margin: 10px 20px 0px 20px; background-color:darkblue">
+                <!-- This container div has 3 divs inside of it, each containint differnt information -->
+                <div class="container1" style="position: absolute; margin-top: 70px; width: 100%; height: 500px; overflow:hidden; background-image: url('../Pictures/South_Boston_Waterfront_Wallpaper_u9eow.jpg')" >
 
-                         <p style="color: white">Info</p>
+                
+                    <div class="house_info" style="width:30%; height:100%; float:left; margin: 10px 20px 0px 20px; background-color:black; opacity: .6">
+
+                         
+                         <p style="color: white; opacity: 1">Price: $<%#Eval("listing_price") %></p> 
+                         <p style="color: white; opacity: 1">Description: <%#Eval("listing_description") %></p>
+                         <p style="color: white; opacity: 1">Room Description: <%#Eval("listing_roomDescription") %></p> 
+                         <p style="color: white; opacity: 1">Address: <%#Eval("listing_street") %> </p> 
+                         <p style="color: white; opacity: 1">City/State/ZIP: <%#Eval("listing_city") %>, <%#Eval("listing_state") %> <%#Eval("listing_zip") %> </p>
+                         <p style="color: white; opacity: 1">Square Footage: <%#Eval("listing_sqFT") %></p>
+
+                    </div>
+
+            
+            <!--    
+                    <div class="house_info2" style="width:30%; height:100%; margin-bottom: 100px; float:left; margin: 10px 20px 0px 20px; background-color: black; opacity: .6">
+
+                         <p style="color: white; opacity: 1">Subdivison: <%#Eval("listing_nameSubDivision") %></p>
             
                 
                     </div>
 
-            
+                    -->
                 
-                    <div class="house_info2" style="width:30%; height:100%; margin-bottom: 100px; float:left; margin: 10px 20px 0px 20px; background-color: darkred">
-
-                         <p style="color: white">Info</p>
-            
+                    <div id="theDiv" runat="server" class="house_info3" style="width:30%; height:100%; float:right; margin-bottom: 100px; margin: 10px 20px 0px 0px; background-color: black; opacity: .6">
                 
-                    </div>
-
-
-                
-                    <div id="theDiv" runat="server" class="house_info3" style="width:30%; height:100%; float:left; margin-bottom: 100px; margin: 10px 20px 0px 0px; background-color: darkblue">
-                
-                            <p style="color: white">Info</p>
+                            <p style="color: white; opacity: 1">Subdivison: <%#Eval("listing_nameSubDivision") %></p>
+                            <p style="color: white; opacity: 1">Agency: <%#Eval("agent_Fname") %> <%#Eval("agent_Lname") %></p>
+                            <p style="color: white; opacity: 1">Agent: <%#Eval("agency_name") %></p>
                 
                     </div>
             

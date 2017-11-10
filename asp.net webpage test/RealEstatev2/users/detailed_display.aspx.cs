@@ -9,7 +9,7 @@ using System.Data.SqlClient;
 
 public partial class users_detailed_display : System.Web.UI.Page
 {
-    
+
     SqlConnection con = new SqlConnection("Data Source=DESKTOP-KFI49LK;Initial Catalog=Housing;Integrated Security=True");                  //connects to dayabase
     int id;                                                                                                                                 //will hold the id variable created in the display_house.aspx code
     protected void Page_Load(object sender, EventArgs e)
@@ -18,8 +18,8 @@ public partial class users_detailed_display : System.Web.UI.Page
         //d1.Visible = false;
         //this.Page.FindControl("d1").Visible = false;
         //theDiv.Visible = false;
-        
-        
+
+
         if (Request.QueryString["id"] == null)                                                                                              //id is the name of the variable holding the listing id
         {
             Response.Redirect("display_houses.aspx");                                                                                       //if id is null then user is redirected to main page when page is loaded
@@ -42,5 +42,7 @@ public partial class users_detailed_display : System.Web.UI.Page
 
             con.Close();
         }
+
     }
+
 }
