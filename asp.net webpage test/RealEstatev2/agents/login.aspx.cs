@@ -12,7 +12,7 @@ public partial class login : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        HttpCookie _userInfo = Request.Cookies["_userInfo"];        //creates _userInfo cookie
+        HttpCookie _userInfo = Request.Cookies["_userInfo"];
 
 
         if (_userInfo != null)
@@ -30,15 +30,15 @@ public partial class login : System.Web.UI.Page
             con.Open();
             string checkUser = "Select count(*) from agent where agent_Uname= '" + TextBoxUN.Text + "'";
             SqlCommand com = new SqlCommand(checkUser, con);
-            int temp = Convert.ToInt32(com.ExecuteScalar().ToString());         //if temp equals 1 then the result for a username came back as true
+            int temp = Convert.ToInt32(com.ExecuteScalar().ToString());
 
             if (temp == 1)
             {
                 string checkPass = "Select agent_password from agent where agent_Uname= '" + TextBoxUN.Text + "'";
                 SqlCommand passCom = new SqlCommand(checkPass, con);
-                string password = passCom.ExecuteScalar().ToString();       //checks database for password
+                string password = passCom.ExecuteScalar().ToString();
 
-                if (password == TextBoxPW.Text)                             //compares password given to one in database. If password is in the database then we create a cookie. Store in it agent_id and agency_id then redirect user to main page.
+                if (password == TextBoxPW.Text)
                 {
                     string getAgentID = "Select agent_id from agent where agent_Uname ='" + TextBoxUN.Text + "'";
                     SqlCommand getID = new SqlCommand(getAgentID, con);

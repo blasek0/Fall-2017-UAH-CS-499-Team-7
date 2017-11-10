@@ -27,3 +27,31 @@ li a:hover:not(.active){
 li {
     float: left;
 }
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+body {
+    display: table;
+}
+
+.my-block {
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
+}
+.products {
+    padding: 16px;
+    margin: auto;
+    width: 61.5%; /*width  of the space defined for the pics to exist in*/
+    /*padding: 70px;*/ /*Have no idea what it changes so might delete*/
+    margin-top: 60px;
+    padding-top: 80px;
+}
+.highlight {
+    color: red;
+    font-weight: bold;
+}

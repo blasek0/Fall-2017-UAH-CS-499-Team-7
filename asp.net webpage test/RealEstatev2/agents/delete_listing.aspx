@@ -18,6 +18,9 @@
         <li><a href="#"> <form id="form2" runat="server"><asp:Button ID="logoutButton" runat="server" OnClick="Button1_Click" Text="Logout" /></form></a></li>
     </ul>
 
+         <tr>
+            <th><button type="button" value="delete" onclick="" runat="server">Delete Listing</button></th>
+        </tr>
     <h1>Delete Listing</h1>
 </body>
 </html>
