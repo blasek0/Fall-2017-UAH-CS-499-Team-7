@@ -5,6 +5,7 @@ namespace test2
     {
         public ClosingForms()
         {
+            
         }
 
         #region Closing Settlement Statement String
